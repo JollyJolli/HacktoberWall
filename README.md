@@ -1,7 +1,4 @@
-
-# HacktoberWall 
-
-![Hacktoberfest](https://hacktoberfest.digitalocean.com/favicon.ico)
+# HacktoberWall
 
 ## 🌟 Overview
 
@@ -12,7 +9,7 @@
 - **Dynamic Mural**: View all contributors on a visually appealing grid-style wall.
 - **Easy Contribution**: Simply edit the `contributors.json` file to add your name.
 - **Responsive Design**: Optimized for various screen sizes, ensuring a great experience on both desktop and mobile.
-- **Interactive Hover Effects**: Each participant card scales slightly on hover for a more interactive experience.
+- **Interactive Hover Effects**: Each participant card scales slightly on hover for a more engaging experience.
 
 ## 🛠️ Technologies Used
 
@@ -32,7 +29,7 @@ cd HacktoberWall
 
 ### 2. Open in Browser
 
-Open the `index.html` file in your preferred web browser to see the **HacktoberWall** in action!
+Open the `index.html` file in your preferred web browser to see **HacktoberWall** in action!
 
 ### 3. Contribute
 
@@ -48,10 +45,10 @@ Open the `index.html` file in your preferred web browser to see the **HacktoberW
 
 - Refresh the page to see your contribution reflected on the wall!
 
-## 📸 Screenshot
-
-![HacktoberWall Screenshot](https://example.com/screenshot.png) <!-- Replace with your actual screenshot -->
-
 ## 🔗 Links
 
 - [Live Demo](https://hacktoberwall.formen.cc)
+
+## 🛠️ ISSUES
+
+In this section, I will list a couple of things in case anyone wants to help out. They won't be too difficult, so any contributions will be greatly appreciated!
