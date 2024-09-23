@@ -45,6 +45,10 @@ Open the `index.html` file in your preferred web browser to see **HacktoberWall*
 
 - Refresh the page to see your contribution reflected on the wall!
 
+## 🤝 Contributions
+
+We would love for you to join us! If you want to contribute to the project, please check the [CONTRIBUTING.md](CONTRIBUTING.md) file for more information on how to do so. Any contributions are welcome and appreciated. Thank you for being a part of HacktoberWall!
+
 ## 🔗 Links
 
 - [Live Demo](https://hacktoberwall.formen.cc)
