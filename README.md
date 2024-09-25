@@ -18,6 +18,9 @@
 - **JavaScript**: Fetching and displaying participant data dynamically.
 - **JSON**: Storing contributor names in a structured format.
 
+## 🎁 Contributors
+[Contributors](https://contrib.rocks/image?repo=JollyJolli/HacktoberWall)
+
 ## 📦 Getting Started
 
 ### 1. Clone the Repository
