@@ -12,6 +12,11 @@ body {
     background-color: #f4f4f9;
 }
 
+body.dark-mode {
+    background-color: #2c3e50;
+    color: #f4f4f9;
+}
+
 .container {
     flex: 1; /* Allow the container to grow and push footer down */
     background-color: white;
@@ -23,6 +28,23 @@ body {
     margin: 20px auto; /* Center the container */
 }
 
+.container.dark-mode{
+    background-color: #27313b;
+}
+
+.container.dark-mode h1{
+    color: #97c2ed;
+}
+
+
+.toggle-btn {
+    font-size: 2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
 h1 {
     text-align: center;
     color: #333;
@@ -31,6 +53,10 @@ h1 {
 
 .wall-section {
     margin-top: 20px;
+}
+
+.wall-section.dark-mode h2{
+    color:#97c2ed
 }
 
 .wall-section h2 {
@@ -47,6 +73,10 @@ h1 {
     border-radius: 10px;
     max-height: 400px;
     overflow-y: auto;
+}
+
+#wall.dark-mode{
+    background-color: #2c3e50;
 }
 
 .participant {
@@ -70,9 +100,17 @@ footer {
     border-top: 1px solid #e9ecef;
 }
 
+footer.dark-mode{
+    background-color: #2c3e50;
+}
+
 footer p {
     color: #333;
     font-size: 14px;
+}
+
+footer.dark-mode p{
+    color:#97c2ed;
 }
 
 footer a {
