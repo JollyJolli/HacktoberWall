@@ -1,30 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HacktoberWall</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="container">
-        <div style="text-align:right">
-            <div class="toggle-container" style="text-align:right">
-                <button id="toggleButton" class="toggle-btn">🌞</button>
-            </div>
-        </div>
-        <h1>HacktoberWall</h1>
-        <p>Contribute to the Hacktoberfest mural by editing the JSON file in the code!</p>
-
-        <div class="wall-section">
-            <h2>Participants</h2>
-            <div id="wall"></div>
-        </div>
-    </div>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <h1>HacktoberWall</h1>
+      <button
+        id="toggleButton"
+        class="toggle-btn"
+        aria-label="Toggle dark mode"
+      >
+        🌞
+      </button>
+    </header>
+    <main class="container">
+      <section class="intro">
+        <p>
+          Contribute to the Hacktoberfest mural by editing the JSON file in the
+          code!
+        </p>
+      </section>
+      <section class="wall-section">
+        <h2>Participants</h2>
+        <div id="wall" class="wall"></div>
+      </section>
+    </main>
     <footer>
-        <p>Contribute at <a href="https://github.com/JollyJolli/HacktoberWall" target="_blank">https://github.com/JollyJolli/HacktoberWall</a></p>
+      <p>
+        Contribute at
+        <a href="https://github.com/JollyJolli/HacktoberWall" target="_blank"
+          >GitHub</a
+        >
+      </p>
     </footer>
-
     <script src="app.js"></script>
-</body>
+  </body>
 </html>

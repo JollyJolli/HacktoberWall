@@ -1,123 +1,143 @@
+:root {
+  --bg-light: #f8f9fa;
+  --text-light: #333;
+  --accent-light: #ff6b6b;
+  --bg-dark: #2c3e50;
+  --text-dark: #ecf0f1;
+  --accent-dark: #f06595;
+}
+
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* Ensure body takes full height */
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+  font-family: "Poppins", sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-light);
+  line-height: 1.6;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 body.dark-mode {
-    background-color: #2c3e50;
-    color: #f4f4f9;
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
 }
 
 .container {
-    flex: 1; /* Allow the container to grow and push footer down */
-    background-color: white;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    max-width: 800px;
-    width: 100%;
-    margin: 20px auto; /* Center the container */
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
 }
 
-.container.dark-mode{
-    background-color: #27313b;
-}
-
-.container.dark-mode h1{
-    color: #97c2ed;
-}
-
-
-.toggle-btn {
-    font-size: 2rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    outline: none;
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 h1 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 10px;
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--accent-light);
 }
 
-.wall-section {
-    margin-top: 20px;
+.dark-mode h1 {
+  color: var(--accent-dark);
 }
 
-.wall-section.dark-mode h2{
-    color:#97c2ed
+.toggle-btn {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.toggle-btn:hover {
+  transform: scale(1.1);
+}
+
+.intro {
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
 .wall-section h2 {
-    color: #333;
-    margin-bottom: 10px;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  text-align: center;
 }
 
-#wall {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 15px;
-    padding: 10px;
-    background-color: #e9ecef;
-    border-radius: 10px;
-    max-height: 400px;
-    overflow-y: auto;
-}
-
-#wall.dark-mode{
-    background-color: #2c3e50;
+.wall {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  max-height: 400px;
+  overflow-y: auto;
 }
 
 .participant {
-    background-color: #007bff;
-    color: white;
-    padding: 15px;
-    border-radius: 10px;
-    text-align: center;
-    font-size: 16px;
-    transition: transform 0.2s;
+  background-color: var(--accent-light);
+  color: white;
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 1rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.dark-mode .participant {
+  background-color: var(--accent-dark);
 }
 
 .participant:hover {
-    transform: scale(1.05);
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 footer {
-    text-align: center;
-    padding: 10px 0;
-    background-color: #f8f9fa;
-    border-top: 1px solid #e9ecef;
-}
-
-footer.dark-mode{
-    background-color: #2c3e50;
-}
-
-footer p {
-    color: #333;
-    font-size: 14px;
-}
-
-footer.dark-mode p{
-    color:#97c2ed;
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: 2rem;
+  font-size: 0.9rem;
 }
 
 footer a {
-    color: #007bff;
-    text-decoration: none;
+  color: var(--accent-light);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.dark-mode footer a {
+  color: var(--accent-dark);
 }
 
 footer a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .wall {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
 }
