@@ -135,7 +135,33 @@ footer a:hover {
 }
 
 .dark-mode .toggle-btn i {
-  color: var(--accent-dark);
+  color: white;
+}
+
+.header-title {
+  color: inherit; 
+  text-decoration: none; 
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--accent-light);
+  transition: color 0.3s;
+}
+
+.header-title:hover {
+  cursor:pointer; 
+  
+}
+
+.dark-mode .header-title {
+  color: var(--accent-dark); 
+}
+
+#halloweenIcon {
+  color: white;
+  display: none; 
+  transition: opacity 1s; 
+  margin-left: 2px; 
+  font-size: 2.5rem;
 }
 
 @media (max-width: 600px) {

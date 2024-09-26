@@ -61,3 +61,29 @@ window.onload = function () {
   initializeDarkMode();
   addParticipantHoverEffect();
 };
+
+// Function to play spooky sound
+function playSpookySound() {
+  const audio = new Audio('halloween-impact-05.mp3'); 
+  audio.play();
+}
+
+// Function to show Halloween icon
+function showHalloweenIcon() {
+  const icon = document.getElementById('halloweenIcon');
+  icon.style.display = 'inline'; 
+  setTimeout(() => {
+    icon.style.display = 'none';
+  }, 4000); 
+}
+
+// Add event listener for the title link
+document.getElementById('titleLink').addEventListener('click', (e) => {
+  e.preventDefault(); 
+  const body = document.body;
+
+  if (body.classList.contains('dark-mode')) {
+    playSpookySound();
+    showHalloweenIcon();
+  }
+});
