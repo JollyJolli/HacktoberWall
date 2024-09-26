@@ -1,6 +1,6 @@
-// consts
-const MOON = "🌜";
-const SUN = "🌞";
+// Font Awesome classes for sun and moon
+const MOON = '<i class="fas fa-moon"></i>';
+const SUN = '<i class="fas fa-sun"></i>';
 
 // Function to load participants from the JSON file
 async function loadContributors() {
@@ -31,13 +31,13 @@ function initializeDarkMode() {
 
   const isDarkMode = localStorage.getItem("dark-mode") === "enabled";
   body.classList.toggle("dark-mode", isDarkMode);
-  toggleButton.textContent = isDarkMode ? MOON : SUN;
+  toggleButton.innerHTML = isDarkMode ? MOON : SUN;
 
   toggleButton.addEventListener("click", () => {
     body.classList.toggle("dark-mode");
     const isDarkMode = body.classList.contains("dark-mode");
     localStorage.setItem("dark-mode", isDarkMode ? "enabled" : "disabled");
-    toggleButton.textContent = isDarkMode ? MOON : SUN;
+    toggleButton.innerHTML = isDarkMode ? MOON : SUN;
   });
 }
 
