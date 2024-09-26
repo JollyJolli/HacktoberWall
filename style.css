@@ -177,3 +177,60 @@ footer a:hover {
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   }
 }
+
+
+/* Estilo Neon activado con el Konami Code */
+body.neon-mode {
+  background-color: black;
+  color: #0ff; /* Color del texto en modo neon */
+  font-family: 'Courier New', monospace; /* Fuente de aspecto retro */
+}
+
+body.neon-mode .header-title, 
+body.neon-mode h1, 
+body.neon-mode h2 {
+  text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff, 0 0 40px #0ff, 0 0 80px #00f, 0 0 90px #00f;
+  color: #0ff;
+}
+
+body.neon-mode .participant {
+  background-color: #f0f;
+  color: #000;
+  box-shadow: 0 0 10px #f0f, 0 0 20px #f0f, 0 0 30px #f0f;
+}
+
+body.neon-mode .toggle-btn i {
+  color: #0ff;
+}
+
+body.neon-mode footer a {
+  color: #f0f;
+  text-shadow: 0 0 5px #f0f, 0 0 10px #f0f, 0 0 20px #f0f, 0 0 40px #f0f;
+}
+
+body.neon-mode header {
+  background-color: rgba(0, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+}
+
+body.neon-mode .wall-section h2 {
+  color: #0ff;
+}
+
+/* Añadir animaciones en modo neon */
+@keyframes neon-glow {
+  0% {
+    text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff, 0 0 40px #0ff, 0 0 80px #00f, 0 0 90px #00f;
+  }
+  50% {
+    text-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff, 0 0 50px #00f, 0 0 100px #00f, 0 0 150px #00f;
+  }
+  100% {
+    text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff, 0 0 40px #0ff, 0 0 80px #00f, 0 0 90px #00f;
+  }
+}
+
+body.neon-mode h1, body.neon-mode h2 {
+  animation: neon-glow 1.5s infinite alternate;
+}
+

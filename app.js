@@ -87,3 +87,24 @@ document.getElementById('titleLink').addEventListener('click', (e) => {
     showHalloweenIcon();
   }
 });
+
+// Easter Egg
+const konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65]; // ↑ ↑ ↓ ↓ ← → ← → B A
+let konamiIndex = 0;
+
+document.addEventListener("keydown", function (event) {
+  if (event.keyCode === konamiCode[konamiIndex]) {
+    konamiIndex++;
+    if (konamiIndex === konamiCode.length) {
+      activateNeonMode();
+      console.log("Konami Code Activated")
+      konamiIndex = 0;
+    }
+  } else {
+    konamiIndex = 0;
+  }
+});
+
+function activateNeonMode() {
+  document.body.classList.add("neon-mode");
+}
