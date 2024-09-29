@@ -44,6 +44,68 @@ header {
   z-index: 1000;
 }
 
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  background-color: #f0f0f0;
+  border-radius: 20px;
+  padding: 0.3rem 0.5rem;
+  transition: all 0.3s ease;
+  width: 250px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode .search-container {
+  background-color: #333;
+  box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+}
+
+#searchInput {
+  border: none;
+  background: transparent;
+  padding: 0.3rem 0.5rem;
+  font-size: 0.9rem;
+  color: #333;
+  width: 210px;
+  outline: none;
+}
+
+.dark-mode #searchInput {
+  color: #f0f0f0;
+}
+
+#searchInput::placeholder {
+  color: #888;
+}
+
+#searchButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #555;
+  font-size: 0.9rem;
+  padding: 0.3rem;
+  transition: color 0.3s ease;
+}
+
+#searchButton:hover {
+  color: #000;
+}
+
+.dark-mode #searchButton {
+  color: #aaa;
+}
+
+.dark-mode #searchButton:hover {
+  color: #fff;
+}
+
 h1 {
   font-size: 2.5rem;
   font-weight: 600;

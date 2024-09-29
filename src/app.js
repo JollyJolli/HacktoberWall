@@ -10,17 +10,19 @@ async function loadContributors() {
 }
 
 // Function to display participants on the mural
-async function displayContributors() {
+async function displayContributors(filter = '') {
   const wall = document.getElementById("wall");
   const contributors = await loadContributors();
   wall.innerHTML = "";
 
   contributors.forEach((contributor, index) => {
-    const div = document.createElement("div");
-    div.classList.add("participant");
-    div.textContent = contributor.name;
-    div.style.animationDelay = `${index * 0.1}s`;
-    wall.appendChild(div);
+    if (contributor.name.toLowerCase().includes(filter.toLowerCase())) {
+      const div = document.createElement("div");
+      div.classList.add("participant");
+      div.textContent = contributor.name;
+      div.style.animationDelay = `${index * 0.1}s`;
+      wall.appendChild(div);
+    }
   });
 }
 
@@ -60,6 +62,7 @@ window.onload = function () {
   displayContributors();
   initializeDarkMode();
   addParticipantHoverEffect();
+  initializeSearch(); // Add this line
 };
 
 // Function to play spooky sound
@@ -107,4 +110,18 @@ document.addEventListener("keydown", function (event) {
 
 function activateNeonMode() {
   document.body.classList.add("neon-mode");
+}
+
+// Add this new function
+function initializeSearch() {
+  const searchInput = document.getElementById('searchInput');
+  const searchButton = document.getElementById('searchButton');
+
+  searchInput.addEventListener('input', () => {
+    displayContributors(searchInput.value);
+  });
+
+  searchButton.addEventListener('click', () => {
+    displayContributors(searchInput.value);
+  });
 }
