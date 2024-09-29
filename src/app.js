@@ -56,13 +56,51 @@ function addParticipantHoverEffect() {
     }
   });
 }
+const funFacts = [
+  "The first Hacktoberfest event was held in 2014.",
+  "Hacktoberfest was created by DigitalOcean and GitHub.",
+  "Open source software powers much of the internet's infrastructure.",
+  "The term 'open source' was coined in 1998.",
+  "Linux, the most famous open source project, was created in 1991."
+];
+
+const sections = ["intro", "wall-section", "footer"];
+
+function getRandomItem(array) {
+  return array[Math.floor(Math.random() * array.length)];
+}
+
+function showFunFact() {
+  const fact = getRandomItem(funFacts);
+  alert(fact);
+}
+
+function scrollToRandomSection() {
+  const section = getRandomItem(sections);
+  const element = document.querySelector(`.${section}`);
+  element.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function handleSurprise() {
+  if (Math.random() < 0.5) {
+    showFunFact();
+  } else {
+    scrollToRandomSection();
+  }
+}
+
+function initializeSurpriseButton() {
+  const surpriseButton = document.getElementById("surpriseButton");
+  surpriseButton.addEventListener("click", handleSurprise);
+}
 
 // Initialize the wall with existing contributors
 window.onload = function () {
   displayContributors();
   initializeDarkMode();
   addParticipantHoverEffect();
-  initializeSearch(); // Add this line
+  initializeSearch();
+  initializeSurpriseButton(); // Add this line
 };
 
 // Function to play spooky sound
