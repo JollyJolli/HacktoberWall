@@ -17,48 +17,37 @@
   <body>
     <header>
       <div>
-        <a href="#" id="titleLink" class="header-title" aria-label="HacktoberWall"  style="cursor:default">
+        <a href="#" id="titleLink" class="header-title" aria-label="HacktoberWall" style="cursor: default;">
           HacktoberWall
         </a>
-        <i id="halloweenIcon" class="fas fa-ghost"></i> 
+        <i id="halloweenIcon" class="fas fa-ghost"></i>
       </div>
       <div class="header-controls">
-        <div class="search-container">
-          <input type="text" id="searchInput" placeholder="Search contributors..." aria-label="Search contributors">
-          <button id="searchButton" aria-label="Search">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-        <button id="surpriseButton" class="surprise-btn" aria-label="Surprise Me!">
-          Surprise Me!
-        </button>
-        <button
-          id="toggleButton"
-          class="toggle-btn"
-          aria-label="Toggle dark mode"
-        >
+        <button id="surpriseButton" class="surprise-btn" aria-label="Surprise Me!">Surprise Me!</button>
+        <button id="toggleButton" class="toggle-btn" aria-label="Toggle dark mode">
           <i class="fas fa-sun"></i>
         </button>
       </div>
     </header>
     <main class="container">
       <section class="intro">
-        <p>
-          Contribute to the Hacktoberfest mural by editing the JSON file in the
-          code!
-        </p>
+        <p>Contribute to the Hacktoberfest mural by editing the JSON file in the code!</p>
       </section>
       <section class="wall-section">
         <h2>Participants</h2>
+        <div class="search-container">
+          <input type="text" id="searchInput" placeholder="Search contributors..." aria-label="Search contributors" />
+          <button id="searchButton" aria-label="Search">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
         <div id="wall" class="wall"></div>
       </section>
     </main>
     <footer>
       <p>
         Contribute at
-        <a href="https://github.com/JollyJolli/HacktoberWall" target="_blank"
-          >GitHub</a
-        >
+        <a href="https://github.com/JollyJolli/HacktoberWall" target="_blank">GitHub</a>
       </p>
     </footer>
     <script src="app.js"></script>
