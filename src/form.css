@@ -1,0 +1,74 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+}
+
+#feedbackSection {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px; /* Increased border radius for a softer look */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Shadow effect */
+    max-width: 500px;
+    width: 100%; /* Ensure it is responsive */
+}
+
+h2 {
+    color: #ff6b6b; /* Main title color */
+    margin-bottom: 20px;
+    text-align: center; /* Centered title */
+}
+
+#feedbackForm {
+    display: flex;
+    flex-direction: column;
+}
+
+#feedbackForm label {
+    margin: 10px 0 5px;
+    color: #333;
+}
+
+#comments {
+    height: 100px;
+    padding: 10px; /* Padding for better text entry */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none; /* Prevent resizing */
+}
+
+#contact {
+    padding: 10px; /* Padding for better text entry */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px;
+    background-color: #ff6b6b; /* Button color */
+    color: white; /* Button text color */
+    border: none;
+    border-radius: 5px; /* Rounded corners for button */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transition effects */
+    margin-top: 15px; /* Added margin for space between fields and button */
+}
+
+button:hover {
+    background-color: #ff4c4c; /* Darker shade on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+#thankYouMessage {
+    text-align: center; /* Center thank you message */
+    color: #ff4c4c; /* Green color for the message */
+    margin-top: 20px;
+    font-weight: bold; /* Bold text */
+}
+
+

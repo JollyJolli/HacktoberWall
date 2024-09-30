@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Form</title>
+    <link rel="stylesheet" href="form.css">
+</head>
+<body>
+    <div id="feedbackSection">
+        <h2>Feedback</h2>
+        <form id="feedbackForm">
+            <label for="comments">Comments:</label>
+            <textarea id="comments" name="comments" required></textarea>
+            
+            <label for="contact">Contact:</label>
+            <input type="text" id="contact" name="contact" placeholder="Email or Phone">
+            
+            <button type="submit">Submit Feedback</button>
+        </form>
+        <p id="thankYouMessage" style="display: none;">Thank you for your feedback!</p>
+    </div>
+
+    <script src="form.js"></script>
+</body>
+</html>
