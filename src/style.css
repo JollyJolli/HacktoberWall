@@ -1,10 +1,10 @@
 :root {
-  --bg-light: #f8f9fa;
-  --text-light: #333;
-  --accent-light: #ff6b6b;
-  --bg-dark: #2c3e50;
-  --text-dark: #ecf0f1;
-  --accent-dark: #f06595;
+  --bg-light: #FEFDF8; /* Light background color */
+  --text-light: #1C1C1C; /* Text color */
+  --accent-light: #50DA4C; /* Green accent color */
+  --bg-dark: #183717; /* Dark green background color */
+  --text-dark: #FEFDF8; /* Light text color for dark mode */
+  --accent-dark: #FF8BFF; /* Pink accent color for dark mode */
 }
 
 * {
@@ -54,7 +54,7 @@ header {
 .search-container {
   display: flex;
   align-items: center;
-  background-color: rgba(255, 107, 107, 0.1);
+  background-color: rgba(80, 218, 76, 0.1); /* Light green for search */
   border-radius: 30px;
   padding: 0.4rem 1rem;
   transition: all 0.3s ease;
@@ -65,7 +65,7 @@ header {
 }
 
 .dark-mode .search-container {
-  background-color: rgba(240, 101, 149, 0.1);
+  background-color: rgba(255, 139, 255, 0.1); /* Light pink for dark mode */
   box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
 }
 
@@ -84,12 +84,12 @@ header {
 }
 
 #searchInput::placeholder {
-  color: #ff6b6b;
+  color: #FF8BFF; /* Placeholder color in pink */
   opacity: 0.7;
 }
 
 .dark-mode #searchInput::placeholder {
-  color: #f06595;
+  color: #C401C4; /* Dark mode placeholder color */
 }
 
 #searchButton {
@@ -117,13 +117,13 @@ header {
 h1 {
   font-size: 2.5rem;
   font-weight: 600;
-  color: var(--accent-light);
+  color: var(--accent-light); /* Green for heading */
   text-align: center;
   margin-bottom: 1rem;
 }
 
 .dark-mode h1 {
-  color: var(--accent-dark);
+  color: var(--accent-dark); /* Pink for dark mode heading */
 }
 
 .intro {
@@ -143,14 +143,14 @@ h1 {
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 1rem;
   padding: 1rem;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.1); /* Light background for wall */
   border-radius: 10px;
   max-height: 400px;
   overflow-y: auto;
 }
 
 .participant {
-  background-color: var(--accent-light);
+  background-color: var(--accent-light); /* Green for participant cards */
   color: white;
   padding: 1rem;
   border-radius: 10px;
@@ -160,7 +160,7 @@ h1 {
 }
 
 .dark-mode .participant {
-  background-color: var(--accent-dark);
+  background-color: var(--accent-dark); /* Dark mode background for participants */
 }
 
 .participant:hover {
@@ -267,11 +267,12 @@ footer a:hover {
 #spinner {
   width: 100px;
   height: 100px;
-  border: 12px solid #c401c4;
-  border-top: 12px solid #ff8bff;
+  border: 12px solid #C401C4; /* Deep Pink for spinner */
+  border-top: 12px solid #FF8BFF; /* Pink for spinner */
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
+
 #loading-text {
   font-weight: bold;
   margin-top: 1rem;
@@ -357,14 +358,5 @@ footer a:hover {
 
   .wall {
     grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-  }
-
-  .participant {
-    font-size: 0.9rem;
-    padding: 0.8rem;
-  }
-
-  footer {
-    font-size: 0.75rem;
   }
 }
