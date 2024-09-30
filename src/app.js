@@ -4,8 +4,16 @@ const SUN = '<i class="fas fa-sun"></i>';
 
 // Function to load participants from the JSON file
 async function loadContributors() {
+  let contributors = null;
+  showLoadingScreen();
+  try{
   const response = await fetch("contributors.json");
-  const contributors = await response.json();
+  contributors = await response.json();
+  } catch(error) {
+    console.log(error);
+  } finally {
+    hideLoadingScreen();
+  }
   return contributors;
 }
 
@@ -116,6 +124,16 @@ function showHalloweenIcon() {
   setTimeout(() => {
     icon.style.display = 'none';
   }, 4000); 
+}
+// Functions to show and hide the loading screen
+function showLoadingScreen() {
+  const loadingScreen = document.getElementById('loading-screen');
+  loadingScreen.style.display = 'flex'; 
+}
+
+function hideLoadingScreen() {
+  const loadingScreen = document.getElementById('loading-screen');
+  loadingScreen.style.display = 'none';
 }
 
 // Add event listener for the title link
