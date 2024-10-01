@@ -19,7 +19,13 @@ body {
   color: var(--text-light);
   line-height: 1.6;
   transition: background-color 0.3s, color 0.3s;
+  background-image: url('bgm.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+
 }
+
 
 body.dark-mode {
   background-color: var(--bg-dark);
