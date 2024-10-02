@@ -284,6 +284,42 @@ footer a:hover {
   margin-top: 1rem;
 }
 
+/* Back to Top Button Styles */
+#backToTopBtn {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  background-color: var(--accent-light); /* Green accent in light mode */
+  color: var(--text-light);
+  border: none;
+  border-radius: 50px;
+  padding: 15px 20px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: none; /* Hidden by default */
+  z-index: 1000;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#backToTopBtn:hover {
+  background-color: var(--bg-dark); /* Dark green on hover */
+  color: var(--text-dark); /* Light text on hover */
+  transform: scale(1.1); /* Button enlarges slightly */
+}
+
+/* Dark mode styles */
+body.dark-mode #backToTopBtn {
+  background-color: var(--accent-dark); /* Pink accent in dark mode */
+  color: var(--text-dark);
+}
+
+body.dark-mode #backToTopBtn:hover {
+  background-color: var(--bg-light); /* Light background on hover */
+  color: var(--text-light); /* Dark text on hover */
+}
+
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
