@@ -22,32 +22,66 @@
     <meta name="twitter:description" content="Contribute to Hacktoberfest by editing the HacktoberWall mural and become part of the open-source community!" />
     <meta name="twitter:image" content="/img/logo.png" />
 
+    <!-- Favicon -->
     <link rel="icon" href="/img/favicon.ico" type="image/x-icon" />
     <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
 
-    <title>HacktoberWall</title>
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="style.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+
+    <style>
+      body {
+        background-color: #121212; /* Dark background for higher contrast */
+        color: #ffffff; /* White text for contrast */
+      }
+
+      button {
+        background-color: #007BFF; /* Blue for better contrast */
+        color: #ffffff;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      button:hover, button:focus {
+        background-color: #0056b3; /* Darker blue on hover/focus for better visibility */
+        outline: 2px solid #ffffff; /* Ensure keyboard focus visibility */
+      }
+
+      /* Ensure keyboard focus on links */
+      a:focus {
+        outline: 2px solid #ffffff;
+      }
+
+      /* Loading screen spinner contrast */
+      #loading-screen {
+        background-color: #333333;
+        color: #ffffff;
+      }
+    </style>
   </head>
   <body>
     <header>
       <div>
-        <a href="#" id="titleLink" class="header-title" aria-label="HacktoberWall" style="cursor: default;">
+        <a href="#" id="titleLink" class="header-title" aria-label="HacktoberWall Home" style="cursor: default;">
           HacktoberWall
         </a>
-        <i id="halloweenIcon" class="fas fa-ghost"></i>
+        <!-- ARIA label added to the Halloween icon for screen readers -->
+        <i id="halloweenIcon" class="fas fa-ghost" aria-hidden="true"></i>
       </div>
       <div class="header-controls">
-        <button id="surpriseButton" class="surprise-btn" aria-label="Surprise Me!">Surprise Me!</button>
-        <button id="toggleButton" class="toggle-btn" aria-label="Toggle dark mode">
-          <i class="fas fa-sun"></i>
+        <button id="surpriseButton" class="surprise-btn" aria-label="Surprise Me!" tabindex="0">Surprise Me!</button>
+        <button id="toggleButton" class="toggle-btn" aria-label="Toggle between dark mode and light mode" tabindex="0">
+          <i class="fas fa-sun" aria-hidden="true"></i>
         </button>
       </div>
     </header>
     
-    <div id="loading-screen">
-      <div id="spinner"> </div>
+    <div id="loading-screen" aria-live="polite" aria-busy="true">
+      <div id="spinner" role="status" aria-label="Loading"></div>
       <div id="loading-text">Loading Contributors...</div>
     </div>
 
@@ -59,26 +93,42 @@
       <section class="wall-section">
         <h2>Participants</h2>
         <div class="search-container">
-          <input type="text" id="searchInput" placeholder="Search contributors..." aria-label="Search contributors" />
-          <button id="searchButton" aria-label="Search">
-            <i class="fas fa-search"></i>
+          <input type="text" id="searchInput" placeholder="Search contributors..." aria-label="Search contributors" tabindex="0" />
+          <button id="searchButton" aria-label="Search contributors" tabindex="0">
+            <i class="fas fa-search" aria-hidden="true"></i>
           </button>
         </div>
-        <div id="wall" class="wall"></div>
+        <div id="wall" class="wall" role="region" aria-live="polite" aria-label="List of contributors"></div>
       </section>
     </main>
     
     <footer>
       <p>
         Contribute at
-        <a href="https://github.com/JollyJolli/HacktoberWall" target="_blank">GitHub</a>
+        <a href="https://github.com/JollyJolli/HacktoberWall" target="_blank" aria-label="Visit HacktoberWall GitHub Repository" tabindex="0">GitHub</a>
       </p>
     </footer>
 
     <!-- Back to Top Button -->
-    <button title="back to top" id="backToTopBtn" aria-label="Back to Top">↑</button>
+    <button title="back to top" id="backToTopBtn" aria-label="Back to top of page" tabindex="0">↑</button>
 
+    <!-- Scripts -->
+    <script>
+      // JavaScript for keyboard navigation support
+      document.addEventListener('keydown', function(event) {
+        if (event.key === "Tab") {
+          const focusableElements = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+          const focusableContent = document.querySelectorAll(focusableElements);
+          const firstElement = focusableContent[0];
+          const lastElement = focusableContent[focusableContent.length - 1];
+
+          if (document.activeElement === lastElement) {
+            firstElement.focus();
+            event.preventDefault();
+          }
+        }
+      });
+    </script>
     <script src="app.js"></script>
-    <script src="https://rawgit.com/WeiChiaChang/Easter-egg/master/easter-eggs-collection.js"></script>
   </body>
 </html>

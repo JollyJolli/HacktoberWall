@@ -1,486 +1,404 @@
 :root {
-	--bg-light: #fefdf8; /* Light background color */
-	--text-light: #1c1c1c; /* Text color */
-	--accent-light: #50da4c; /* Green accent color */
-	--bg-dark: #183717; /* Dark green background color */
-	--text-dark: #fefdf8; /* Light text color for dark mode */
-	--accent-dark: #ff8bff; /* Pink accent color for dark mode */
+  --bg-light: #FEFDF8; /* Light background color */
+  --text-light: #1C1C1C; /* Text color */
+  --accent-light: #50DA4C; /* Green accent color */
+  --bg-dark: #183717; /* Dark green background color */
+  --text-dark: #FEFDF8; /* Light text color for dark mode */
+  --accent-dark: #FF8BFF; /* Pink accent color for dark mode */
 }
 
 * {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-	font-family: 'Poppins', sans-serif;
-	background-color: var(--bg-light);
-	color: var(--text-light);
-	line-height: 1.6;
-	transition: background-color 0.3s, color 0.3s;
-	background-image: url('bgm.png');
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	background-size: cover;
+  font-family: "Poppins", sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-light);
+  line-height: 1.6;
+  transition: background-color 0.3s, color 0.3s;
+  background-image: url('bgm.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+
 }
 
+
 body.dark-mode {
-	background-color: var(--bg-dark);
-	color: var(--text-dark);
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
 }
 
 .container {
-	max-width: 1200px;
-	margin: 0 auto;
-	padding: 2rem;
-	width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  width: 100%;
 }
 
 header {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 1rem 2rem;
-	background-color: rgba(255, 255, 255, 0.1);
-	backdrop-filter: blur(10px);
-	position: sticky;
-	top: 0;
-	z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .header-controls {
-	display: flex;
-	align-items: center;
-	gap: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .search-container {
-	display: flex;
-	align-items: center;
-	background-color: rgba(80, 218, 76, 0.1); /* Light green for search */
-	border-radius: 30px;
-	padding: 0.4rem 1rem;
-	transition: all 0.3s ease;
-	width: 100%;
-	max-width: 500px;
-	margin: 1rem auto;
-	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  background-color: rgba(80, 218, 76, 0.1); /* Light green for search */
+  border-radius: 30px;
+  padding: 0.4rem 1rem;
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 500px;
+  margin: 1rem auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .dark-mode .search-container {
-	background-color: rgba(255, 139, 255, 0.1); /* Light pink for dark mode */
-	box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 139, 255, 0.1); /* Light pink for dark mode */
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
 }
 
 #searchInput {
-	border: none;
-	background: transparent;
-	padding: 0.4rem;
-	font-size: 1rem;
-	color: var(--text-light);
-	width: 100%;
-	outline: none;
+  border: none;
+  background: transparent;
+  padding: 0.4rem;
+  font-size: 1rem;
+  color: var(--text-light);
+  width: 100%;
+  outline: none;
 }
 
 .dark-mode #searchInput {
-	color: var(--text-dark);
+  color: var(--text-dark);
 }
 
 #searchInput::placeholder {
-	color: #ff8bff; /* Placeholder color in pink */
-	opacity: 0.7;
+  color: #FF8BFF; /* Placeholder color in pink */
+  opacity: 0.7;
 }
 
 .dark-mode #searchInput::placeholder {
-	color: #c401c4; /* Dark mode placeholder color */
+  color: #C401C4; /* Dark mode placeholder color */
 }
 
 #searchButton {
-	background: none;
-	border: none;
-	cursor: pointer;
-	color: var(--accent-light);
-	font-size: 1.2rem;
-	transition: transform 0.3s ease, color 0.3s ease;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--accent-light);
+  font-size: 1.2rem;
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
 #searchButton:hover {
-	transform: scale(1.1);
-	color: var(--text-light);
+  transform: scale(1.1);
+  color: var(--text-light);
 }
 
 .dark-mode #searchButton {
-	color: var(--accent-dark);
+  color: var(--accent-dark);
 }
 
 .dark-mode #searchButton:hover {
-	color: #fff;
+  color: #fff;
 }
 
 h1 {
-	font-size: 2.5rem;
-	font-weight: 600;
-	color: var(--accent-light); /* Green for heading */
-	text-align: center;
-	margin-bottom: 1rem;
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--accent-light); /* Green for heading */
+  text-align: center;
+  margin-bottom: 1rem;
 }
 
 .dark-mode h1 {
-	color: var(--accent-dark); /* Pink for dark mode heading */
+  color: var(--accent-dark); /* Pink for dark mode heading */
 }
 
 .intro {
-	text-align: center;
-	margin-bottom: 2rem;
-	font-size: 1.2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.2rem;
 }
 
 .wall-section h2 {
-	font-size: 1.8rem;
-	margin-bottom: 1rem;
-	text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  text-align: center;
 }
 
 .wall {
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-	gap: 1rem;
-	padding: 1rem;
-	background-color: rgba(255, 255, 255, 0.1); /* Light background for wall */
-	border-radius: 10px;
-	max-height: 400px;
-	overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.1); /* Light background for wall */
+  border-radius: 10px;
+  max-height: 400px;
+  overflow-y: auto;
 }
 
 .participant {
-	background-color: var(--accent-light); /* Green for participant cards */
-	color: white;
-	padding: 1rem;
-	border-radius: 10px;
-	text-align: center;
-	font-size: 1rem;
-	transition: transform 0.2s, box-shadow 0.2s;
+  background-color: var(--accent-light); /* Green for participant cards */
+  color: white;
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 1rem;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .dark-mode .participant {
-	background-color: var(
-		--accent-dark
-	); /* Dark mode background for participants */
+  background-color: var(--accent-dark); /* Dark mode background for participants */
 }
 
 .participant:hover {
-	transform: translateY(-5px);
-	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 footer {
-	text-align: center;
-	padding: 1rem 0;
-	margin-top: 2rem;
-	font-size: 0.9rem;
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: 2rem;
+  font-size: 0.9rem;
 }
 
 footer a {
-	color: var(--accent-light);
-	text-decoration: none;
-	transition: color 0.3s;
+  color: var(--accent-light);
+  text-decoration: none;
+  transition: color 0.3s;
 }
 
 .dark-mode footer a {
-	color: var(--accent-dark);
+  color: var(--accent-dark);
 }
 
 footer a:hover {
-	text-decoration: underline;
+  text-decoration: underline;
 }
 
 .toggle-btn {
-	font-size: 1.5rem;
-	background: none;
-	border: none;
-	cursor: pointer;
-	transition: transform 0.3s;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s;
 }
 
 .toggle-btn:hover {
-	transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .toggle-btn i {
-	font-size: 1.5rem;
-	color: var(--accent-light);
-	transition: color 0.3s;
+  font-size: 1.5rem;
+  color: var(--accent-light);
+  transition: color 0.3s;
 }
 
 .dark-mode .toggle-btn i {
-	color: white;
+  color: white;
 }
 
 .surprise-btn {
-	background-color: var(--accent-light);
-	color: white;
-	border: none;
-	padding: 0.5rem 1rem;
-	border-radius: 20px;
-	cursor: pointer;
-	font-size: 0.9rem;
-	transition: all 0.3s ease;
-	margin-right: 1rem;
+  background-color: var(--accent-light);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  margin-right: 1rem;
 }
 
 .dark-mode .surprise-btn {
-	background-color: var(--accent-dark);
+  background-color: var(--accent-dark);
 }
 
 .header-title {
-	color: inherit;
-	text-decoration: none;
-	font-size: 2.5rem;
-	font-weight: 600;
-	color: var(--accent-light);
-	transition: color 0.3s;
+  color: inherit;
+  text-decoration: none;
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--accent-light);
+  transition: color 0.3s;
 }
 
 .header-title:hover {
-	cursor: pointer;
+  cursor: pointer;
 }
 
 .dark-mode .header-title {
-	color: var(--accent-dark);
+  color: var(--accent-dark);
 }
 
 #halloweenIcon {
-	color: white;
-	display: none;
-	transition: opacity 1s;
-	margin-left: 2px;
-	font-size: 2.5rem;
+  color: white;
+  display: none;
+  transition: opacity 1s;
+  margin-left: 2px;
+  font-size: 2.5rem;
 }
 
 #loading-screen {
-	position: fixed;
-	width: 100%;
-	height: 100%;
-	backdrop-filter: blur(10px);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
-	z-index: 9999;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 9999;
 }
 
 #spinner {
-	width: 100px;
-	height: 100px;
-	border: 12px solid #c401c4; /* Deep Pink for spinner */
-	border-top: 12px solid #ff8bff; /* Pink for spinner */
-	border-radius: 50%;
-	animation: spin 1s linear infinite;
+  width: 100px;
+  height: 100px;
+  border: 12px solid #C401C4; /* Deep Pink for spinner */
+  border-top: 12px solid #FF8BFF; /* Pink for spinner */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
 }
 
 #loading-text {
-	font-weight: bold;
-	margin-top: 1rem;
+  font-weight: bold;
+  margin-top: 1rem;
 }
 
 /* Back to Top Button Styles */
 #backToTopBtn {
-	position: fixed;
-	bottom: 40px;
-	right: 40px;
-	background-color: var(--accent-light); /* Green accent in light mode */
-	color: var(--text-light);
-	border: none;
-	border-radius: 50px;
-	padding: 15px 20px;
-	font-size: 1.5rem;
-	cursor: pointer;
-	display: none; /* Hidden by default */
-	z-index: 1000;
-	transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s;
-	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  background-color: var(--accent-light); /* Green accent in light mode */
+  color: var(--text-light);
+  border: none;
+  border-radius: 50px;
+  padding: 15px 20px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: none; /* Hidden by default */
+  z-index: 1000;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 #backToTopBtn:hover {
-	background-color: var(--bg-dark); /* Dark green on hover */
-	color: var(--text-dark); /* Light text on hover */
-	transform: scale(1.1); /* Button enlarges slightly */
+  background-color: var(--bg-dark); /* Dark green on hover */
+  color: var(--text-dark); /* Light text on hover */
+  transform: scale(1.1); /* Button enlarges slightly */
 }
 
 /* Dark mode styles */
 body.dark-mode #backToTopBtn {
-	background-color: var(--accent-dark); /* Pink accent in dark mode */
-	color: var(--text-dark);
+  background-color: var(--accent-dark); /* Pink accent in dark mode */
+  color: var(--text-dark);
 }
 
 body.dark-mode #backToTopBtn:hover {
-	background-color: var(--bg-light); /* Light background on hover */
-	color: var(--text-light); /* Dark text on hover */
+  background-color: var(--bg-light); /* Light background on hover */
+  color: var(--text-light); /* Dark text on hover */
 }
 
-/* Rainbow mode for participant card background while keeping text color black */
-body.rainbow-mode .participant {
-	animation: rainbow-background 3s infinite; /* Rainbow effect on the card background */
-	color: black; /* Text color stays black */
-}
-
-/* Rainbow mode for Surprise Me button */
-body.rainbow-mode .surprise-btn {
-	animation: rainbow-background 3s infinite; /* Rainbow effect for button background */
-	color: white; /* Button text color stays white */
-	border: none;
-}
-
-body.rainbow-mode .toggle-btn i {
-	animation: rainbow-text 3s infinite; /* Apply rainbow effect to the icon color */
-}
-
-/* Keyframes for rainbow background animation */
-@keyframes rainbow-background {
-	0% {
-		background-color: red;
-	}
-	14% {
-		background-color: orange;
-	}
-	28% {
-		background-color: yellow;
-	}
-	42% {
-		background-color: green;
-	}
-	57% {
-		background-color: blue;
-	}
-	71% {
-		background-color: indigo;
-	}
-	85% {
-		background-color: violet;
-	}
-	100% {
-		background-color: red;
-	}
-}
-
-/* Rainbow text color effect */
-@keyframes rainbow-text {
-	0% {
-		color: red;
-	}
-	14% {
-		color: orange;
-	}
-	28% {
-		color: yellow;
-	}
-	42% {
-		color: green;
-	}
-	57% {
-		color: blue;
-	}
-	71% {
-		color: indigo;
-	}
-	85% {
-		color: violet;
-	}
-	100% {
-		color: red;
-	}
-}
-
-/* Rainbow effect for text */
-body.rainbow-mode h1,
-body.rainbow-mode h2,
-body.rainbow-mode p,
-body.rainbow-mode a,
-body.rainbow-mode #searchInput,
-body.rainbow-mode #searchButton {
-	animation: rainbow-text 3s infinite;
-}
 
 @keyframes spin {
-	0% {
-		transform: rotate(0deg);
-	}
-	100% {
-		transform: rotate(720deg);
-	}
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(720deg);
+  }
 }
 
 @media (max-width: 1024px) {
-	.container {
-		padding: 1.5rem;
-	}
+  .container {
+    padding: 1.5rem;
+  }
 
-	h1 {
-		font-size: 2.2rem;
-	}
+  h1 {
+    font-size: 2.2rem;
+  }
 
-	.wall {
-		grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-	}
+  .wall {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
 
-	.search-container {
-		max-width: 100%;
-		margin: 1rem auto;
-	}
+  .search-container {
+    max-width: 100%;
+    margin: 1rem auto;
+  }
 }
 
 @media (max-width: 768px) {
-	.container {
-		padding: 1rem;
-	}
+  .container {
+    padding: 1rem;
+  }
 
-	h1 {
-		font-size: 2rem;
-	}
+  h1 {
+    font-size: 2rem;
+  }
 
-	.header-controls {
-		flex-direction: column;
-		align-items: flex-end;
-	}
+  .header-controls {
+    flex-direction: column;
+    align-items: flex-end;
+  }
 
-	.surprise-btn {
-		margin-top: 0.5rem;
-		margin-right: 0;
-	}
+  .surprise-btn {
+    margin-top: 0.5rem;
+    margin-right: 0;
+  }
 
-	.search-container {
-		max-width: 100%;
-	}
+  .search-container {
+    max-width: 100%;
+  }
 
-	.wall {
-		grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-	}
+  .wall {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  }
 
-	footer {
-		font-size: 0.8rem;
-	}
+  footer {
+    font-size: 0.8rem;
+  }
 }
 
 @media (max-width: 480px) {
-	header {
-		flex-direction: column;
-		text-align: center;
-	}
+  header {
+    flex-direction: column;
+    text-align: center;
+  }
 
-	.header-controls {
-		width: 100%;
-		flex-direction: column;
-		align-items: center;
-		gap: 0.5rem;
-	}
+  .header-controls {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
 
-	.search-container {
-		width: 100%;
-		max-width: none;
-	}
+  .search-container {
+    width: 100%;
+    max-width: none;
+  }
 
-	.wall {
-		grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-	}
+  .wall {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  }
 }
