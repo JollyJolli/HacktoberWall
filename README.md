@@ -19,7 +19,9 @@
 - **JSON**: Storing contributor names in a structured format.
 
 ## 🎁 Contributors
-[![GitHub Contributors Image](https://contrib.rocks/image?repo=JollyJolli/HacktoberWall)](https://github.com/JollyJolli/HacktoberWall/graphs/contributors)
+<a href="https://github.com/jollyjolli/hacktoberwall/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=jollyjolli/hacktoberwall" />
+</a>
 
 ## 📦 Getting Started
 
