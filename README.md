@@ -18,8 +18,14 @@
 - **JavaScript**: Fetching and displaying participant data dynamically.
 - **JSON**: Storing contributor names in a structured format.
 
+## ⭐️ Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=jollyjolli/HacktoberWall&type=Date)](https://star-history.com/#jollyjolli/HacktoberWall&Date)
+
 ## 🎁 Contributors
-[![GitHub Contributors Image](https://contrib.rocks/image?repo=JollyJolli/HacktoberWall)](https://github.com/JollyJolli/HacktoberWall/graphs/contributors)
+<a href="https://github.com/jollyjolli/hacktoberwall/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=jollyjolli/hacktoberwall" />
+</a>
 
 ## 📦 Getting Started
 
