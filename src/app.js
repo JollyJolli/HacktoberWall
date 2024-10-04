@@ -2,14 +2,19 @@
 const MOON = '<i class="fas fa-moon"></i>';
 const SUN = '<i class="fas fa-sun"></i>';
 let toggleCount = 0; // Counter to track the number of clicks
+let cachedContributors = null;
 
 // Function to load participants from the JSON file
 async function loadContributors() {
+    if (cachedContributors !== null) {
+        return cachedContributors;
+    }
     let contributors = null;
     showLoadingScreen();
     try {
         const response = await fetch("contributors.json");
         contributors = await response.json();
+        cachedContributors = contributors;
     } catch (error) {
         console.log(error);
     } finally {
