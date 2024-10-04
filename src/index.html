@@ -1,134 +1,285 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <!-- SEO Meta Tags -->
-    <title>HacktoberWall | Join Hacktoberfest & Contribute!</title>
-    <meta name="description" content="Contribute to Hacktoberfest by editing the HacktoberWall mural and become part of the open-source community!" />
-    <meta name="keywords" content="HacktoberWall, Hacktoberfest, open source, contribute, coding, developers" />
-    
-    <!-- Open Graph Meta Tags for Social Media Sharing -->
-    <meta property="og:title" content="HacktoberWall | Join Hacktoberfest & Contribute!" />
-    <meta property="og:description" content="Contribute to Hacktoberfest by editing the HacktoberWall mural and become part of the open-source community!" />
-    <meta property="og:image" content="/img/logo.png" />
-    <meta property="og:url" content="https://hacktoberwall.formen.cc/" />
-    <meta property="og:type" content="website" />
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="/img/logo.png" />
-    <meta name="twitter:title" content="HacktoberWall | Join Hacktoberfest & Contribute!" />
-    <meta name="twitter:description" content="Contribute to Hacktoberfest by editing the HacktoberWall mural and become part of the open-source community!" />
-    <meta name="twitter:image" content="/img/logo.png" />
+        <!-- SEO Meta Tags -->
+        <title>HacktoberWall | Join Hacktoberfest & Contribute!</title>
+        <meta
+            name="description"
+            content="Contribute to Hacktoberfest by editing the HacktoberWall mural and become part of the open-source community!"
+        />
+        <meta
+            name="keywords"
+            content="HacktoberWall, Hacktoberfest, open source, contribute, coding, developers"
+        />
 
-    <!-- Favicon -->
-    <link rel="icon" href="/img/favicon.ico" type="image/x-icon" />
-    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+        <!-- Open Graph Meta Tags for Social Media Sharing -->
+        <meta
+            property="og:title"
+            content="HacktoberWall | Join Hacktoberfest & Contribute!"
+        />
+        <meta
+            property="og:description"
+            content="Contribute to Hacktoberfest by editing the HacktoberWall mural and become part of the open-source community!"
+        />
+        <meta property="og:image" content="/img/logo.png" />
+        <meta property="og:url" content="https://hacktoberwall.formen.cc/" />
+        <meta property="og:type" content="website" />
 
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="style.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+        <!-- Twitter Card Meta Tags -->
+        <meta name="twitter:card" content="/img/logo.png" />
+        <meta
+            name="twitter:title"
+            content="HacktoberWall | Join Hacktoberfest & Contribute!"
+        />
+        <meta
+            name="twitter:description"
+            content="Contribute to Hacktoberfest by editing the HacktoberWall mural and become part of the open-source community!"
+        />
+        <meta name="twitter:image" content="/img/logo.png" />
 
-    <style>
-      body {
-        background-color: #121212; /* Dark background for higher contrast */
-        color: #ffffff; /* White text for contrast */
-      }
+        <!-- Favicon -->
+        <link rel="icon" href="/img/favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
 
-      button {
-        background-color: #007BFF; /* Blue for better contrast */
-        color: #ffffff;
-        border: none;
-        padding: 10px;
-        border-radius: 5px;
-        cursor: pointer;
-      }
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="style.css" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+            rel="stylesheet"
+        />
 
-      button:hover, button:focus {
-        background-color: #0056b3; /* Darker blue on hover/focus for better visibility */
-        outline: 2px solid #ffffff; /* Ensure keyboard focus visibility */
-      }
+        <style>
+            body {
+                background-color: #121212; /* Dark background for higher contrast */
+                color: #ffffff; /* White text for contrast */
+            }
 
-      /* Ensure keyboard focus on links */
-      a:focus {
-        outline: 2px solid #ffffff;
-      }
+            button {
+                background-color: #007bff; /* Blue for better contrast */
+                color: #ffffff;
+                border: none;
+                padding: 10px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
 
-      /* Loading screen spinner contrast */
-      #loading-screen {
-        background-color: #333333;
-        color: #ffffff;
-      }
-    </style>
-  </head>
-  <body>
-    <header>
-      <div>
-        <a href="#" id="titleLink" class="header-title" aria-label="HacktoberWall Home" style="cursor: default;">
-          HacktoberWall
-        </a>
-        <!-- ARIA label added to the Halloween icon for screen readers -->
-        <i id="halloweenIcon" class="fas fa-ghost" aria-hidden="true"></i>
-      </div>
-      <div class="header-controls">
-        <button id="surpriseButton" class="surprise-btn" aria-label="Surprise Me!" tabindex="0">Surprise Me!</button>
-        <button id="toggleButton" class="toggle-btn" aria-label="Toggle between dark mode and light mode" tabindex="0">
-          <i class="fas fa-sun" aria-hidden="true"></i>
-        </button>
-      </div>
-    </header>
-    
-    <div id="loading-screen" aria-live="polite" aria-busy="true">
-      <div id="spinner" role="status" aria-label="Loading"></div>
-      <div id="loading-text">Loading Contributors...</div>
-    </div>
+            button:hover,
+            button:focus {
+                background-color: #0056b3; /* Darker blue on hover/focus for better visibility */
+                outline: 2px solid #ffffff; /* Ensure keyboard focus visibility */
+            }
 
-    <main class="container">
-      <section class="intro">
-        <p>Join the Hacktoberfest mural! Add your contribution by updating the JSON file and leave your mark on this collaborative artwork!</p>
-      </section>
-      
-      <section class="wall-section">
-        <h2>Participants</h2>
-        <div class="search-container">
-          <input type="text" id="searchInput" placeholder="Search contributors..." aria-label="Search contributors" tabindex="0" />
-          <button id="searchButton" aria-label="Search contributors" tabindex="0">
-            <i class="fas fa-search" aria-hidden="true"></i>
-          </button>
+            /* Ensure keyboard focus on links */
+            a:focus {
+                outline: 2px solid #ffffff;
+            }
+
+            /* Loading screen spinner contrast */
+            #loading-screen {
+                background-color: #333333;
+                color: #ffffff;
+            }
+
+            /* Styles for the animated mascot */
+            #mascotContainer {
+                display: none;
+                position: fixed;
+                bottom: 50px;
+                left: -150px;
+                width: 150px;
+                height: auto;
+                z-index: 9999;
+                animation: mascotMove 5s linear forwards;
+                animation-play-state: running; /* Make sure the animation starts running */
+            }
+
+            #mascotImage {
+                width: 100%;
+                height: auto;
+            }
+
+            #speechBubble {
+                position: absolute;
+                top: -50px;
+                left: 50px;
+                background-color: white;
+                padding: 10px;
+                border-radius: 10px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+                font-size: 14px;
+                color: #333;
+                visibility: hidden;
+            }
+
+            #speechBubble::after {
+                content: "";
+                position: absolute;
+                bottom: -10px;
+                left: 10px;
+                border-width: 10px;
+                border-style: solid;
+                border-color: white transparent transparent transparent;
+            }
+
+            /* Keyframes for mascot movement */
+            @keyframes mascotMove {
+                0% {
+                    left: -150px;
+                }
+                50% {
+                    left: 50%;
+                }
+                100% {
+                    left: 110%;
+                }
+            }
+
+            /* Pause the mascot animation on hover */
+            #mascotContainer:hover {
+                animation-play-state: paused; /* Pauses the animation */
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div>
+                <a
+                    href="#"
+                    id="titleLink"
+                    class="header-title"
+                    aria-label="HacktoberWall Home"
+                    style="cursor: default"
+                >
+                    HacktoberWall
+                </a>
+                <!-- ARIA label added to the Halloween icon for screen readers -->
+                <i
+                    id="halloweenIcon"
+                    class="fas fa-ghost"
+                    aria-hidden="true"
+                ></i>
+            </div>
+            <div class="header-controls">
+                <button
+                    id="surpriseButton"
+                    class="surprise-btn"
+                    aria-label="Surprise Me!"
+                    tabindex="0"
+                >
+                    Surprise Me!
+                </button>
+                <button
+                    id="toggleButton"
+                    class="toggle-btn"
+                    aria-label="Toggle between dark mode and light mode"
+                    tabindex="0"
+                >
+                    <i class="fas fa-sun" aria-hidden="true"></i>
+                </button>
+            </div>
+        </header>
+
+        <div id="loading-screen" aria-live="polite" aria-busy="true">
+            <div id="spinner" role="status" aria-label="Loading"></div>
+            <div id="loading-text">Loading Contributors...</div>
         </div>
-        <div id="wall" class="wall" role="region" aria-live="polite" aria-label="List of contributors"></div>
-      </section>
-    </main>
-    
-    <footer>
-      <p>
-        Contribute at
-        <a href="https://github.com/JollyJolli/HacktoberWall" target="_blank" aria-label="Visit HacktoberWall GitHub Repository" tabindex="0">GitHub</a>
-      </p>
-    </footer>
 
-    <!-- Back to Top Button -->
-    <button title="back to top" id="backToTopBtn" aria-label="Back to top of page" tabindex="0">↑</button>
+        <main class="container">
+            <section class="intro">
+                <p>
+                    Join the Hacktoberfest mural! Add your contribution by
+                    updating the JSON file and leave your mark on this
+                    collaborative artwork!
+                </p>
+            </section>
 
-    <!-- Scripts -->
-    <script>
-      // JavaScript for keyboard navigation support
-      document.addEventListener('keydown', function(event) {
-        if (event.key === "Tab") {
-          const focusableElements = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
-          const focusableContent = document.querySelectorAll(focusableElements);
-          const firstElement = focusableContent[0];
-          const lastElement = focusableContent[focusableContent.length - 1];
+            <section class="wall-section">
+                <h2>Participants</h2>
+                <div class="search-container">
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search contributors..."
+                        aria-label="Search contributors"
+                        tabindex="0"
+                    />
+                    <button
+                        id="searchButton"
+                        aria-label="Search contributors"
+                        tabindex="0"
+                    >
+                        <i class="fas fa-search" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <div
+                    id="wall"
+                    class="wall"
+                    role="region"
+                    aria-live="polite"
+                    aria-label="List of contributors"
+                ></div>
+            </section>
+        </main>
+        <!-- Mascot Container -->
+        <div id="mascotContainer">
+            <img
+                id="mascotImage"
+                src="/src/mascot.webp"
+                alt="Hacktoberfest Mascot"
+            />
+            <div id="speechBubble">Happy Hacktoberfest!</div>
+        </div>
 
-          if (document.activeElement === lastElement) {
-            firstElement.focus();
-            event.preventDefault();
-          }
-        }
-      });
-    </script>
-    <script src="app.js"></script>
-  </body>
+        <footer>
+            <p>
+                Contribute at
+                <a
+                    href="https://github.com/JollyJolli/HacktoberWall"
+                    target="_blank"
+                    aria-label="Visit HacktoberWall GitHub Repository"
+                    tabindex="0"
+                    >GitHub</a
+                >
+            </p>
+        </footer>
+
+        <!-- Back to Top Button -->
+        <button
+            title="back to top"
+            id="backToTopBtn"
+            aria-label="Back to top of page"
+            tabindex="0"
+        >
+            ↑
+        </button>
+
+        <!-- Scripts -->
+        <script>
+            // JavaScript for keyboard navigation support
+            document.addEventListener("keydown", function (event) {
+                if (event.key === "Tab") {
+                    const focusableElements =
+                        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+                    const focusableContent =
+                        document.querySelectorAll(focusableElements);
+                    const firstElement = focusableContent[0];
+                    const lastElement =
+                        focusableContent[focusableContent.length - 1];
+
+                    if (document.activeElement === lastElement) {
+                        firstElement.focus();
+                        event.preventDefault();
+                    }
+                }
+            });
+        </script>
+        <script src="app.js"></script>
+    </body>
 </html>
