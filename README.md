@@ -20,11 +20,11 @@
 
 ## ⭐️ Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=jollyjolli/HacktoberWall&type=Date)](https://star-history.com/#jollyjolli/HacktoberWall&Date)
+![Star History Chart](https://api.star-history.com/svg?repos=jollyjolli/HacktoberWall&type=Date)](https://star-history.com/#jollyjolli/HacktoberWall&Date)
 
 ## 🎁 Contributors
 <a href="https://github.com/jollyjolli/hacktoberwall/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=jollyjolli/hacktoberwall" />
+  <img src="https://contrib.rocks/image?repo=jollyjolli/hacktoberwall&max=1000" />
 </a>
 
 ## 📦 Getting Started
