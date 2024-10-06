@@ -84,6 +84,8 @@ function addParticipantHoverEffect() {
 	});
 }
 
+
+// Surprise me section
 const funFacts = [
 	'The first Hacktoberfest event was held in 2014.',
 	'Hacktoberfest was created by DigitalOcean and GitHub.',
@@ -98,9 +100,16 @@ function getRandomItem(array) {
 	return array[Math.floor(Math.random() * array.length)];
 }
 
-function showFunFact() {
-	const fact = getRandomItem(funFacts);
-	alert(fact);
+function showFunFactModal(fact) {
+	const modal = document.getElementById('funFactModal');
+	const funFactText = document.getElementById('funFactText');
+	funFactText.textContent = fact;
+	modal.style.display = 'block'; 
+
+	const closeModal = document.getElementById('closeModal');
+	closeModal.addEventListener('click', () => {
+		modal.style.display = 'none';  
+	});
 }
 
 function scrollToRandomSection() {
@@ -111,7 +120,8 @@ function scrollToRandomSection() {
 
 function handleSurprise() {
 	if (Math.random() < 0.5) {
-		showFunFact();
+		const fact = getRandomItem(funFacts);
+		showFunFactModal(fact); 
 	} else {
 		scrollToRandomSection();
 	}
@@ -121,6 +131,9 @@ function initializeSurpriseButton() {
 	const surpriseButton = document.getElementById('surpriseButton');
 	surpriseButton.addEventListener('click', handleSurprise);
 }
+
+document.addEventListener('DOMContentLoaded', initializeSurpriseButton);
+
 
 // Initialize the wall with existing contributors
 window.onload = function () {
