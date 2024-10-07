@@ -29,6 +29,9 @@ async function displayContributors(filter = "") {
     const contributors = await loadContributors();
     wall.innerHTML = "";
 
+    // Sort the contributors alphabetically by name
+    contributors.sort((a, b) => a.name.localeCompare(b.name));
+
     contributors.forEach((contributor, index) => {
         if (contributor.name.toLowerCase().includes(filter.toLowerCase())) {
             const div = document.createElement("div");
