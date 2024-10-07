@@ -1,285 +1,305 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <!-- SEO Meta Tags -->
-        <title>HacktoberWall | Join Hacktoberfest & Contribute!</title>
-        <meta
-            name="description"
-            content="Contribute to Hacktoberfest by editing the HacktoberWall mural and become part of the open-source community!"
-        />
-        <meta
-            name="keywords"
-            content="HacktoberWall, Hacktoberfest, open source, contribute, coding, developers"
-        />
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <!-- Open Graph Meta Tags for Social Media Sharing -->
-        <meta
-            property="og:title"
-            content="HacktoberWall | Join Hacktoberfest & Contribute!"
-        />
-        <meta
-            property="og:description"
-            content="Contribute to Hacktoberfest by editing the HacktoberWall mural and become part of the open-source community!"
-        />
-        <meta property="og:image" content="/img/logo.png" />
-        <meta property="og:url" content="https://hacktoberwall.formen.cc/" />
-        <meta property="og:type" content="website" />
+    <!-- SEO Meta Tags -->
+    <title>HacktoberWall | Join Hacktoberfest & Contribute!</title>
+    <meta name="description"
+        content="Contribute to Hacktoberfest by editing the HacktoberWall mural and become part of the open-source community!" />
+    <meta name="keywords" content="HacktoberWall, Hacktoberfest, open source, contribute, coding, developers" />
 
-        <!-- Twitter Card Meta Tags -->
-        <meta name="twitter:card" content="/img/logo.png" />
-        <meta
-            name="twitter:title"
-            content="HacktoberWall | Join Hacktoberfest & Contribute!"
-        />
-        <meta
-            name="twitter:description"
-            content="Contribute to Hacktoberfest by editing the HacktoberWall mural and become part of the open-source community!"
-        />
-        <meta name="twitter:image" content="/img/logo.png" />
+    <!-- Open Graph Meta Tags for Social Media Sharing -->
+    <meta property="og:title" content="HacktoberWall | Join Hacktoberfest & Contribute!" />
+    <meta property="og:description"
+        content="Contribute to Hacktoberfest by editing the HacktoberWall mural and become part of the open-source community!" />
+    <meta property="og:image" content="/img/logo.png" />
+    <meta property="og:url" content="https://hacktoberwall.formen.cc/" />
+    <meta property="og:type" content="website" />
 
-        <!-- Favicon -->
-        <link rel="icon" href="/img/favicon.ico" type="image/x-icon" />
-        <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="/img/logo.png" />
+    <meta name="twitter:title" content="HacktoberWall | Join Hacktoberfest & Contribute!" />
+    <meta name="twitter:description"
+        content="Contribute to Hacktoberfest by editing the HacktoberWall mural and become part of the open-source community!" />
+    <meta name="twitter:image" content="/img/logo.png" />
 
-        <!-- Stylesheets -->
-        <link rel="stylesheet" href="style.css" />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
-            rel="stylesheet"
-        />
-        <link
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-            rel="stylesheet"
-        />
+    <!-- Favicon -->
+    <link rel="icon" href="/img/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
 
-        <style>
-            body {
-                background-color: #121212; /* Dark background for higher contrast */
-                color: #ffffff; /* White text for contrast */
-            }
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
 
-            button {
-                background-color: #007bff; /* Blue for better contrast */
-                color: #ffffff;
-                border: none;
-                padding: 10px;
-                border-radius: 5px;
-                cursor: pointer;
-            }
+    <style>
+        body {
+            background-color: #121212;
+            /* Dark background for higher contrast */
+            color: #ffffff;
+            /* White text for contrast */
+        }
 
-            button:hover,
-            button:focus {
-                background-color: #0056b3; /* Darker blue on hover/focus for better visibility */
-                outline: 2px solid #ffffff; /* Ensure keyboard focus visibility */
-            }
+        button {
+            background-color: #007bff;
+            /* Blue for better contrast */
+            color: #ffffff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
 
-            /* Ensure keyboard focus on links */
-            a:focus {
-                outline: 2px solid #ffffff;
-            }
+        button:hover,
+        button:focus {
+            background-color: #0056b3;
+            /* Darker blue on hover/focus for better visibility */
+            outline: 2px solid #ffffff;
+            /* Ensure keyboard focus visibility */
+        }
 
-            /* Loading screen spinner contrast */
-            #loading-screen {
-                background-color: #333333;
-                color: #ffffff;
-            }
+        /* Ensure keyboard focus on links */
+        a:focus {
+            outline: 2px solid #ffffff;
+        }
 
-            /* Styles for the animated mascot */
-            #mascotContainer {
-                display: none;
-                position: fixed;
-                bottom: 50px;
+        /* Loading screen spinner contrast */
+        #loading-screen {
+            background-color: #333333;
+            color: #ffffff;
+        }
+
+        /* Styles for the animated mascot */
+        #mascotContainer {
+            display: none;
+            position: fixed;
+            bottom: 50px;
+            left: -150px;
+            width: 150px;
+            height: auto;
+            z-index: 9999;
+            animation: mascotMove 5s linear forwards;
+            animation-play-state: running;
+            /* Make sure the animation starts running */
+        }
+
+        #mascotImage {
+            width: 100%;
+            height: auto;
+        }
+
+        #speechBubble {
+            position: absolute;
+            top: -50px;
+            left: 50px;
+            background-color: white;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            font-size: 14px;
+            color: #333;
+            visibility: hidden;
+        }
+
+        #speechBubble::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 10px;
+            border-width: 10px;
+            border-style: solid;
+            border-color: white transparent transparent transparent;
+        }
+
+        /* Keyframes for mascot movement */
+        @keyframes mascotMove {
+            0% {
                 left: -150px;
-                width: 150px;
-                height: auto;
-                z-index: 9999;
-                animation: mascotMove 5s linear forwards;
-                animation-play-state: running; /* Make sure the animation starts running */
             }
 
-            #mascotImage {
-                width: 100%;
-                height: auto;
+            50% {
+                left: 50%;
             }
 
-            #speechBubble {
-                position: absolute;
-                top: -50px;
-                left: 50px;
-                background-color: white;
-                padding: 10px;
-                border-radius: 10px;
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-                font-size: 14px;
-                color: #333;
-                visibility: hidden;
+            100% {
+                left: 110%;
             }
+        }
 
-            #speechBubble::after {
-                content: "";
-                position: absolute;
-                bottom: -10px;
-                left: 10px;
-                border-width: 10px;
-                border-style: solid;
-                border-color: white transparent transparent transparent;
-            }
+        /* Pause the mascot animation on hover */
+        #mascotContainer:hover {
+            animation-play-state: paused;
+            /* Pauses the animation */
+        }
 
-            /* Keyframes for mascot movement */
-            @keyframes mascotMove {
-                0% {
-                    left: -150px;
-                }
-                50% {
-                    left: 50%;
-                }
-                100% {
-                    left: 110%;
-                }
-            }
+        /*It is for the cookie banner */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            z-index: 1000;
+            display:block;
+        }
 
-            /* Pause the mascot animation on hover */
-            #mascotContainer:hover {
-                animation-play-state: paused; /* Pauses the animation */
-            }
-        </style>
-    </head>
-    <body>
-        <header>
-            <div>
-                <a
-                    href="#"
-                    id="titleLink"
-                    class="header-title"
-                    aria-label="HacktoberWall Home"
-                    style="cursor: default"
-                >
-                    HacktoberWall
-                </a>
-                <!-- ARIA label added to the Halloween icon for screen readers -->
-                <i
-                    id="halloweenIcon"
-                    class="fas fa-ghost"
-                    aria-hidden="true"
-                ></i>
-            </div>
-            <div class="header-controls">
-                <button
-                    id="surpriseButton"
-                    class="surprise-btn"
-                    aria-label="Surprise Me!"
-                    tabindex="0"
-                >
-                    Surprise Me!
-                </button>
-                <button
-                    id="toggleButton"
-                    class="toggle-btn"
-                    aria-label="Toggle between dark mode and light mode"
-                    tabindex="0"
-                >
-                    <i class="fas fa-sun" aria-hidden="true"></i>
-                </button>
-            </div>
-        </header>
+        .cookie-btn {
+            background-color: #4caf50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
 
-        <div id="loading-screen" aria-live="polite" aria-busy="true">
-            <div id="spinner" role="status" aria-label="Loading"></div>
-            <div id="loading-text">Loading Contributors...</div>
+        .cookie-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div>
+            <a href="#" id="titleLink" class="header-title" aria-label="HacktoberWall Home" style="cursor: default">
+                HacktoberWall
+            </a>
+            <!-- ARIA label added to the Halloween icon for screen readers -->
+            <i id="halloweenIcon" class="fas fa-ghost" aria-hidden="true"></i>
         </div>
-
-        <main class="container">
-            <section class="intro">
-                <p>
-                    Join the Hacktoberfest mural! Add your contribution by
-                    updating the JSON file and leave your mark on this
-                    collaborative artwork!
-                </p>
-            </section>
-
-            <section class="wall-section">
-                <h2>Participants</h2>
-                <div class="search-container">
-                    <input
-                        type="text"
-                        id="searchInput"
-                        placeholder="Search contributors..."
-                        aria-label="Search contributors"
-                        tabindex="0"
-                    />
-                    <button
-                        id="searchButton"
-                        aria-label="Search contributors"
-                        tabindex="0"
-                    >
-                        <i class="fas fa-search" aria-hidden="true"></i>
-                    </button>
-                </div>
-                <div
-                    id="wall"
-                    class="wall"
-                    role="region"
-                    aria-live="polite"
-                    aria-label="List of contributors"
-                ></div>
-            </section>
-        </main>
-        <!-- Mascot Container -->
-        <div id="mascotContainer">
-            <img
-                id="mascotImage"
-                src="/src/mascot.webp"
-                alt="Hacktoberfest Mascot"
-            />
-            <div id="speechBubble">Happy Hacktoberfest!</div>
+        <div class="header-controls">
+            <button id="surpriseButton" class="surprise-btn" aria-label="Surprise Me!" tabindex="0">
+                Surprise Me!
+            </button>
+            <button id="toggleButton" class="toggle-btn" aria-label="Toggle between dark mode and light mode"
+                tabindex="0">
+                <i class="fas fa-sun" aria-hidden="true"></i>
+            </button>
         </div>
+    </header>
 
-        <footer>
+    <div id="loading-screen" aria-live="polite" aria-busy="true">
+        <div id="spinner" role="status" aria-label="Loading"></div>
+        <div id="loading-text">Loading Contributors...</div>
+    </div>
+
+    <main class="container">
+        <section class="intro">
             <p>
-                Contribute at
-                <a
-                    href="https://github.com/JollyJolli/HacktoberWall"
-                    target="_blank"
-                    aria-label="Visit HacktoberWall GitHub Repository"
-                    tabindex="0"
-                    >GitHub</a
-                >
+                Join the Hacktoberfest mural! Add your contribution by
+                updating the JSON file and leave your mark on this
+                collaborative artwork!
             </p>
-        </footer>
+        </section>
 
-        <!-- Back to Top Button -->
-        <button
-            title="back to top"
-            id="backToTopBtn"
-            aria-label="Back to top of page"
-            tabindex="0"
-        >
-            ↑
-        </button>
+        <section class="wall-section">
+            <h2>Participants</h2>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search contributors..."
+                    aria-label="Search contributors" tabindex="0" />
+                <button id="searchButton" aria-label="Search contributors" tabindex="0">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div id="wall" class="wall" role="region" aria-live="polite" aria-label="List of contributors"></div>
+        </section>
+    </main>
+    <!-- Mascot Container -->
+    <div id="mascotContainer">
+        <img id="mascotImage" src="/src/mascot.webp" alt="Hacktoberfest Mascot" />
+        <div id="speechBubble">Happy Hacktoberfest!</div>
+    </div>
 
-        <!-- Scripts -->
-        <script>
-            // JavaScript for keyboard navigation support
-            document.addEventListener("keydown", function (event) {
-                if (event.key === "Tab") {
-                    const focusableElements =
-                        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
-                    const focusableContent =
-                        document.querySelectorAll(focusableElements);
-                    const firstElement = focusableContent[0];
-                    const lastElement =
-                        focusableContent[focusableContent.length - 1];
+    <footer>
+        <p>
+            Contribute at
+            <a href="https://github.com/JollyJolli/HacktoberWall" target="_blank"
+                aria-label="Visit HacktoberWall GitHub Repository" tabindex="0">GitHub</a>
+        </p>
+    </footer>
 
-                    if (document.activeElement === lastElement) {
-                        firstElement.focus();
-                        event.preventDefault();
-                    }
+    <!-- Back to Top Button -->
+    <button title="back to top" id="backToTopBtn" aria-label="Back to top of page" tabindex="0">
+        ↑
+    </button>
+
+    <!-- Scripts -->
+    <script>
+        // JavaScript for keyboard navigation support
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Tab") {
+                const focusableElements =
+                    'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+                const focusableContent =
+                    document.querySelectorAll(focusableElements);
+                const firstElement = focusableContent[0];
+                const lastElement =
+                    focusableContent[focusableContent.length - 1];
+
+                if (document.activeElement === lastElement) {
+                    firstElement.focus();
+                    event.preventDefault();
                 }
+            }
+        });
+    </script>
+    <div id="cookie-consent-banner" class="cookie-banner">
+        <p>We use cookies to improve your experience. By continuing to browse, you accept our use of cookies.</p>
+        <button id="accept-cookies" class="cookie-btn">Accept</button>
+        <button id="decline-cookies" class="cookie-btn">Decline</button>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const banner = document.getElementById('cookie-consent-banner');
+            const acceptBtn = document.getElementById('accept-cookies');
+            const declineBtn = document.getElementById('decline-cookies');
+
+            // It is to check if user already set a preference
+            const cookiePreference = localStorage.getItem('cookie-consent');
+            if (!cookiePreference) {
+                banner.style.display = 'block';
+            }
+
+            acceptBtn.addEventListener('click', () => {
+                localStorage.setItem('cookie-consent', 'accepted');
+                banner.style.display = 'none';
+                //It is the code for enabling cookies here
+                enableCookies()
             });
-        </script>
-        <script src="app.js"></script>
-    </body>
+
+            declineBtn.addEventListener('click', () => {
+                localStorage.setItem('cookie-consent', 'declined');
+                banner.style.display = 'none';
+                // It is the code for disabling cookies here
+                disableCookies()
+            });
+        });
+
+        function enableCookies() {
+            document.cookie = "userPreferences=accepted; path=/; max-age=31536000";
+            document.cookie = "language=en; path=/; max-age=31536000";
+            document.cookie = "theme=dark; path=/; max-age=31536000";
+            document.cookie = "sessionId=exampleSessionId; path=/; max-age=3600";
+            document.cookie = "performance=enabled; path=/; max-age=31536000";
+            document.cookie = "socialMedia=enabled; path=/; max-age=31536000";
+            console.log("All relevant cookies are enabled.");
+        }
+
+        function disableCookies() {
+            document.cookie = "userPreferences=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+            console.log("Cookies are disabled.");
+        }
+    </script>
+
+
+    <script src="app.js"></script>
+</body>
+
 </html>
