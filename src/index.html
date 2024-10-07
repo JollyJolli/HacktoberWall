@@ -211,18 +211,29 @@
             <div id="wall" class="wall" role="region" aria-live="polite" aria-label="List of contributors"></div>
         </section>
     </main>
+    
     <!-- Mascot Container -->
     <div id="mascotContainer">
         <img id="mascotImage" src="/src/mascot.webp" alt="Hacktoberfest Mascot" />
         <div id="speechBubble">Happy Hacktoberfest!</div>
     </div>
 
+    <!-- Footer -->
     <footer>
         <p>
             Contribute at
             <a href="https://github.com/JollyJolli/HacktoberWall" target="_blank"
                 aria-label="Visit HacktoberWall GitHub Repository" tabindex="0">GitHub</a>
         </p>
+        <button
+            id="feedbackButton"
+            class="feedback-btn"
+            aria-label="Provide Feedback"
+            tabindex="0"
+            onclick="window.location.href='form.html';"
+        >
+            <span class="feedback-span">Give Feedback</span>
+        </button>
     </footer>
 
     <!-- Back to Top Button -->
@@ -250,56 +261,11 @@
             }
         });
     </script>
+
     <div id="cookie-consent-banner" class="cookie-banner">
-        <p>We use cookies to improve your experience. By continuing to browse, you accept our use of cookies.</p>
-        <button id="accept-cookies" class="cookie-btn">Accept</button>
-        <button id="decline-cookies" class="cookie-btn">Decline</button>
+        We use cookies to improve your experience. By using our site, you agree to our cookie policy.
+        <button class="cookie-btn" id="acceptCookies">Accept</button>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const banner = document.getElementById('cookie-consent-banner');
-            const acceptBtn = document.getElementById('accept-cookies');
-            const declineBtn = document.getElementById('decline-cookies');
-
-            // It is to check if user already set a preference
-            const cookiePreference = localStorage.getItem('cookie-consent');
-            if (!cookiePreference) {
-                banner.style.display = 'block';
-            }
-
-            acceptBtn.addEventListener('click', () => {
-                localStorage.setItem('cookie-consent', 'accepted');
-                banner.style.display = 'none';
-                //It is the code for enabling cookies here
-                enableCookies()
-            });
-
-            declineBtn.addEventListener('click', () => {
-                localStorage.setItem('cookie-consent', 'declined');
-                banner.style.display = 'none';
-                // It is the code for disabling cookies here
-                disableCookies()
-            });
-        });
-
-        function enableCookies() {
-            document.cookie = "userPreferences=accepted; path=/; max-age=31536000";
-            document.cookie = "language=en; path=/; max-age=31536000";
-            document.cookie = "theme=dark; path=/; max-age=31536000";
-            document.cookie = "sessionId=exampleSessionId; path=/; max-age=3600";
-            document.cookie = "performance=enabled; path=/; max-age=31536000";
-            document.cookie = "socialMedia=enabled; path=/; max-age=31536000";
-            console.log("All relevant cookies are enabled.");
-        }
-
-        function disableCookies() {
-            document.cookie = "userPreferences=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
-            console.log("Cookies are disabled.");
-        }
-    </script>
-
-
-    <script src="app.js"></script>
 </body>
 
 </html>

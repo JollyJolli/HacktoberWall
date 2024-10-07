@@ -1,4 +1,6 @@
-document.getElementById("feedbackForm").addEventListener("submit", function(event) {
+document
+  .getElementById("feedbackForm")
+  .addEventListener("submit", function (event) {
     event.preventDefault(); // Prevent the default form submission
 
     // Display thank you message
@@ -11,5 +13,11 @@ document.getElementById("feedbackForm").addEventListener("submit", function(even
     console.log("Feedback submitted:", { comments, contact });
 
     // Clear the form fields
-    document.getElementById("feedbackForm").reset();
-});
+    event.target.reset();
+
+    // Delay for 2 seconds to let the user see the thank you message
+    setTimeout(function () {
+      // Redirect to index.html after 2 seconds
+      window.location.href = "index.html";
+    }, 2000);
+  });

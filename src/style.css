@@ -317,6 +317,22 @@ body.dark-mode #backToTopBtn:hover {
   background-color: var(--bg-light); /* Light background on hover */
   color: var(--text-light); /* Dark text on hover */
 }
+/* Feedback Button style */
+
+.feebback-Btn{
+ background-color: var(--accent-light) ;
+ color: var(--text-light);
+border: none;
+padding: 10px 20px;
+margin-top:10px;  
+border-radius: 5px; 
+cursor: pointer;
+}
+
+body.dark-mode .feebback-Btn{
+  background-color: var(--accent-dark);
+  color: var(--text-dark);
+}
 
 
 @keyframes spin {
