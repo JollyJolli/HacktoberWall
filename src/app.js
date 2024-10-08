@@ -23,14 +23,21 @@ async function loadContributors() {
     return contributors;
 }
 
+function shuffle(array) {
+	for (let i = array.length - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1));
+		[array[i], array[j]] = [array[j], array[i]];
+	}
+}
+
 // Function to display participants on the mural
 async function displayContributors(filter = "") {
     const wall = document.getElementById("wall");
     const contributors = await loadContributors();
     wall.innerHTML = "";
 
-    // Sort the contributors alphabetically by name
-    contributors.sort((a, b) => a.name.localeCompare(b.name));
+    // Suffle the contributors name
+    shuffle(contributors);
 
     contributors.forEach((contributor, index) => {
         if (contributor.name.toLowerCase().includes(filter.toLowerCase())) {
