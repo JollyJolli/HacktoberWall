@@ -9,17 +9,32 @@ async function loadContributors() {
     if (cachedContributors !== null) {
         return cachedContributors;
     }
+    
     let contributors = null;
     showLoadingScreen();
+    
     try {
         const response = await fetch("contributors.json");
+        
+        // Check if the response is not OK (status not in the range 200-299)
+        if (!response.ok) {
+            throw new Error(`Failed to load contributors: HTTP status ${response.status} (${response.statusText})`);
+        }
+        
         contributors = await response.json();
         cachedContributors = contributors;
+        
     } catch (error) {
-        console.log(error);
+        console.error("Error loading contributors:", error);
+        
+        // Provide a detailed error message to the user
+        alert("Oops! Something went wrong while loading the contributors. Please try again later.\n\n" +
+              "Error details: " + error.message);
+              
     } finally {
-        hideLoadingScreen();
+        hideLoadingScreen(); // Ensure the loading screen is hidden regardless of success or failure
     }
+    
     return contributors;
 }
 
