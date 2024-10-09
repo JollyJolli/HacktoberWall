@@ -227,13 +227,34 @@
           aria-label="List of contributors"
         ></div>
       </section>
+
+      <!-- Modal for funFacts-->
+      <div
+        class="modal hidden"
+        aria-hidden="true"
+        role="dialog"
+        aria-labelledby="title-modal-1"
+      >
+        <div class="modal-wrapper">
+          <a
+            href="#"
+            class="close-modal-button"
+            aria-label="Close modal"
+            title="Close modal"
+            ><i class="fa-solid fa-xmark"></i
+          ></a>
+          <h2 class="modal-title">Fun Facts</h2>
+          <blockquote class="modal-content"></blockquote>
+        </div>
+      </div>
     </main>
+    
     <!-- Mascot Container -->
     <div id="mascotContainer">
       <img id="mascotImage" src="/mascot.webp" alt="Hacktoberfest Mascot" />
       <div id="speechBubble">Happy Hacktoberfest!</div>
     </div>
-
+    
     <footer>
       <p>
         Contribute at

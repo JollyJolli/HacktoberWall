@@ -1,10 +1,10 @@
 :root {
-  --bg-light: #FEFDF8; /* Light background color */
-  --text-light: #1C1C1C; /* Text color */
-  --accent-light: #50DA4C; /* Green accent color */
+  --bg-light: #fefdf8; /* Light background color */
+  --text-light: #1c1c1c; /* Text color */
+  --accent-light: #50da4c; /* Green accent color */
   --bg-dark: #183717; /* Dark green background color */
-  --text-dark: #FEFDF8; /* Light text color for dark mode */
-  --accent-dark: #FF8BFF; /* Pink accent color for dark mode */
+  --text-dark: #fefdf8; /* Light text color for dark mode */
+  --accent-dark: #ff8bff; /* Pink accent color for dark mode */
 }
 
 * {
@@ -14,7 +14,7 @@
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   background-color: var(--bg-light);
   color: var(--text-light);
   line-height: 1.6;
@@ -89,12 +89,12 @@ header {
 }
 
 #searchInput::placeholder {
-  color: #FF8BFF; /* Placeholder color in pink */
+  color: #ff8bff; /* Placeholder color in pink */
   opacity: 0.7;
 }
 
 .dark-mode #searchInput::placeholder {
-  color: #C401C4; /* Dark mode placeholder color */
+  color: #c401c4; /* Dark mode placeholder color */
 }
 
 #searchButton {
@@ -165,7 +165,9 @@ h1 {
 }
 
 .dark-mode .participant {
-  background-color: var(--accent-dark); /* Dark mode background for participants */
+  background-color: var(
+    --accent-dark
+  ); /* Dark mode background for participants */
 }
 
 .participant:hover {
@@ -272,8 +274,8 @@ footer a:hover {
 #spinner {
   width: 100px;
   height: 100px;
-  border: 12px solid #C401C4; /* Deep Pink for spinner */
-  border-top: 12px solid #FF8BFF; /* Pink for spinner */
+  border: 12px solid #c401c4; /* Deep Pink for spinner */
+  border-top: 12px solid #ff8bff; /* Pink for spinner */
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -319,21 +321,66 @@ body.dark-mode #backToTopBtn:hover {
 }
 /* Feedback Button style */
 
-.feebback-Btn{
- background-color: var(--accent-light) ;
- color: var(--text-light);
-border: none;
-padding: 10px 20px;
-margin-top:10px;  
-border-radius: 5px; 
-cursor: pointer;
+.feebback-Btn {
+  background-color: var(--accent-light);
+  color: var(--text-light);
+  border: none;
+  padding: 10px 20px;
+  margin-top: 10px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-body.dark-mode .feebback-Btn{
+body.dark-mode .feebback-Btn {
   background-color: var(--accent-dark);
   color: var(--text-dark);
 }
 
+/* Modal */
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.modal-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  max-width: 630px;
+  overflow: auto;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  position: relative;
+  background-color: var(--accent-light);
+  color: #fff;
+}
+
+.modal-dark-mode {
+  background-color: var(--accent-dark);
+}
+
+.close-modal-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  color: #fff;
+}
+
+.hidden {
+  display: none;
+}
 
 @keyframes spin {
   0% {
@@ -388,6 +435,10 @@ body.dark-mode .feebback-Btn{
 
   .wall {
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  }
+
+  .modal-wrapper {
+    max-width: 300px;
   }
 
   footer {
