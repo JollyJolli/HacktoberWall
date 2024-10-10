@@ -14,12 +14,15 @@
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   background-color: var(--bg-light);
   color: var(--text-light);
   line-height: 1.6;
-  transition: background-color 0.3s, color 0.3s, background-image 0.3s;
-  background-image: url('bgm.png'); /* Background image for light mode */
+  transition:
+    background-color 0.3s,
+    color 0.3s,
+    background-image 0.3s;
+  background-image: url("bgm.png"); /* Background image for light mode */
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -28,7 +31,7 @@ body {
 body.dark-mode {
   background-color: var(--bg-dark);
   color: var(--text-dark);
-  background-image: url('dark.png'); /* Background image for dark mode */
+  background-image: url("dark.png"); /* Background image for dark mode */
 }
 
 .container {
@@ -67,6 +70,10 @@ header {
   max-width: 500px;
   margin: 1rem auto;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+  background: rgba(255, 255, 255, 0.267);
+  backdrop-filter: blur(4.5px);
+  -webkit-backdrop-filter: blur(4.5px);
 }
 
 .dark-mode .search-container {
@@ -89,7 +96,7 @@ header {
 }
 
 #searchInput::placeholder {
-  color: #ff8bff; /* Placeholder color in pink */
+  color: #f500f5; /* Placeholder color in pink */
   opacity: 0.7;
 }
 
@@ -103,7 +110,9 @@ header {
   cursor: pointer;
   color: var(--accent-light);
   font-size: 1.2rem;
-  transition: transform 0.3s ease, color 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease;
 }
 
 #searchButton:hover {
@@ -135,44 +144,164 @@ h1 {
   text-align: center;
   margin-bottom: 2rem;
   font-size: 1.2rem;
+  color: white;
+}
+/* Styling for the Wall Section */
+.wall-section {
+  padding: 2rem;
+  background-color: #f4f4f9;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .wall-section h2 {
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
   text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: rgb(107, 107, 107);
 }
 
+/* Search Bar Styling */
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.search-container input {
+  padding: 0.75rem;
+  width: 300px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.search-container input:focus {
+  border-color: #888;
+  outline: none;
+}
+
+.search-container button {
+  background-color: #ff5722;
+  color: white;
+  border: none;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.search-container button:hover {
+  background-color: #e64a19;
+}
+
+.search-container button i {
+  margin-right: 0.3rem;
+}
+
+/* Wall of Participants */
 .wall {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 1rem;
-  padding: 1rem;
-  background-color: rgba(255, 255, 255, 0.1); /* Light background for wall */
-  border-radius: 10px;
-  max-height: 400px;
-  overflow-y: auto;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+  padding: 0 2rem;
 }
-
+/* Participant Card Styling with Glowing Borders */
 .participant {
-  background-color: var(--accent-light); /* Green for participant cards */
+  background-color: var(--accent-light);
   color: white;
-  padding: 1rem;
+  padding: 1.5rem;
   border-radius: 10px;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 1rem;
-  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  cursor: pointer;
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s,
+    border-color 0.3s ease-in-out;
+  border: 2px solid transparent; /* Add a transparent border initially */
 }
 
-.dark-mode .participant {
-  background-color: var(
-    --accent-dark
-  ); /* Dark mode background for participants */
+.participant::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.1); /* Subtle inner glow */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.participant:hover::before {
+  opacity: 1;
 }
 
 .participant:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transform: translateY(-10px) scale(1.05);
+  /* Add a glowing border effect */
+  border-color: rgba(255, 255, 255, 0.6);
+  box-shadow:
+    0 0 5px rgba(255, 255, 255, 0.5),
+    0 0 5px rgba(255, 255, 255, 0.4),
+    0 0 30px rgba(66, 205, 47, 0.6);
+}
+
+.participant.dark-mode {
+  background-color: var(--accent-dark);
+}
+
+.wall-section .wall .participant {
+  opacity: 0;
+  animation: fadeIn 0.5s forwards;
+  animation-timing-function: ease-out;
+}
+
+/* Animation for fadeIn */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.wall-section .wall .participant {
+  opacity: 0;
+  animation: fadeIn 0.5s forwards;
+  animation-timing-function: ease-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 footer {
@@ -299,7 +428,10 @@ footer a:hover {
   cursor: pointer;
   display: none; /* Hidden by default */
   z-index: 1000;
-  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 

@@ -125,7 +125,7 @@
       }
 
       #speechBubble::after {
-        content: '';
+        content: "";
         position: absolute;
         bottom: -10px;
         left: 10px;
@@ -216,7 +216,7 @@
             aria-label="Search contributors"
             tabindex="0"
           >
-            <i class="fas fa-search" aria-hidden="true"></i>
+            <i class="fas fa-search" aria-hidden="true"></i> Search
           </button>
         </div>
         <div
@@ -248,13 +248,13 @@
         </div>
       </div>
     </main>
-    
+
     <!-- Mascot Container -->
     <div id="mascotContainer">
       <img id="mascotImage" src="/mascot.webp" alt="Hacktoberfest Mascot" />
       <div id="speechBubble">Happy Hacktoberfest!</div>
     </div>
-    
+
     <footer>
       <p>
         Contribute at
@@ -281,20 +281,20 @@
     <!-- Scripts -->
     <script>
       // JavaScript for keyboard navigation support
-      document.addEventListener('keydown', function (event) {
-        if (event.key === 'Tab') {
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Tab") {
           const focusableElements =
-            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-          const focusableContent = document.querySelectorAll(focusableElements)
-          const firstElement = focusableContent[0]
-          const lastElement = focusableContent[focusableContent.length - 1]
+            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+          const focusableContent = document.querySelectorAll(focusableElements);
+          const firstElement = focusableContent[0];
+          const lastElement = focusableContent[focusableContent.length - 1];
 
           if (document.activeElement === lastElement) {
-            firstElement.focus()
-            event.preventDefault()
+            firstElement.focus();
+            event.preventDefault();
           }
         }
-      })
+      });
     </script>
     <script src="app.js"></script>
   </body>
