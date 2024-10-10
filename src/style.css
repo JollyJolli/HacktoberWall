@@ -14,15 +14,12 @@
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   background-color: var(--bg-light);
   color: var(--text-light);
   line-height: 1.6;
-  transition:
-    background-color 0.3s,
-    color 0.3s,
-    background-image 0.3s;
-  background-image: url("bgm.png"); /* Background image for light mode */
+  transition: background-color 0.3s, color 0.3s, background-image 0.3s;
+  background-image: url('bgm.png'); /* Background image for light mode */
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -31,7 +28,7 @@ body {
 body.dark-mode {
   background-color: var(--bg-dark);
   color: var(--text-dark);
-  background-image: url("dark.png"); /* Background image for dark mode */
+  background-image: url('dark.png'); /* Background image for dark mode */
 }
 
 .container {
@@ -110,9 +107,7 @@ header {
   cursor: pointer;
   color: var(--accent-light);
   font-size: 1.2rem;
-  transition:
-    transform 0.3s ease,
-    color 0.3s ease;
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
 #searchButton:hover {
@@ -231,15 +226,18 @@ h1 {
   font-size: 1rem;
   position: relative;
   cursor: pointer;
-  transition:
-    transform 0.3s,
-    box-shadow 0.3s,
-    border-color 0.3s ease-in-out;
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s ease-in-out;
   border: 2px solid transparent; /* Add a transparent border initially */
 }
 
+.dark-mode .participant {
+  background-color: var(
+    --accent-dark
+  ); /* Dark mode background for participants */
+}
+
 .participant::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -259,9 +257,7 @@ h1 {
   transform: translateY(-10px) scale(1.05);
   /* Add a glowing border effect */
   border-color: rgba(255, 255, 255, 0.6);
-  box-shadow:
-    0 0 5px rgba(255, 255, 255, 0.5),
-    0 0 5px rgba(255, 255, 255, 0.4),
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 5px rgba(255, 255, 255, 0.4),
     0 0 30px rgba(66, 205, 47, 0.6);
 }
 
@@ -428,10 +424,7 @@ footer a:hover {
   cursor: pointer;
   display: none; /* Hidden by default */
   z-index: 1000;
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease,
-    transform 0.3s;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 

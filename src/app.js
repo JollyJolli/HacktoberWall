@@ -4,8 +4,6 @@ const SUN = '<i class="fas fa-sun"></i>'
 let toggleCount = 0 // Counter to track the number of clicks
 let cachedContributors = null
 
-// Const definition for dark mode
-
 // Const definitions for modal
 const modal = document.querySelector('.modal')
 const modalWrapper = document.querySelector('.modal-wrapper')
