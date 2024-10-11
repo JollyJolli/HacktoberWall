@@ -1,18 +1,27 @@
 @import url("https://fonts.googleapis.com/css2?family=Sedgwick+Ave&display=swap");
 
 :root {
-  --bg-light: #fefdf8; /* Light background color */
-  --text-light: #1c1c1c; /* Text color */
-  --accent-light: #50da4c; /* Green accent color */
-  --bg-dark: #183717; /* Dark green background color */
-  --text-dark: #fefdf8; /* Light text color for dark mode */
-  --accent-dark: #ff8bff; /* Pink accent color for dark mode */
+  --bg-light: #fefdf8;
+  /* Light background color */
+  --text-light: #1c1c1c;
+  /* Text color */
+  --accent-light: #50da4c;
+  /* Green accent color */
+  --bg-dark: #183717;
+  /* Dark green background color */
+  --text-dark: #fefdf8;
+  /* Light text color for dark mode */
+  --accent-dark: #ff8bff;
+  /* Pink accent color for dark mode */
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  /* scrollbar styles */
+  scrollbar-width: thin;
+  scrollbar-color: #555 #1c1c1c;
 }
 
 body {
@@ -21,16 +30,19 @@ body {
   color: var(--text-light);
   line-height: 1.6;
   transition: background-color 0.3s, color 0.3s, background-image 0.3s;
-  background-image: url("img/bgm.png"); /* Background image for light mode */
+  background-image: url("img/bgm.png");
+  /* Background image for light mode */
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
+  overflow-x: hidden;
 }
 
 body.dark-mode {
   background-color: var(--bg-dark);
   color: var(--text-dark);
-  background-image: url("img/dark.png"); /* Background image for dark mode */
+  background-image: url("img/dark.png");
+  /* Background image for dark mode */
 }
 
 .container {
@@ -61,7 +73,8 @@ header {
 .search-container {
   display: flex;
   align-items: center;
-  background-color: rgba(80, 218, 76, 0.1); /* Light green for search */
+  background-color: rgba(80, 218, 76, 0.1);
+  /* Light green for search */
   border-radius: 30px;
   padding: 0.4rem 1rem;
   transition: all 0.3s ease;
@@ -76,7 +89,8 @@ header {
 }
 
 .dark-mode .search-container {
-  background-color: rgba(255, 139, 255, 0.1); /* Light pink for dark mode */
+  background-color: rgba(255, 139, 255, 0.1);
+  /* Light pink for dark mode */
   box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
 }
 
@@ -95,12 +109,14 @@ header {
 }
 
 #searchInput::placeholder {
-  color: #f500f5; /* Placeholder color in pink */
+  color: #f500f5;
+  /* Placeholder color in pink */
   opacity: 0.7;
 }
 
 .dark-mode #searchInput::placeholder {
-  color: #c401c4; /* Dark mode placeholder color */
+  color: #c401c4;
+  /* Dark mode placeholder color */
 }
 
 #searchButton {
@@ -128,21 +144,47 @@ header {
 h1 {
   font-size: 2.5rem;
   font-weight: 600;
-  color: var(--accent-light); /* Green for heading */
+  color: var(--accent-light);
+  /* Green for heading */
   text-align: center;
   margin-bottom: 1rem;
 }
 
 .dark-mode h1 {
-  color: var(--accent-dark); /* Pink for dark mode heading */
+  color: var(--accent-dark);
+  /* Pink for dark mode heading */
 }
 
-.intro {
-  text-align: center;
-  margin-bottom: 2rem;
-  font-size: 1.2rem;
-  color: white;
+/* infinite carousel animation styles */
+.carousel {
+  background-color: #1c1c1c;
+  padding: .5rem;
+  overflow: hidden;
+  white-space: nowrap;
 }
+
+.carousel-slide {
+  display: inline-block;
+  color: white;
+  font-size: 1.2rem;
+  font-family: monospace;
+  animation: 20s carousel infinite linear;
+}
+
+.carousel:hover .carousel-slide {
+  animation-play-state: paused;
+}
+
+@keyframes carousel {
+  from {
+    transform: translateX(100vw);
+  }
+
+  to {
+    transform: translateX(-90vw);
+  }
+}
+
 /* Styling for the Wall Section */
 .wall-section {
   padding: 2rem;
@@ -215,6 +257,7 @@ h1 {
   gap: 1.5rem;
   padding: 0 2rem;
 }
+
 /* Participant Card Styling with Glowing Borders */
 .participant {
   background-image: url("img/brick_wall.jpg");
@@ -234,7 +277,10 @@ h1 {
   position: relative;
   cursor: pointer;
   transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s ease-in-out;
-  border: 2px solid transparent; /* Add a transparent border initially */
+  border: 2px solid transparent;
+  /* Add a transparent border initially */
+  /*Add text-outline*/
+  text-shadow: 2px 5px 2px rgb(0, 0, 0);
 }
 
 .participant::before {
@@ -245,7 +291,8 @@ h1 {
   width: 100%;
   height: 100%;
   border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.1); /* Subtle inner glow */
+  background-color: rgba(255, 255, 255, 0.1);
+  /* Subtle inner glow */
   opacity: 0;
   transition: opacity 0.3s;
 }
@@ -260,6 +307,8 @@ h1 {
   border-color: rgba(255, 255, 255, 0.6);
   box-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 5px rgba(255, 255, 255, 0.4),
     0 0 30px rgba(66, 205, 47, 0.6);
+  scale: 1.1;
+
 }
 
 .wall-section .wall .participant {
@@ -274,6 +323,7 @@ h1 {
     opacity: 0;
     transform: translateY(10px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -291,6 +341,7 @@ h1 {
     opacity: 0;
     transform: translateY(10px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -396,8 +447,10 @@ footer a:hover {
 #spinner {
   width: 100px;
   height: 100px;
-  border: 12px solid #c401c4; /* Deep Pink for spinner */
-  border-top: 12px solid #ff8bff; /* Pink for spinner */
+  border: 12px solid #c401c4;
+  /* Deep Pink for spinner */
+  border-top: 12px solid #ff8bff;
+  /* Pink for spinner */
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -412,35 +465,44 @@ footer a:hover {
   position: fixed;
   bottom: 40px;
   right: 40px;
-  background-color: var(--accent-light); /* Green accent in light mode */
+  background-color: var(--accent-light);
+  /* Green accent in light mode */
   color: var(--text-light);
   border: none;
   border-radius: 50px;
   padding: 15px 25px;
   font-size: 2rem;
   cursor: pointer;
-  display: none; /* Hidden by default */
+  display: none;
+  /* Hidden by default */
   z-index: 1000;
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 #backToTopBtn:hover {
-  background-color: var(--bg-dark); /* Dark green on hover */
-  color: var(--text-dark); /* Light text on hover */
-  transform: scale(1.1); /* Button enlarges slightly */
+  background-color: var(--bg-dark);
+  /* Dark green on hover */
+  color: var(--text-dark);
+  /* Light text on hover */
+  transform: scale(1.1);
+  /* Button enlarges slightly */
 }
 
 /* Dark mode styles */
 body.dark-mode #backToTopBtn {
-  background-color: var(--accent-dark); /* Pink accent in dark mode */
+  background-color: var(--accent-dark);
+  /* Pink accent in dark mode */
   color: var(--text-dark);
 }
 
 body.dark-mode #backToTopBtn:hover {
-  background-color: var(--bg-light); /* Light background on hover */
-  color: var(--text-light); /* Dark text on hover */
+  background-color: var(--bg-light);
+  /* Light background on hover */
+  color: var(--text-light);
+  /* Dark text on hover */
 }
+
 /* Feedback Button style */
 
 .feebback-Btn {
@@ -508,6 +570,7 @@ body.dark-mode .feebback-Btn {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(720deg);
   }
@@ -529,6 +592,14 @@ body.dark-mode .feebback-Btn {
   .search-container {
     max-width: 100%;
     margin: 1rem auto;
+  }
+
+  .participant {
+    font-size: 1rem;
+  }
+
+  .carousel-slide {
+    font-size: .8rem;
   }
 }
 
@@ -565,6 +636,10 @@ body.dark-mode .feebback-Btn {
 
   footer {
     font-size: 0.8rem;
+  }
+
+  .participant {
+    font-size: .8rem;
   }
 }
 
