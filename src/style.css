@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Sedgwick+Ave&display=swap");
+
 :root {
   --bg-light: #fefdf8; /* Light background color */
   --text-light: #1c1c1c; /* Text color */
@@ -14,12 +16,12 @@
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   background-color: var(--bg-light);
   color: var(--text-light);
   line-height: 1.6;
   transition: background-color 0.3s, color 0.3s, background-image 0.3s;
-  background-image: url('bgm.png'); /* Background image for light mode */
+  background-image: url("img/bgm.png"); /* Background image for light mode */
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -28,7 +30,7 @@ body {
 body.dark-mode {
   background-color: var(--bg-dark);
   color: var(--text-dark);
-  background-image: url('dark.png'); /* Background image for dark mode */
+  background-image: url("img/dark.png"); /* Background image for dark mode */
 }
 
 .container {
@@ -215,7 +217,9 @@ h1 {
 }
 /* Participant Card Styling with Glowing Borders */
 .participant {
-  background-color: var(--accent-light);
+  background-image: url("img/brick_wall.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
   color: white;
   padding: 1.5rem;
   border-radius: 10px;
@@ -223,21 +227,18 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1rem;
+  font-size: 1.5rem;
+  font-family: "Sedgwick Ave", cursive;
+  font-weight: 400;
+  font-style: normal;
   position: relative;
   cursor: pointer;
   transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s ease-in-out;
   border: 2px solid transparent; /* Add a transparent border initially */
 }
 
-.dark-mode .participant {
-  background-color: var(
-    --accent-dark
-  ); /* Dark mode background for participants */
-}
-
 .participant::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -259,10 +260,6 @@ h1 {
   border-color: rgba(255, 255, 255, 0.6);
   box-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 5px rgba(255, 255, 255, 0.4),
     0 0 30px rgba(66, 205, 47, 0.6);
-}
-
-.participant.dark-mode {
-  background-color: var(--accent-dark);
 }
 
 .wall-section .wall .participant {
@@ -419,8 +416,8 @@ footer a:hover {
   color: var(--text-light);
   border: none;
   border-radius: 50px;
-  padding: 15px 20px;
-  font-size: 1.5rem;
+  padding: 15px 25px;
+  font-size: 2rem;
   cursor: pointer;
   display: none; /* Hidden by default */
   z-index: 1000;
