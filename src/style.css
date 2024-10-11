@@ -416,8 +416,8 @@ footer a:hover {
   color: var(--text-light);
   border: none;
   border-radius: 50px;
-  padding: 15px 20px;
-  font-size: 1.5rem;
+  padding: 15px 25px;
+  font-size: 2rem;
   cursor: pointer;
   display: none; /* Hidden by default */
   z-index: 1000;
