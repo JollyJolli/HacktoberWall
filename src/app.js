@@ -22,9 +22,7 @@ async function loadContributors() {
   showLoadingScreen();
 
   try {
-    const response = await fetch(
-      "https://raw.githubusercontent.com/JollyJolli/HacktoberWall/refs/heads/main/src/contributors.json"
-    );
+    const response = await fetch("contributors.json");
 
     // Check if the response is not OK (status not in the range 200-299)
     if (!response.ok) {
