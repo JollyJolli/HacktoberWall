@@ -327,3 +327,26 @@ function initializeSearch() {
     displayContributors(searchInput.value);
   });
 }
+// JavaScript for triple-click Easter egg (flying Ghost)
+    let clickCount = 0;
+  
+    // Select the title element
+    const title = document.getElementById('titleLink');
+    const ghost = document.getElementById('flyingGhost');
+  
+    // Add click event listener to the title
+    title.addEventListener('click', () => {
+      clickCount++;
+  
+      if (clickCount === 3) {
+        // Show the ghost and start the animation
+        ghost.style.display = 'block';
+        ghost.style.animation = 'ghostFly 5s linear forwards';
+  
+        // Reset the click counter after the ghost finishes flying
+        setTimeout(() => {
+          clickCount = 0; // Reset click counter after animation
+          ghost.style.display = 'none'; // Hide ghost again
+        }, 5000); // Animation duration (5 seconds)
+      }
+    });
