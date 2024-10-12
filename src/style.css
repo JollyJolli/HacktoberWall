@@ -22,6 +22,7 @@
   /* scrollbar styles */
   scrollbar-width: thin;
   scrollbar-color: #555 #1c1c1c;
+  cursor: url('./img/icons8-ghost-16.png'), pointer;
 }
 
 body {
@@ -642,6 +643,7 @@ body.dark-mode .feebback-Btn {
     font-size: .8rem;
   }
 }
+
 
 @media (max-width: 480px) {
   header {
