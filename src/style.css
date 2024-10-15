@@ -81,12 +81,25 @@ header {
   transition: all 0.3s ease;
   width: 100%;
   max-width: 500px;
-  margin: 1rem auto;
+  margin: 1rem 0;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 
   background: rgba(255, 255, 255, 0.267);
   backdrop-filter: blur(4.5px);
   -webkit-backdrop-filter: blur(4.5px);
+}
+
+.main-search-container {
+  display: flex;
+  gap: 5px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.total-contributors {
+  color: black;
+  font-size: 1.2rem;
 }
 
 .dark-mode .search-container {

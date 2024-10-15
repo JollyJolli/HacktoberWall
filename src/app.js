@@ -37,7 +37,7 @@ async function loadContributors() {
     const count = countItems(contributors);
     console.log(`Number of contributors: ${count}`);
 
-    contributerCount.textContent = `Total Contributors: ${count}`;
+    contributerCount.textContent = `Total: ${count}`;
 
     cachedContributors = contributors;
   } catch (error) {
