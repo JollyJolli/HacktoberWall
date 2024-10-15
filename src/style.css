@@ -680,3 +680,41 @@ body.dark-mode .feebback-Btn {
     grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
   }
 }
+
+/* Sort Container */
+.search-sort-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem; /* Increased gap for better spacing */
+  padding: 10px; /* Added padding for better touch targets */
+  border-radius: 8px; /* Rounded corners for a softer look */
+}
+
+.sort-container {
+  margin: 15px 0; /* Increased margin for better separation */
+}
+
+.sort-select {
+  padding: 8px; /* Increased padding for comfort */
+  font-size: 16px;
+  border: 1px solid #ccc; /* Slightly lighter border */
+  outline: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transition effects */
+
+}
+
+.sort-select:hover {
+  border-color: #888; /* Darker border on hover */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
+}
+
+.sort-select:focus {
+  border-color: #0056b3; /* Highlight border on focus */
+  box-shadow: 0 0 5px rgba(0, 86, 179, 0.5); /* Focus shadow effect */
+}
+
+
+

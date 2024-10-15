@@ -162,30 +162,55 @@
     <div id="speechBubble">Happy Hacktoberfest!</div>
   </div>
 
-  <main class="container">
-    <section class="wall-section">
-      <h2>Participants</h2>
-      <div class="main-search-container">
+ <main class="container">
+  <section class="wall-section">
+    <h2>Participants</h2>
+    <div class="main-search-container">
+      <div class="search-sort-container">
+        <!-- Search Contributors -->
         <div class="search-container">
-          <input type="text" id="searchInput" placeholder="Search contributors..." aria-label="Search contributors" tabindex="0" />
+          <input 
+              type="text" 
+              id="searchInput" 
+              placeholder="Search contributors..." 
+              aria-label="Search contributors" 
+              tabindex="0" 
+          />
           <button id="searchButton" aria-label="Search contributors" tabindex="0">
-            <i class="fas fa-search" aria-hidden="true"></i> Search
+            <i class="fas fa-search" aria-hidden="true"></i> 
+            Search
           </button>
         </div>
-        <div class="total-contributors">Total: 0</div>
+        
+        <!-- Sort Contributors -->
+        <div class="sort-container">
+          <label for="sortSelect" aria-label="Sort contributors by name">Sort:</label>
+          <select id="sortSelect" class="sort-select">
+            <option value="none" selected>Sort By</option>
+            <option value="asc">A-Z</option>
+            <option value="desc">Z-A</option>
+          </select>
+        </div>
       </div>
-      <div id="wall" class="wall" role="region" aria-live="polite" aria-label="List of contributors"></div>
-    </section>
-
-    <!-- Modal for funFacts-->
-    <div class="modal hidden" aria-hidden="true" role="dialog" aria-labelledby="title-modal-1">
-      <div class="modal-wrapper">
-        <a href="#" class="close-modal-button" aria-label="Close modal" title="Close modal"><i class="fa-solid fa-xmark"></i></a>
-        <h2 class="modal-title">Fun Facts</h2>
-        <blockquote class="modal-content"></blockquote>
-      </div>
+      
+      <!-- Contributor Count -->
+      <div class="total-contributors">Total: 0</div>
     </div>
-  </main>
+
+    <!-- Contributor Wall -->
+    <div id="wall" class="wall" role="region" aria-live="polite" aria-label="List of contributors"></div>
+    <div id="paginationWrapper" class="pagination"></div>
+  </section>
+
+  <!-- Modal for funFacts -->
+  <div class="modal hidden" aria-hidden="true" role="dialog" aria-labelledby="title-modal-1">
+    <div class="modal-wrapper">
+      <a href="#" class="close-modal-button" aria-label="Close modal" title="Close modal"><i class="fa-solid fa-xmark"></i></a>
+      <h2 class="modal-title">Fun Facts</h2>
+      <blockquote class="modal-content"></blockquote>
+    </div>
+  </div>
+</main>
 
   <footer>
     <p>
