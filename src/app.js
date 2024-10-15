@@ -9,6 +9,7 @@ const modal = document.querySelector(".modal");
 const modalWrapper = document.querySelector(".modal-wrapper");
 const modalContent = document.querySelector(".modal-content");
 const modalClose = document.querySelector(".close-modal-button");
+const contributerCount = document.querySelector(".total-contributors");
 
 modalClose.addEventListener("click", closeModal);
 
@@ -24,7 +25,6 @@ async function loadContributors() {
   try {
     const response = await fetch("contributors.json");
 
-    // Check if the response is not OK (status not in the range 200-299)
     if (!response.ok) {
       throw new Error(
         `Failed to load contributors: HTTP status ${response.status} (${response.statusText})`
@@ -32,22 +32,33 @@ async function loadContributors() {
     }
 
     contributors = await response.json();
+
+    // Count the contributors
+    const count = countItems(contributors);
+    console.log(`Number of contributors: ${count}`);
+
+    contributerCount.textContent = `Total Contributors: ${count}`;
+
     cachedContributors = contributors;
   } catch (error) {
     console.error("Error loading contributors:", error);
 
-    // Provide a detailed error message to the user
     alert(
       "Oops! Something went wrong while loading the contributors. Please try again later.\n\n" +
         "Error details: " +
         error.message
     );
   } finally {
-    hideLoadingScreen(); // Ensure the loading screen is hidden regardless of success or failure
+    hideLoadingScreen();
   }
 
   return contributors;
 }
+  
+  // Helper function to count items in an object or array
+  function countItems(obj) {
+    return Array.isArray(obj) ? obj.length : Object.keys(obj).length;
+  }  
 
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {

@@ -7,14 +7,12 @@
 
   <!-- SEO Meta Tags -->
   <title>HacktoberWall | Join Hacktoberfest & Contribute!</title>
-  <meta name="description"
-    content="Contribute to Hacktoberfest by editing the HacktoberWall mural and become part of the open-source community!" />
+  <meta name="description" content="Contribute to Hacktoberfest by editing the HacktoberWall mural and become part of the open-source community!" />
   <meta name="keywords" content="HacktoberWall, Hacktoberfest, open source, contribute, coding, developers" />
 
   <!-- Open Graph Meta Tags for Social Media Sharing -->
   <meta property="og:title" content="HacktoberWall | Join Hacktoberfest & Contribute!" />
-  <meta property="og:description"
-    content="Contribute to Hacktoberfest by editing the HacktoberWall mural and become part of the open-source community!" />
+  <meta property="og:description" content="Contribute to Hacktoberfest by editing the HacktoberWall mural and become part of the open-source community!" />
   <meta property="og:image" content="/img/logo.png" />
   <meta property="og:url" content="https://hacktoberwall.formen.cc/" />
   <meta property="og:type" content="website" />
@@ -27,8 +25,7 @@
   <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="/img/logo.png" />
   <meta name="twitter:title" content="HacktoberWall | Join Hacktoberfest & Contribute!" />
-  <meta name="twitter:description"
-    content="Contribute to Hacktoberfest by editing the HacktoberWall mural and become part of the open-source community!" />
+  <meta name="twitter:description" content="Contribute to Hacktoberfest by editing the HacktoberWall mural and become part of the open-source community!" />
   <meta name="twitter:image" content="/img/logo.png" />
   <meta name="twitter:image:alt" content="Hacktoberfest Logo" />
 
@@ -88,9 +85,11 @@
       0% {
         right: -150px;
       }
+
       50% {
         right: 50%;
       }
+
       100% {
         right: 100%;
       }
@@ -113,9 +112,11 @@
       0% {
         left: -150px;
       }
+
       50% {
         left: 50%;
       }
+
       100% {
         left: 110%;
       }
@@ -164,12 +165,14 @@
   <main class="container">
     <section class="wall-section">
       <h2>Participants</h2>
-      <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Search contributors..." aria-label="Search contributors"
-          tabindex="0" />
-        <button id="searchButton" aria-label="Search contributors" tabindex="0">
-          <i class="fas fa-search" aria-hidden="true"></i> Search
-        </button>
+      <div class="main-search-container">
+        <div class="search-container">
+          <input type="text" id="searchInput" placeholder="Search contributors..." aria-label="Search contributors" tabindex="0" />
+          <button id="searchButton" aria-label="Search contributors" tabindex="0">
+            <i class="fas fa-search" aria-hidden="true"></i> Search
+          </button>
+        </div>
+        <div class="total-contributors">Total: 0</div>
       </div>
       <div id="wall" class="wall" role="region" aria-live="polite" aria-label="List of contributors"></div>
     </section>
@@ -177,8 +180,7 @@
     <!-- Modal for funFacts-->
     <div class="modal hidden" aria-hidden="true" role="dialog" aria-labelledby="title-modal-1">
       <div class="modal-wrapper">
-        <a href="#" class="close-modal-button" aria-label="Close modal" title="Close modal"><i
-            class="fa-solid fa-xmark"></i></a>
+        <a href="#" class="close-modal-button" aria-label="Close modal" title="Close modal"><i class="fa-solid fa-xmark"></i></a>
         <h2 class="modal-title">Fun Facts</h2>
         <blockquote class="modal-content"></blockquote>
       </div>
@@ -188,8 +190,7 @@
   <footer>
     <p>
       Contribute at
-      <a href="https://github.com/JollyJolli/HacktoberWall" target="_blank"
-        aria-label="Visit HacktoberWall GitHub Repository" tabindex="0">GitHub</a>
+      <a href="https://github.com/JollyJolli/HacktoberWall" target="_blank" aria-label="Visit HacktoberWall GitHub Repository" tabindex="0">GitHub</a>
     </p>
   </footer>
 
