@@ -164,14 +164,34 @@
   <main class="container">
     <section class="wall-section">
       <h2>Participants</h2>
-      <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Search contributors..." aria-label="Search contributors"
-          tabindex="0" />
-        <button id="searchButton" aria-label="Search contributors" tabindex="0">
-          <i class="fas fa-search" aria-hidden="true"></i> Search
-        </button>
-      </div>
+      <div class="search-sort-container">
+        <div class="search-container">
+            <input 
+                type="text" 
+                id="searchInput" 
+                placeholder="Search contributors..." 
+                aria-label="Search contributors" 
+                tabindex="0" 
+            />
+            <button id="searchButton" aria-label="Search contributors" tabindex="0">
+                <i class="fas fa-search" aria-hidden="true"></i> 
+                Search
+            </button>
+        </div>
+        
+        <div class="sort-container">
+          <label for="sortSelect" aria-label="Sort contributors by name">Sort:</label>
+          <select id="sortSelect" class="sort-select">
+              <option value="none" selected>Sort By</option>
+              <option value="asc">A-Z</option>
+              <option value="desc">Z-A</option>
+          </select>
+      </div>      
+    </div>
+    
+      
       <div id="wall" class="wall" role="region" aria-live="polite" aria-label="List of contributors"></div>
+      <div id="paginationWrapper" class="pagination"></div>
     </section>
 
     <!-- Modal for funFacts-->
