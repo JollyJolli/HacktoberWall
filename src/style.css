@@ -718,12 +718,6 @@ body.dark-mode .feebback-Btn {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
-  background: rgba(255, 255, 255, 0.45);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(4px);
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  padding: 32px;
 }
 
 @media screen and (max-width: 768px) {
@@ -772,4 +766,21 @@ body.dark-mode .feebback-Btn {
   font-weight: 600;
   font-size: 18px;
   transition: color 0.3s;
+}
+
+.contributors-section {
+  background: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 32px;
+  margin-top: 4rem;
+}
+
+.contributors-section h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: rgb(107, 107, 107);
 }
