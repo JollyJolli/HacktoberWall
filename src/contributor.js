@@ -25,7 +25,6 @@ fetchContributors()
         'participant',
         'wall-section'
       )
-      console.log(contributor.html_url)
       card.innerHTML = `
         <div class="contributors-avatar-container">
             <img class="contributors-avatar" src="${contributor.avatar_url}" alt="${contributor.login}" loading="lazy" />
