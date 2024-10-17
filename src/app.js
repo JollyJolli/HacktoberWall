@@ -162,6 +162,8 @@ const funFacts = [
   "Open source software powers much of the internet's infrastructure.",
   "The term 'open source' was coined in 1998.",
   'Linux, the most famous open source project, was created in 1991.',
+  'The Hacktoberfest Challenge is to have 4 open source contrubutions accepted, but you can do more.',
+  'Particpating in Hacktoberfest is a great way to gain skills',
 ]
 
 const sections = Array.from(document.querySelectorAll('section'))
