@@ -1,229 +1,307 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- SEO Meta Tags -->
+    <title>HacktoberWall | Join Hacktoberfest & Contribute!</title>
+    <meta
+      name="description"
+      content="Contribute to Hacktoberfest by editing the HacktoberWall mural and become part of the open-source community!"
+    />
+    <meta
+      name="keywords"
+      content="HacktoberWall, Hacktoberfest, open source, contribute, coding, developers"
+    />
 
-  <!-- SEO Meta Tags -->
-  <title>HacktoberWall | Join Hacktoberfest & Contribute!</title>
-  <meta name="description" content="Contribute to Hacktoberfest by editing the HacktoberWall mural and become part of the open-source community!" />
-  <meta name="keywords" content="HacktoberWall, Hacktoberfest, open source, contribute, coding, developers" />
+    <!-- Open Graph Meta Tags for Social Media Sharing -->
+    <meta
+      property="og:title"
+      content="HacktoberWall | Join Hacktoberfest & Contribute!"
+    />
+    <meta
+      property="og:description"
+      content="Contribute to Hacktoberfest by editing the HacktoberWall mural and become part of the open-source community!"
+    />
+    <meta property="og:image" content="/img/logo.png" />
+    <meta property="og:url" content="https://hacktoberwall.formen.cc/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="HacktoberWall" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image:alt" content="Hacktoberfest Logo" />
+    <meta property="og:image:width" content="1024" />
+    <meta property="og:image:height" content="1024" />
 
-  <!-- Open Graph Meta Tags for Social Media Sharing -->
-  <meta property="og:title" content="HacktoberWall | Join Hacktoberfest & Contribute!" />
-  <meta property="og:description" content="Contribute to Hacktoberfest by editing the HacktoberWall mural and become part of the open-source community!" />
-  <meta property="og:image" content="/img/logo.png" />
-  <meta property="og:url" content="https://hacktoberwall.formen.cc/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="HacktoberWall" />
-  <meta property="og:locale" content="en_US" />
-  <meta property="og:image:alt" content="Hacktoberfest Logo" />
-  <meta property="og:image:width" content="1024" />
-  <meta property="og:image:height" content="1024" />
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="/img/logo.png" />
+    <meta
+      name="twitter:title"
+      content="HacktoberWall | Join Hacktoberfest & Contribute!"
+    />
+    <meta
+      name="twitter:description"
+      content="Contribute to Hacktoberfest by editing the HacktoberWall mural and become part of the open-source community!"
+    />
+    <meta name="twitter:image" content="/img/logo.png" />
+    <meta name="twitter:image:alt" content="Hacktoberfest Logo" />
 
-  <!-- Twitter Card Meta Tags -->
-  <meta name="twitter:card" content="/img/logo.png" />
-  <meta name="twitter:title" content="HacktoberWall | Join Hacktoberfest & Contribute!" />
-  <meta name="twitter:description" content="Contribute to Hacktoberfest by editing the HacktoberWall mural and become part of the open-source community!" />
-  <meta name="twitter:image" content="/img/logo.png" />
-  <meta name="twitter:image:alt" content="Hacktoberfest Logo" />
+    <!-- Favicon -->
+    <link rel="icon" href="/img/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
 
-  <!-- Favicon -->
-  <link rel="icon" href="/img/favicon.ico" type="image/x-icon" />
-  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
 
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="./img/favicon.ico" />
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="./img/favicon.ico">
+    <style>
+      body {
+        background-color: #121212;
+        color: #ffffff;
+      }
 
-  <style>
-    body {
-      background-color: #121212;
-      color: #ffffff;
-    }
+      button {
+        background-color: #007bff;
+        color: #ffffff;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
 
-    button {
-      background-color: #007bff;
-      color: #ffffff;
-      border: none;
-      padding: 10px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+      button:hover,
+      button:focus {
+        background-color: #0056b3;
+        outline: 2px solid #ffffff;
+      }
 
-    button:hover,
-    button:focus {
-      background-color: #0056b3;
-      outline: 2px solid #ffffff;
-    }
+      a:focus {
+        outline: 2px solid #ffffff;
+      }
 
-    a:focus {
-      outline: 2px solid #ffffff;
-    }
+      #loading-screen {
+        background-color: #333333;
+        color: #ffffff;
+      }
 
-    #loading-screen {
-      background-color: #333333;
-      color: #ffffff;
-    }
-
-    /* Flying Ghost Animation */
-    #flyingGhost {
-      position: fixed;
-      top: 20%;
-      right: -150px;
-      width: 100px;
-      display: none;
-      z-index: 1000;
-    }
-
-    @keyframes ghostFly {
-      0% {
+      /* Flying Ghost Animation */
+      #flyingGhost {
+        position: fixed;
+        top: 20%;
         right: -150px;
+        width: 100px;
+        display: none;
+        z-index: 1000;
       }
 
-      50% {
-        right: 50%;
+      @keyframes ghostFly {
+        0% {
+          right: -150px;
+        }
+
+        50% {
+          right: 50%;
+        }
+
+        100% {
+          right: 100%;
+        }
       }
 
-      100% {
-        right: 100%;
-      }
-    }
-
-    /* Keyframes for mascot movement */
-    #mascotContainer {
-      display: none;
-      position: fixed;
-      bottom: 50px;
-      left: -150px;
-      width: 150px;
-      height: auto;
-      z-index: 9999;
-      animation: mascotMove 5s linear forwards;
-      animation-play-state: running;
-    }
-
-    @keyframes mascotMove {
-      0% {
+      /* Keyframes for mascot movement */
+      #mascotContainer {
+        display: none;
+        position: fixed;
+        bottom: 50px;
         left: -150px;
+        width: 150px;
+        height: auto;
+        z-index: 9999;
+        animation: mascotMove 5s linear forwards;
+        animation-play-state: running;
       }
 
-      50% {
-        left: 50%;
+      @keyframes mascotMove {
+        0% {
+          left: -150px;
+        }
+
+        50% {
+          left: 50%;
+        }
+
+        100% {
+          left: 110%;
+        }
       }
+    </style>
+  </head>
 
-      100% {
-        left: 110%;
-      }
-    }
-  </style>
-</head>
+  <body>
+    <header>
+      <div>
+        <a
+          href="#"
+          id="titleLink"
+          class="header-title"
+          aria-label="HacktoberWall Home"
+          style="cursor: default"
+        >
+          HacktoberWall
+        </a>
+        <i id="halloweenIcon" class="fas fa-ghost" aria-hidden="true"></i>
+      </div>
+      <div class="header-controls">
+        <button
+          id="surpriseButton"
+          class="surprise-btn"
+          aria-label="Surprise Me!"
+          tabindex="0"
+        >
+          Surprise Me!
+        </button>
+        <button
+          id="toggleButton"
+          class="toggle-btn"
+          aria-label="Toggle between dark mode and light mode"
+          tabindex="0"
+        >
+          <i class="fas fa-sun" aria-hidden="true"></i>
+        </button>
+      </div>
+    </header>
 
-<body>
-  <header>
-    <div>
-      <a href="#" id="titleLink" class="header-title" aria-label="HacktoberWall Home" style="cursor: default">
-        HacktoberWall
-      </a>
-      <i id="halloweenIcon" class="fas fa-ghost" aria-hidden="true"></i>
+    <!-- Ghost Image for Animation -->
+    <img id="flyingGhost" src="img/flying ghost.png" alt="Flying Ghost" />
+
+    <div id="loading-screen" aria-live="polite" aria-busy="true">
+      <div id="spinner" role="status" aria-label="Loading"></div>
+      <div id="loading-text">Loading Contributors...</div>
     </div>
-    <div class="header-controls">
-      <button id="surpriseButton" class="surprise-btn" aria-label="Surprise Me!" tabindex="0">
-        Surprise Me!
-      </button>
-      <button id="toggleButton" class="toggle-btn" aria-label="Toggle between dark mode and light mode" tabindex="0">
-        <i class="fas fa-sun" aria-hidden="true"></i>
-      </button>
+    <div class="carousel">
+      <div class="carousel-slide">
+        ☀️ Join the Hacktoberfest mural! Add your contribution by updating the
+        JSON file and leave your mark on this collaborative artwork! ☀️
+      </div>
     </div>
-  </header>
 
-  <!-- Ghost Image for Animation -->
-  <img id="flyingGhost" src="img/flying ghost.png" alt="Flying Ghost" />
-
-  <div id="loading-screen" aria-live="polite" aria-busy="true">
-    <div id="spinner" role="status" aria-label="Loading"></div>
-    <div id="loading-text">Loading Contributors...</div>
-  </div>
-  <div class="carousel">
-    <div class="carousel-slide">
-      ☀️ Join the Hacktoberfest mural! Add your contribution by updating the
-      JSON file and leave your mark on this collaborative artwork! ☀️
+    <!-- Mascot Container -->
+    <div id="mascotContainer">
+      <img id="mascotImage" src="img/mascot.webp" alt="Hacktoberfest Mascot" />
+      <div id="speechBubble">Happy Hacktoberfest!</div>
     </div>
-  </div>
 
-  <!-- Mascot Container -->
-  <div id="mascotContainer">
-    <img id="mascotImage" src="img/mascot.webp" alt="Hacktoberfest Mascot" />
-    <div id="speechBubble">Happy Hacktoberfest!</div>
-  </div>
+    <main class="container">
+      <section class="wall-section">
+        <h2>Participants</h2>
+        <div class="main-search-container">
+          <div class="search-sort-container">
+            <!-- Search Contributors -->
+            <div class="search-container">
+              <input
+                type="text"
+                id="searchInput"
+                placeholder="Search contributors..."
+                aria-label="Search contributors"
+                tabindex="0"
+              />
+              <button
+                id="searchButton"
+                aria-label="Search contributors"
+                tabindex="0"
+              >
+                <i class="fas fa-search" aria-hidden="true"></i>
+                Search
+              </button>
+            </div>
 
- <main class="container">
-  <section class="wall-section">
-    <h2>Participants</h2>
-    <div class="main-search-container">
-      <div class="search-sort-container">
-        <!-- Search Contributors -->
-        <div class="search-container">
-          <input 
-              type="text" 
-              id="searchInput" 
-              placeholder="Search contributors..." 
-              aria-label="Search contributors" 
-              tabindex="0" 
-          />
-          <button id="searchButton" aria-label="Search contributors" tabindex="0">
-            <i class="fas fa-search" aria-hidden="true"></i> 
-            Search
-          </button>
+            <!-- Sort Contributors -->
+            <div class="sort-container">
+              <label for="sortSelect" aria-label="Sort contributors by name"
+                >Sort:</label
+              >
+              <select id="sortSelect" class="sort-select">
+                <option value="none" selected>Sort By</option>
+                <option value="asc">A-Z</option>
+                <option value="desc">Z-A</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Contributor Count -->
+          <div class="total-contributors">Total: 0</div>
         </div>
-        
-        <!-- Sort Contributors -->
-        <div class="sort-container">
-          <label for="sortSelect" aria-label="Sort contributors by name">Sort:</label>
-          <select id="sortSelect" class="sort-select">
-            <option value="none" selected>Sort By</option>
-            <option value="asc">A-Z</option>
-            <option value="desc">Z-A</option>
-          </select>
+
+        <!-- Contributor Wall -->
+        <div
+          id="wall"
+          class="wall"
+          role="region"
+          aria-live="polite"
+          aria-label="List of contributors"
+        ></div>
+        <div id="paginationWrapper" class="pagination"></div>
+      </section>
+
+      <section class="contributors-section">
+        <h2>Contributors</h2>
+        <div class="contributors-container"></div>
+      </section>
+
+      <!-- Modal for funFacts -->
+      <div
+        class="modal hidden"
+        aria-hidden="true"
+        role="dialog"
+        aria-labelledby="title-modal-1"
+      >
+        <div class="modal-wrapper">
+          <a
+            href="#"
+            class="close-modal-button"
+            aria-label="Close modal"
+            title="Close modal"
+            ><i class="fa-solid fa-xmark"></i
+          ></a>
+          <h2 class="modal-title">Fun Facts</h2>
+          <blockquote class="modal-content"></blockquote>
         </div>
       </div>
-      
-      <!-- Contributor Count -->
-      <div class="total-contributors">Total: 0</div>
-    </div>
+    </main>
 
-    <!-- Contributor Wall -->
-    <div id="wall" class="wall" role="region" aria-live="polite" aria-label="List of contributors"></div>
-    <div id="paginationWrapper" class="pagination"></div>
-  </section>
+    <footer>
+      <p>
+        Contribute at
+        <a
+          href="https://github.com/JollyJolli/HacktoberWall"
+          target="_blank"
+          aria-label="Visit HacktoberWall GitHub Repository"
+          tabindex="0"
+          >GitHub</a
+        >
+      </p>
+    </footer>
 
-  <!-- Modal for funFacts -->
-  <div class="modal hidden" aria-hidden="true" role="dialog" aria-labelledby="title-modal-1">
-    <div class="modal-wrapper">
-      <a href="#" class="close-modal-button" aria-label="Close modal" title="Close modal"><i class="fa-solid fa-xmark"></i></a>
-      <h2 class="modal-title">Fun Facts</h2>
-      <blockquote class="modal-content"></blockquote>
-    </div>
-  </div>
-</main>
-
-  <footer>
-    <p>
-      Contribute at
-      <a href="https://github.com/JollyJolli/HacktoberWall" target="_blank" aria-label="Visit HacktoberWall GitHub Repository" tabindex="0">GitHub</a>
-    </p>
-  </footer>
-
-  <!-- Back to Top Button -->
-  <button title="back to top" id="backToTopBtn" aria-label="Back to top of page" tabindex="0">
-    ↑
-  </button>
-  <script src="app.js"></script>
-</body>
-
+    <!-- Back to Top Button -->
+    <button
+      title="back to top"
+      id="backToTopBtn"
+      aria-label="Back to top of page"
+      tabindex="0"
+    >
+      ↑
+    </button>
+    <script src="contributor.js"></script>
+    <script src="app.js"></script>
+  </body>
 </html>

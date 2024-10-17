@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Sedgwick+Ave&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Sedgwick+Ave&display=swap');
 
 :root {
   --bg-light: #fefdf8;
@@ -26,12 +26,12 @@
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   background-color: var(--bg-light);
   color: var(--text-light);
   line-height: 1.6;
   transition: background-color 0.3s, color 0.3s, background-image 0.3s;
-  background-image: url("img/bgm.png");
+  background-image: url('img/bgm.png');
   /* Background image for light mode */
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -42,7 +42,7 @@ body {
 body.dark-mode {
   background-color: var(--bg-dark);
   color: var(--text-dark);
-  background-image: url("img/dark.png");
+  background-image: url('img/dark.png');
   /* Background image for dark mode */
 }
 
@@ -172,7 +172,7 @@ h1 {
 /* infinite carousel animation styles */
 .carousel {
   background-color: #1c1c1c;
-  padding: .5rem;
+  padding: 0.5rem;
   overflow: hidden;
   white-space: nowrap;
 }
@@ -274,7 +274,7 @@ h1 {
 
 /* Participant Card Styling with Glowing Borders */
 .participant {
-  background-image: url("img/brick_wall.jpg");
+  background-image: url('img/brick_wall.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   color: white;
@@ -285,7 +285,7 @@ h1 {
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
-  font-family: "Sedgwick Ave", cursive;
+  font-family: 'Sedgwick Ave', cursive;
   font-weight: 400;
   font-style: normal;
   position: relative;
@@ -298,7 +298,7 @@ h1 {
 }
 
 .participant::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -322,7 +322,6 @@ h1 {
   box-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 5px rgba(255, 255, 255, 0.4),
     0 0 30px rgba(66, 205, 47, 0.6);
   scale: 1.1;
-
 }
 
 .wall-section .wall .participant {
@@ -613,7 +612,7 @@ body.dark-mode .feebback-Btn {
   }
 
   .carousel-slide {
-    font-size: .8rem;
+    font-size: 0.8rem;
   }
 }
 
@@ -653,10 +652,9 @@ body.dark-mode .feebback-Btn {
   }
 
   .participant {
-    font-size: .8rem;
+    font-size: 0.8rem;
   }
 }
-
 
 @media (max-width: 480px) {
   header {
@@ -703,7 +701,6 @@ body.dark-mode .feebback-Btn {
   border-radius: 5px;
   cursor: pointer;
   transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transition effects */
-
 }
 
 .sort-select:hover {
@@ -716,5 +713,63 @@ body.dark-mode .feebback-Btn {
   box-shadow: 0 0 5px rgba(0, 86, 179, 0.5); /* Focus shadow effect */
 }
 
+.contributors-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  background: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 32px;
+}
 
+@media screen and (max-width: 768px) {
+  .contributors-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 
+@media screen and (max-width: 480px) {
+  .contributors-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.contributors-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: none;
+}
+
+.contributors-avatar-container {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.contributors-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.contributors-contributions {
+  font-weight: 600;
+  font-size: 22px;
+}
+
+.contributors-link {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 600;
+  font-size: 18px;
+  transition: color 0.3s;
+}
