@@ -162,6 +162,8 @@ const funFacts = [
   "Open source software powers much of the internet's infrastructure.",
   "The term 'open source' was coined in 1998.",
   'Linux, the most famous open source project, was created in 1991.',
+  'The Hacktoberfest Challenge is to have 4 open source contrubutions accepted, but you can do more.',
+  'Particpating in Hacktoberfest is a great way to gain skills',
 ]
 
 const sections = Array.from(document.querySelectorAll('section'))
@@ -267,3 +269,40 @@ document.getElementById('titleLink').addEventListener('click', (e) => {
     showHalloweenIcon()
   }
 })
+
+SmoothScroll({
+  animationTime : 800,
+  stepSize : 75,
+  accelerationDelta : 30,
+  accelerationMax : 2,
+  keyboardSupport : true,
+  arrowScroll : 50,
+  pulseAlgorithm : true,
+  pulseScale : 4,
+  pulseNormalize : 1,
+  touchpadSupport : true,
+})
+
+
+
+var popup = document.getElementById("imagePopup");
+var triggerImg = document.getElementById("triggerImage");
+var popupImage = document.getElementById("popupImage");
+var captionText = document.getElementById("caption");
+
+// When the user clicks the trigger image, show a DIFFERENT image in the popup
+triggerImg.onclick = function() {
+    console.log("Trigger image clicked!");
+    popup.style.display = "flex"; // Show the popup
+    //popupImage.src = "./img/Angry_Pumpkin.jpg"; 
+    captionText.innerHTML = "Halloween is Coming!!!"; 
+}
+
+// Get the <span> element that closes the popup
+var closeBtn = document.getElementsByClassName("close-btn")[0];
+
+// When the user clicks on <span> (x), close the popup
+closeBtn.onclick = function() {
+    popup.style.display = "none"; // Hide the popup
+}
+

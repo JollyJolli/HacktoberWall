@@ -61,6 +61,14 @@
       rel="stylesheet"
     />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="./img/favicon.ico" />
 
@@ -192,6 +200,15 @@
       <div class="carousel-slide">
         ☀️ Join the Hacktoberfest mural! Add your contribution by updating the
         JSON file and leave your mark on this collaborative artwork! ☀️
+        <img id="triggerImage" src="img/Pumpkin.jpg" alt="Pumpkin" class="pumpkin"> </img>
+      </div>
+
+      <div id="imagePopup" class="popup">
+        <span class="close-btn">&times;</span>
+        <div class="popup-content-container">
+          <img class="popup-content" id="popupImage" src="img/Angry_Pumpkin.png">
+          <div id="caption"></div>
+        </div>
       </div>
     </div>
 
@@ -302,6 +319,7 @@
       ↑
     </button>
     <script src="contributor.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js" integrity="sha256-huW7yWl7tNfP7lGk46XE+Sp0nCotjzYodhVKlwaNeco=" crossorigin="anonymous"></script>
     <script src="app.js"></script>
   </body>
 </html>
