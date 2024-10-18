@@ -413,11 +413,34 @@ footer a:hover {
   cursor: pointer;
   font-size: 0.9rem;
   transition: all 0.3s ease;
-  margin-right: 1rem;
+  margin-top: 0.5rem;
+  margin-right: 0;
 }
 
 .dark-mode .surprise-btn {
   background-color: var(--accent-dark);
+}
+
+.contact-btn {
+  background-color: var(--accent-light);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  margin-top: 0.5rem;
+  margin-right: 0;
+}
+
+.dark-mode .contact-btn {
+  background-color: var(--accent-dark);
+}
+
+.contact-btn > a {
+  text-decoration: none;
+  color: white;
 }
 
 .header-title {
@@ -628,11 +651,6 @@ body.dark-mode .feebback-Btn {
   .header-controls {
     flex-direction: column;
     align-items: flex-end;
-  }
-
-  .surprise-btn {
-    margin-top: 0.5rem;
-    margin-right: 0;
   }
 
   .search-container {
