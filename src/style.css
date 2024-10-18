@@ -636,8 +636,12 @@ body.dark-mode .feebback-Btn {
     margin-right: 0;
   }
 
-  .search-container {
-    max-width: 100%;
+  .main-search-container{
+    flex-direction: column;
+  }
+
+  .search-sort-container {
+    flex-direction: column-reverse;
   }
 
   .wall {
@@ -671,8 +675,7 @@ body.dark-mode .feebback-Btn {
   }
 
   .search-container {
-    width: 100%;
-    max-width: none;
+   height: 40px;
   }
 
   .wall {
