@@ -2,12 +2,14 @@
 
 body {
 
-     font-family: "Poppins", sans-serif;
-  font-weight: 400;
-  font-style: normal;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
     margin: 0;
     padding: 0;
     background-color: #f9f9f9;
+    background: no-repeat url('img/bgm.png') fixed;
+    background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
