@@ -37,6 +37,8 @@ body {
   background-attachment: fixed;
   background-size: cover;
   overflow-x: hidden;
+  background-color: #121212;
+  color: #ffffff;
 }
 
 body.dark-mode {
@@ -447,7 +449,8 @@ footer a:hover {
   color: inherit;
   text-decoration: none;
   font-size: 2.5rem;
-  font-weight: 600;
+  font-weight: 400;
+  font-family: DynaPuff;
   color: var(--accent-light);
   transition: color 0.3s;
 }
@@ -653,8 +656,12 @@ body.dark-mode .feebback-Btn {
     align-items: flex-end;
   }
 
-  .search-container {
-    max-width: 100%;
+  .main-search-container {
+    flex-direction: column;
+  }
+
+  .search-sort-container {
+    flex-direction: column-reverse;
   }
 
   .wall {
@@ -688,8 +695,7 @@ body.dark-mode .feebback-Btn {
   }
 
   .search-container {
-    width: 100%;
-    max-width: none;
+    height: 40px;
   }
 
   .wall {
@@ -746,7 +752,6 @@ body.dark-mode .feebback-Btn {
   }
 }
 
-
 .contributors-card {
   display: flex;
   flex-direction: column;
@@ -800,4 +805,219 @@ body.dark-mode .feebback-Btn {
   font-size: 2rem;
   margin-bottom: 1.5rem;
   color: rgb(107, 107, 107);
+}
+
+button {
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover,
+button:focus {
+  background-color: #0056b3;
+  outline: 2px solid #ffffff;
+}
+
+a:focus {
+  outline: 2px solid #ffffff;
+}
+
+#loading-screen {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+/* Flying Ghost Animation */
+#flyingGhost {
+  position: fixed;
+  top: 20%;
+  right: -150px;
+  width: 100px;
+  display: none;
+  z-index: 1000;
+}
+
+@keyframes ghostFly {
+  0% {
+    right: -150px;
+  }
+
+  50% {
+    right: 50%;
+  }
+
+  100% {
+    right: 100%;
+  }
+}
+
+/* Keyframes for mascot movement */
+#mascotContainer {
+  display: none;
+  position: fixed;
+  bottom: 50px;
+  left: -150px;
+  width: 150px;
+  height: auto;
+  z-index: 9999;
+  animation: mascotMove 5s linear forwards;
+  animation-play-state: running;
+}
+
+@keyframes mascotMove {
+  0% {
+    left: -150px;
+  }
+
+  50% {
+    left: 50%;
+  }
+
+  100% {
+    left: 110%;
+  }
+}
+
+/* Cookies */
+#cookies-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+}
+
+#cookies-sub-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  color: #000;
+}
+
+.cookies {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+  text-align: center;
+  gap: 2rem;
+}
+
+@media screen and (max-width: 480px) {
+  .cookies {
+    flex-direction: column;
+  }
+}
+
+.cookies-text {
+  margin-right: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: left;
+  font-weight: bold;
+}
+
+.cookies-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.cookies-btn {
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+  font-weight: bold;
+  transition: transform 0.3s ease-in-out;
+}
+
+.cookies-btn:hover {
+  transform: scale(1.1);
+}
+
+.accept-cookies {
+  background-color: #13c825;
+}
+
+.accept-cookies:hover {
+  background-color: #0ca01c;
+}
+
+.decline-cookies {
+  background-color: #df2424;
+}
+
+.decline-cookies:hover {
+  background-color: #b81e1e;
+}
+
+.pumpkin {
+  height: 18px;
+  width: 18px;
+  justify-content: center;
+  justify-items: center;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.pumpkin:hover {
+  transform: scale(1.05);
+}
+
+.popup {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top of the page */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  background-color: rgba(0, 0, 0, 0.7); /* Black background with opacity */
+  justify-content: center;
+  align-items: center;
+}
+
+/* Popup content (image) */
+.popup-content {
+  margin: auto;
+  display: block;
+  width: 100%;
+  max-width: 800px;
+  animation: spin 3s linear infinite;
+}
+
+/* Close button */
+.close-btn {
+  position: absolute;
+  top: 60px;
+  right: 35px;
+  color: #fff;
+  font-size: 80px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+  color: #bbb;
+}
+
+/* Caption for the popup image */
+#caption {
+  text-align: center;
+  color: #ccc;
+  font-size: 50px;
+  padding: 10px 0;
+  font-family: 'Creepster', system-ui;
+  font-style: normal;
+  font-weight: 400;
+  text-shadow: 2px 2px 4px orange;
 }

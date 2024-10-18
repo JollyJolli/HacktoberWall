@@ -61,90 +61,16 @@
       rel="stylesheet"
     />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="./img/favicon.ico" />
-
-    <style>
-      body {
-        background-color: #121212;
-        color: #ffffff;
-      }
-
-      button {
-        background-color: #007bff;
-        color: #ffffff;
-        border: none;
-        padding: 10px;
-        border-radius: 5px;
-        cursor: pointer;
-      }
-
-      button:hover,
-      button:focus {
-        background-color: #0056b3;
-        outline: 2px solid #ffffff;
-      }
-
-      a:focus {
-        outline: 2px solid #ffffff;
-      }
-
-      #loading-screen {
-        background-color: #333333;
-        color: #ffffff;
-      }
-
-      /* Flying Ghost Animation */
-      #flyingGhost {
-        position: fixed;
-        top: 20%;
-        right: -150px;
-        width: 100px;
-        display: none;
-        z-index: 1000;
-      }
-
-      @keyframes ghostFly {
-        0% {
-          right: -150px;
-        }
-
-        50% {
-          right: 50%;
-        }
-
-        100% {
-          right: 100%;
-        }
-      }
-
-      /* Keyframes for mascot movement */
-      #mascotContainer {
-        display: none;
-        position: fixed;
-        bottom: 50px;
-        left: -150px;
-        width: 150px;
-        height: auto;
-        z-index: 9999;
-        animation: mascotMove 5s linear forwards;
-        animation-play-state: running;
-      }
-
-      @keyframes mascotMove {
-        0% {
-          left: -150px;
-        }
-
-        50% {
-          left: 50%;
-        }
-
-        100% {
-          left: 110%;
-        }
-      }
-    </style>
   </head>
 
   <body>
@@ -201,6 +127,15 @@
       <div class="carousel-slide">
         ☀️ Join the Hacktoberfest mural! Add your contribution by updating the
         JSON file and leave your mark on this collaborative artwork! ☀️
+        <img id="triggerImage" src="img/Pumpkin.jpg" alt="Pumpkin" class="pumpkin"> </img>
+      </div>
+
+      <div id="imagePopup" class="popup">
+        <span class="close-btn">&times;</span>
+        <div class="popup-content-container">
+          <img class="popup-content" id="popupImage" src="img/Angry_Pumpkin.png">
+          <div id="caption"></div>
+        </div>
       </div>
     </div>
 
@@ -208,6 +143,23 @@
     <div id="mascotContainer">
       <img id="mascotImage" src="img/mascot.webp" alt="Hacktoberfest Mascot" />
       <div id="speechBubble">Happy Hacktoberfest!</div>
+    </div>
+
+    <!-- Cookies Banner -->
+    <div id="cookies">
+      <div id="cookies-container" class="hidden">
+        <div id="cookies-sub-container">
+          <div class="cookies">
+            <p class="cookies-text">
+              This site uses cookies to ensure you get the best experience.
+            </p>
+            <div class="cookies-buttons">
+              <button class="accept-cookies cookies-btn">I like cookies</button>
+              <button class="decline-cookies cookies-btn">No thanks</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <main class="container">
@@ -310,8 +262,9 @@
     >
       ↑
     </button>
+    <script src="cookies.js"></script>
     <script src="contributor.js"></script>
-    <script src="app.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js" integrity="sha256-huW7yWl7tNfP7lGk46XE+Sp0nCotjzYodhVKlwaNeco=" crossorigin="anonymous"></script>
+    <script src="app.js"></script>
   </body>
 </html>
