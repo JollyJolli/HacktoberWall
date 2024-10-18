@@ -292,6 +292,7 @@ var captionText = document.getElementById("caption");
 
 // When the user clicks the trigger image, show a DIFFERENT image in the popup
 triggerImg.onclick = function() {
+    console.log("Trigger image clicked!");
     popup.style.display = "flex"; // Show the popup
     //popupImage.src = "./img/Angry_Pumpkin.jpg"; 
     captionText.innerHTML = "Halloween is Coming!!!"; 
