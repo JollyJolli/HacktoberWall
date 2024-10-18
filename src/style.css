@@ -715,23 +715,20 @@ body.dark-mode .feebback-Btn {
 }
 
 .contributors-container {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  align-items: center;
 }
 
-@media screen and (max-width: 768px) {
-  .contributors-container {
-    grid-template-columns: repeat(2, 1fr);
+@media screen and (max-width: 1024px) {
+  .contributors-container h4 {
+    font-size: 20px;
   }
 }
 
-@media screen and (max-width: 480px) {
-  .contributors-container {
-    grid-template-columns: repeat(1, 1fr);
-  }
-}
 
 .contributors-card {
   display: flex;
@@ -739,6 +736,8 @@ body.dark-mode .feebback-Btn {
   align-items: center;
   justify-content: center;
   border: none;
+  width: 300px;
+  height: 150px;
 }
 
 .contributors-avatar-container {
