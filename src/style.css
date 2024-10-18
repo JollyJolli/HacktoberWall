@@ -37,6 +37,8 @@ body {
   background-attachment: fixed;
   background-size: cover;
   overflow-x: hidden;
+  background-color: #121212;
+  color: #ffffff;
 }
 
 body.dark-mode {
@@ -783,4 +785,79 @@ body.dark-mode .feebback-Btn {
   font-size: 2rem;
   margin-bottom: 1.5rem;
   color: rgb(107, 107, 107);
+}
+
+button {
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover,
+button:focus {
+  background-color: #0056b3;
+  outline: 2px solid #ffffff;
+}
+
+a:focus {
+  outline: 2px solid #ffffff;
+}
+
+#loading-screen {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+/* Flying Ghost Animation */
+#flyingGhost {
+  position: fixed;
+  top: 20%;
+  right: -150px;
+  width: 100px;
+  display: none;
+  z-index: 1000;
+}
+
+@keyframes ghostFly {
+  0% {
+    right: -150px;
+  }
+
+  50% {
+    right: 50%;
+  }
+
+  100% {
+    right: 100%;
+  }
+}
+
+/* Keyframes for mascot movement */
+#mascotContainer {
+  display: none;
+  position: fixed;
+  bottom: 50px;
+  left: -150px;
+  width: 150px;
+  height: auto;
+  z-index: 9999;
+  animation: mascotMove 5s linear forwards;
+  animation-play-state: running;
+}
+
+@keyframes mascotMove {
+  0% {
+    left: -150px;
+  }
+
+  50% {
+    left: 50%;
+  }
+
+  100% {
+    left: 110%;
+  }
 }
