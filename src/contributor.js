@@ -1,41 +1,37 @@
 // Const Declaration
-const contributorsContainer = document.querySelector('.contributors-container')
+const contributorsContainer = document.querySelector('.contributors-container');
 
-// Function to fetch contributors from GitHub API
-async function fetchContributors() {
-  const response = await fetch(
-    'https://api.github.com/repos/JollyJolli/HacktoberWall/contributors'
-  )
-  const data = await response.json()
-  return data
+const fetchContributors = () => {
+  return fetch('https://api.github.com/repos/JollyJolli/HacktoberWall/contributors')
+      .then(response => {
+        if(response.ok) return response.json();
+          throw new Error(response.status);
+      })
+      .catch((error) => console.error('Error fetching contributors:', error));
 }
 
-fetchContributors()
-  .then((data) => {
-    // Loop through each contributor and create a card
-    data.forEach((contributor) => {
-      const link = document.createElement('a')
-      link.href = contributor.html_url
-      link.target = '_blank'
-      link.classList.add('contributors-link')
-      const card = document.createElement('div')
-      card.classList.add(
-        'contributors-card',
-        'wall',
-        'participant',
-        'wall-section'
-      )
-      card.innerHTML = `
-        <div class="contributors-avatar-container">
-            <img class="contributors-avatar" src="${contributor.avatar_url}" alt="${contributor.login}" loading="lazy" />
-            <h3>${contributor.login}</h3>
-        </div>
-        <p class="contributors-contributions">${contributor.contributions} Contributions</p>
-      `
-      link.appendChild(card)
-      contributorsContainer.appendChild(link)
-    })
-  })
-  .catch((error) => {
-    console.error('Error fetching contributors:', error)
-  })
+const renderContributorList = async () => {
+  const contributorList = await fetchContributors();
+  contributorsContainer.innerHTML = contributorList.reduce(( list, user ) => {
+    const { html_url, avatar_url, login, contributions } = user;
+    return list += `<div class="contributors-card wall participant wall-section" data-url=${html_url}>
+                      <div class="contributors-avatar-container">
+                          <img class="contributors-avatar" src="${avatar_url}" alt="${login}" loading="lazy" />
+                          <h4>${login}</h4>
+                      </div>
+                      <p class="contributors-contributions">${contributions} Contributions</p>
+                    </div>`;
+  }, '');
+}
+
+const showUserPage = ({ target }) => {
+  const { url } = target.dataset;
+  window.open(url, '_blank');
+}
+
+const init = () => {
+  renderContributorList();
+  contributorsContainer.addEventListener('click', showUserPage);
+} 
+
+init();
