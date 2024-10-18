@@ -13,6 +13,9 @@
   /* Light text color for dark mode */
   --accent-dark: #ff8bff;
   /* Pink accent color for dark mode */
+  --bg-halloween: #1c1c1c;
+  --text-halloween: #f9a825;
+  --accent-halloween: #d32f2f;
 }
 
 * {
@@ -46,6 +49,18 @@ body.dark-mode {
   color: var(--text-dark);
   background-image: url('img/dark.png');
   /* Background image for dark mode */
+}
+body.halloween-mode {
+  background-color: var(--bg-halloween);
+  color: var(--text-halloween);
+  background-image: url('img/halloween-bg.png'); /* Add a spooky background */
+}
+.halloween-mode button {
+  background-color: var(--accent-halloween);
+  color: white;
+}
+.halloween-mode header {
+  background-color: rgba(255, 165, 0, 0.8); /* Halloween orange */
 }
 
 .container {

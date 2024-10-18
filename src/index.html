@@ -75,6 +75,7 @@
 
   <body>
     <header>
+      <img id="flyingGhost" src="img/flying ghost.png" alt="Flying Ghost" style="display:none;" />
       <div>
         <a
           href="#"
@@ -87,6 +88,11 @@
         </a>
         <i id="halloweenIcon" class="fas fa-ghost" aria-hidden="true"></i>
       </div>
+      <div>
+        <a href="#" id="titleLink" class="header-title" aria-label="Home">App Name</a>
+        <i id="halloweenIcon" class="fas fa-ghost" aria-hidden="true"></i>
+      </div>
+      
       <div class="header-controls">
         <button
           id="surpriseButton"
@@ -96,15 +102,12 @@
         >
           Surprise Me!
         </button>
-        <button
-          id="toggleButton"
-          class="toggle-btn"
-          aria-label="Toggle between dark mode and light mode"
-          tabindex="0"
-        >
+        <button id="toggleButton" class="toggle-btn" aria-label="Toggle theme">
           <i class="fas fa-sun" aria-hidden="true"></i>
-        </button>
+       
       </div>
+    
+     
     </header>
 
     <!-- Ghost Image for Animation -->
@@ -241,7 +244,10 @@
           tabindex="0"
           >GitHub</a
         >
+       
       </p>
+      <!-- <p id="halloweenFooterMessage" style="display:none;">Have a spooky Halloween! 👻</p>
+      <p>Contribute at <a href="https://github.com/JollyJolli/HacktoberWall">GitHub hehe</a></p> -->
     </footer>
 
     <!-- Back to Top Button -->
@@ -257,5 +263,12 @@
     <script src="contributor.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js" integrity="sha256-huW7yWl7tNfP7lGk46XE+Sp0nCotjzYodhVKlwaNeco=" crossorigin="anonymous"></script>
     <script src="app.js"></script>
+    <script>
+      // // Show the flying ghost and change the footer message if it's Halloween
+      // if (document.body.classList.contains('halloween-mode')) {
+      //   document.getElementById('flyingGhost').style.display = 'block';
+      //   document.getElementById('halloweenFooterMessage').style.display = 'block';
+      // }
+    </script>
   </body>
 </html>
