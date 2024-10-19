@@ -50,9 +50,69 @@
     <link rel="icon" type="image/png" href="./img/favicon.ico" />
     
     <link rel="stylesheet" href="form.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="feedbackSection">
+  <header>
+    <div>
+      <a
+        href="#"
+        id="titleLink"
+        class="header-title"
+        aria-label="HacktoberWall Home"
+        style="cursor: default"
+      >
+        HacktoberWall
+      </a>
+      <i id="halloweenIcon" class="fas fa-ghost" aria-hidden="true"></i>
+    </div>
+    <div class="header-controls">
+      <button
+        id="surpriseButton"
+        class="surprise-btn"
+        aria-label="Surprise Me!"
+        tabindex="0"
+      >
+        Surprise Me!
+      </button>
+      <button
+        id="surpriseButton"
+        class="contact-btn"
+        aria-label="Contact"
+        tabindex="0"
+      >
+        <a href="index.html">Home</a>
+        
+      </button>
+      <button
+        id="toggleButton"
+        class="toggle-btn"
+        aria-label="Toggle between dark mode and light mode"
+        tabindex="0"
+      >
+        <i class="fas fa-sun" aria-hidden="true"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Ghost Image for Animation -->
+  <!-- <img id="flyingGhost" src="img/flying ghost.png" alt="Flying Ghost" /> -->
+  <!-- <div id="feedbackSection">
         <h2>Feedback</h2>
         <form id="feedbackForm">
             <label for="comments">Comments:</label>
@@ -64,7 +124,66 @@
             <button type="submit">Submit Feedback</button>
         </form>
         <p id="thankYouMessage" style="display: none;">Thank you for your feedback!</p>
+  </div> -->
+  <div class="carousel">
+    <div class="carousel-slide">
+      ☀️ Join the Hacktoberfest mural! Add your contribution by updating the
+      JSON file and leave your mark on this collaborative artwork! ☀️
+      <img id="triggerImage" src="img/Pumpkin.jpg" alt="Pumpkin" class="pumpkin"> </img>
     </div>
+
+    <div id="imagePopup" class="popup">
+      <span class="close-btn">&times;</span>
+      <div class="popup-content-container">
+        <img class="popup-content" id="popupImage" src="img/Angry_Pumpkin.png">
+        <div id="caption"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mascot Container -->
+  <div id="mascotContainer">
+    <img id="mascotImage" src="img/mascot.webp" alt="Hacktoberfest Mascot" />
+    <div id="speechBubble">Happy Hacktoberfest!</div>
+  </div>
+
+  <!-- Cookies Banner -->
+  <div id="cookies">
+    <div id="cookies-container" class="hidden">
+      <div id="cookies-sub-container">
+        <div class="cookies">
+          <p class="cookies-text">
+            This site uses cookies to ensure you get the best experience.
+          </p>
+          <div class="cookies-buttons">
+            <button class="accept-cookies cookies-btn">I like cookies</button>
+            <button class="decline-cookies cookies-btn">No thanks</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+
+  <main class="container">
+    <section class="contact-section">
+      <div class="contact-header">
+        <h2>Contact Us</h2>
+        <hr>
+      </div>
+      
+      <div class="contact-container">
+        <form id="contactForm">
+          <input type="text" name="name" id="form-name" placeholder="Name">
+          <input type="email" name="email" id="form-email" placeholder="example@domain.com">
+          <textarea rows="10" name="comments" id="comments" required placeholder="Your Comments..."></textarea>
+          <button type="submit">Submit</button>
+        </form>
+        <p id="thankYouMessage" style="display: none;">Thank you for your feedback!</p>
+      </div>
+    </section>
+  </main>
 
     <script src="form.js"></script>
 </body>
