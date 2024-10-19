@@ -75,12 +75,35 @@ header {
   justify-content: center;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
+  background-color: rgba(255, 165, 0, 0.8);
   position: sticky;
   top: 0;
   z-index: 1000;
 }
+
+.header-title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  text-align: center;
+  margin: 0;
+}
+
+.header-controls {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding-right: 1rem;
+}
+
+.surprise-btn {
+  margin-right: 0.5rem;
+}
+
+#toggleButton {
+  margin-right: 1rem;
+}
+
 
 .header-controls {
   margin-left: auto; /* Pushes the buttons to the right */
