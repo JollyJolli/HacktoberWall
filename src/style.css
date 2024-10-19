@@ -105,13 +105,7 @@ header {
 }
 
 
-.header-controls {
-  margin-left: auto; /* Pushes the buttons to the right */
-  display: flex;
-  align-items: center;
-  gap: 1.5rem; /* Increases the space between the buttons */
-  padding-right: 1rem;
-}
+
 
 .search-container {
   display: flex;
@@ -855,12 +849,12 @@ a:focus {
 
 /* Flying Ghost Animation */
 #flyingGhost {
-  position: fixed;
+  display: block; /* Ensure the image is displayed */
+  width: 100px; /* Adjust size as needed */
+  position: fixed; /* Allows for movement */
   top: 20%;
-  right: -150px;
-  width: 100px;
-  display: none;
-  z-index: 1000;
+  right: -150px; /* Start off-screen */
+  transition: right 3s ease-in-out; /* Optional for smooth appearance */
 }
 
 @keyframes ghostFly {

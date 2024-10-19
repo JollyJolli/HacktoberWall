@@ -45,6 +45,10 @@ function initializeThemeSwitching() {
     }
   });
 }
+function flyInGhost() {
+  const ghost = document.getElementById('flyingGhost');
+  ghost.style.right = '100px'; // Move it to the left side of the screen
+}
 
 
 function updateIcon(theme, toggleButton) {
@@ -278,6 +282,9 @@ window.onload = function () {
   initializeSurpriseButton()
   initializeThemeSwitching();
   checkHalloweenDate();
+  if (document.body.classList.contains('halloween-mode')) {
+    flyInGhost();
+  }
 }
 
 // Functions to show and hide the loading screen
