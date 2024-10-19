@@ -13,6 +13,9 @@
   /* Light text color for dark mode */
   --accent-dark: #ff8bff;
   /* Pink accent color for dark mode */
+  --bg-halloween: #1c1c1c;
+  --text-halloween: #f9a825;
+  --accent-halloween: #d32f2f;
 }
 
 * {
@@ -47,6 +50,18 @@ body.dark-mode {
   background-image: url('img/dark.png');
   /* Background image for dark mode */
 }
+body.halloween-mode {
+  background-color: var(--bg-halloween);
+  color: var(--text-halloween);
+  background-image: url('img/halloween-bg.png'); /* Add a spooky background */
+}
+.halloween-mode button {
+  background-color: var(--accent-halloween);
+  color: white;
+}
+.halloween-mode header {
+  background-color: rgba(255, 165, 0, 0.8); /* Halloween orange */
+}
 
 .container {
   max-width: 1200px;
@@ -57,21 +72,40 @@ body.dark-mode {
 
 header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
+  background-color: rgba(255, 165, 0, 0.8);
   position: sticky;
   top: 0;
   z-index: 1000;
 }
 
+.header-title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  text-align: center;
+  margin: 0;
+}
+
 .header-controls {
+  margin-left: auto;
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
+  padding-right: 1rem;
 }
+
+.surprise-btn {
+  margin-right: 0.5rem;
+}
+
+#toggleButton {
+  margin-right: 1rem;
+}
+
+
+
 
 .search-container {
   display: flex;
@@ -833,12 +867,12 @@ a:focus {
 
 /* Flying Ghost Animation */
 #flyingGhost {
-  position: fixed;
+  display: block; /* Ensure the image is displayed */
+  width: 100px; /* Adjust size as needed */
+  position: fixed; /* Allows for movement */
   top: 20%;
-  right: -150px;
-  width: 100px;
-  display: none;
-  z-index: 1000;
+  right: -150px; /* Start off-screen */
+  transition: right 3s ease-in-out; /* Optional for smooth appearance */
 }
 
 @keyframes ghostFly {

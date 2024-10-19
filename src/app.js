@@ -1,7 +1,9 @@
 // Font Awesome classes for sun and moon
 const MOON = '<i class="fas fa-moon"></i>'
 const SUN = '<i class="fas fa-sun"></i>'
+const GHOST = '<i class="fas fa-ghost"></i>'; // Halloween Icon
 let toggleCount = 0 // Counter to track the number of clicks
+
 let cachedContributors = null
 
 // Const definitions for modal
@@ -12,6 +14,61 @@ const modalClose = document.querySelector('.close-modal-button')
 const contributerCount = document.querySelector('.total-contributors')
 
 modalClose.addEventListener('click', closeModal)
+
+function initializeThemeSwitching() {
+  const toggleButton = document.getElementById('toggleButton');
+  const body = document.body;
+
+  // Get the initial theme from local storage
+  const currentTheme = localStorage.getItem('theme') || 'light-mode';
+  body.classList.add(currentTheme);
+  updateIcon(currentTheme, toggleButton);
+
+  toggleButton.addEventListener('click', () => {
+    toggleCount++;
+    if (toggleCount === 1) {
+      body.classList.remove('light-mode', 'halloween-mode');
+      body.classList.add('dark-mode');
+      localStorage.setItem('theme', 'dark-mode');
+      updateIcon('dark-mode', toggleButton);
+    } else if (toggleCount === 2) {
+      body.classList.remove('dark-mode', 'light-mode');
+      body.classList.add('halloween-mode');
+      localStorage.setItem('theme', 'halloween-mode');
+      updateIcon('halloween-mode', toggleButton);
+    } else {
+      body.classList.remove('dark-mode', 'halloween-mode');
+      body.classList.add('light-mode');
+      localStorage.setItem('theme', 'light-mode');
+      updateIcon('light-mode', toggleButton);
+      toggleCount = 0;
+    }
+  });
+}
+function flyInGhost() {
+  const ghost = document.getElementById('flyingGhost');
+  ghost.style.right = '100px'; // Move it to the left side of the screen
+}
+
+
+function updateIcon(theme, toggleButton) {
+  if (theme === 'dark-mode') {
+    toggleButton.innerHTML = MOON;
+  } else if (theme === 'halloween-mode') {
+    toggleButton.innerHTML = GHOST;
+  } else {
+    toggleButton.innerHTML = SUN;
+  }
+}
+
+function checkHalloweenDate() {
+  const today = new Date();
+  if (today.getMonth() === 9 && today.getDate() === 31) { // October 31st
+    document.body.classList.remove('light-mode', 'dark-mode');
+    document.body.classList.add('halloween-mode');
+    localStorage.setItem('theme', 'halloween-mode');
+  }
+}
 
 // Function to load participants from the JSON file
 async function loadContributors() {
@@ -223,6 +280,11 @@ window.onload = function () {
   addParticipantHoverEffect()
   initializeSearchAndSort()
   initializeSurpriseButton()
+  initializeThemeSwitching();
+  checkHalloweenDate();
+  if (document.body.classList.contains('halloween-mode')) {
+    flyInGhost();
+  }
 }
 
 // Functions to show and hide the loading screen

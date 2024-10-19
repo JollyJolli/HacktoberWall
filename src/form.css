@@ -370,6 +370,30 @@ body.dark-mode .feebback-Btn {
   }
 
 }
+body.halloween-mode #feedbackSection {
+    background-color: #1c1c1c; /* Dark background */
+    color: #f9a825; /* Halloween yellow for text */
+    box-shadow: 0 8px 20px rgba(255, 165, 0, 0.7); /* Orange glow */
+}
+
+body.halloween-mode h2 {
+    color: #ff5722; /* Halloween orange for the title */
+}
+
+body.halloween-mode #comments, 
+body.halloween-mode #contact {
+    border-color: #ff5722; /* Orange border for form fields */
+    background-color: #333; /* Dark background for input fields */
+    color: #f9a825; /* Yellow text */
+}
+
+body.halloween-mode button {
+    background-color: #d32f2f; /* Red for a spooky button */
+}
+
+body.halloween-mode button:hover {
+    background-color: #ff5722; /* Brighter orange on hover */
+}
 
 
 .contact-container {
