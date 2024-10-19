@@ -1,5 +1,10 @@
+// Font Awesome classes for sun and moon
+const MOON = '<i class="fas fa-moon"></i>'
+const SUN = '<i class="fas fa-sun"></i>'
+
+
 document
-  .getElementById("feedbackForm")
+  .getElementById("contactForm")
   .addEventListener("submit", function (event) {
     event.preventDefault(); // Prevent the default form submission
 
@@ -8,7 +13,7 @@ document
 
     // Optionally, you can handle the form data here, such as sending it to a server
     const comments = document.getElementById("comments").value;
-    const contact = document.getElementById("contact").value;
+    const contact = document.getElementById("form-email").value;
 
     console.log("Feedback submitted:", { comments, contact });
 
@@ -21,3 +26,39 @@ document
       window.location.href = "index.html";
     }, 2000);
   });
+
+  function initializeDarkMode() {
+    const toggleButton = document.getElementById('toggleButton')
+    const body = document.body
+  
+    const isDarkMode = localStorage.getItem('dark-mode') === 'enabled'
+    body.classList.toggle('dark-mode', isDarkMode)
+    toggleButton.innerHTML = isDarkMode ? MOON : SUN
+  
+    toggleButton.addEventListener('click', () => {
+      body.classList.toggle('dark-mode')
+      const isDarkMode = body.classList.contains('dark-mode')
+      localStorage.setItem('dark-mode', isDarkMode ? 'enabled' : 'disabled')
+      toggleButton.innerHTML = isDarkMode ? MOON : SUN
+  
+      toggleCount++
+  
+      if (toggleCount === 2) {
+        activateRainbowMode()
+        toggleCount = 0
+      }
+    })
+  }
+  
+  function activateRainbowMode() {
+    const body = document.body
+    body.classList.add('rainbow-mode')
+  
+    setTimeout(() => {
+      body.classList.remove('rainbow-mode')
+    }, 5000)
+  }
+
+  window.onload = function () {
+    initializeDarkMode()
+  }
