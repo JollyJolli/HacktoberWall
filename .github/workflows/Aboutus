@@ -1,0 +1,64 @@
+//html file
+
+<nav>
+    <ul>
+        <li><a href="#about-us">About Us</a></li>
+    </ul>
+</nav>
+
+<section id="about-us">
+    <h2>About HacktoberWall</h2>
+    <p>HacktoberWall is an initiative designed to celebrate open-source contributions during Hacktoberfest. It serves as a platform where developers can showcase their projects, connect with the community, and inspire others to participate in open-source development.</p>
+    <h3>Owners</h3>
+    <div class="owners">
+        <div class="owner">
+            <img id="jolly-profile" alt="Jolly's GitHub Profile Picture" />
+            <h4>Jolly (Owner)</h4>
+            <p>A passionate open-source advocate with years of experience in software development. Jolly is committed to fostering a collaborative environment in the tech community.</p>
+        </div>
+        <div class="owner">
+            <img id="phanty-profile" alt="Phanty78's GitHub Profile Picture" />
+            <h4>Phanty78 (Co-Owner)</h4>
+            <p>A creative developer and designer who loves working on community-driven projects. Phanty78 aims to make technology accessible and enjoyable for everyone.</p>
+        </div>
+    </div>
+</section>
+
+
+//css file
+
+#about-us {
+    padding: 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+.owners {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.owner {
+    max-width: 200px;
+}
+img {
+    width: 100%;
+    border-radius: 50%;
+}
+
+
+//js file
+
+const owners = [
+    { username: 'Jolly', elementId: 'jolly-profile' },
+    { username: 'Phanty78', elementId: 'phanty-profile' }
+];
+
+owners.forEach(owner => {
+    fetch(`https://api.github.com/users/${owner.username}`)
+        .then(response => response.json())
+        .then(data => {
+            const imgElement = document.getElementById(owner.elementId);
+            imgElement.src = data.avatar_url; // Set the profile picture
+        })
+        .catch(error => console.error('Error fetching GitHub profile:', error));
+});
