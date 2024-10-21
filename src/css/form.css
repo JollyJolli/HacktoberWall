@@ -73,10 +73,6 @@ header {
   gap: 1rem;
 }
 
-
-
-
-
 h1 {
   font-size: 2.5rem;
   font-weight: 600;
@@ -121,8 +117,6 @@ h1 {
   }
 }
 
-
-
 /* Animation for fadeIn */
 @keyframes fadeIn {
   0% {
@@ -135,8 +129,6 @@ h1 {
     transform: translateY(0);
   }
 }
-
-
 
 @keyframes fadeIn {
   0% {
@@ -286,7 +278,6 @@ footer a:hover {
   margin-top: 1rem;
 }
 
-
 /* Feedback Button style */
 
 .feebback-Btn {
@@ -305,8 +296,6 @@ body.dark-mode .feebback-Btn {
 }
 
 /* Modal */
-
-
 
 .hidden {
   display: none;
@@ -370,6 +359,7 @@ body.dark-mode .feebback-Btn {
   }
 
 }
+
 body.halloween-mode #feedbackSection {
     background-color: #1c1c1c; /* Dark background */
     color: #f9a825; /* Halloween yellow for text */
@@ -394,7 +384,6 @@ body.halloween-mode button {
 body.halloween-mode button:hover {
     background-color: #ff5722; /* Brighter orange on hover */
 }
-
 
 .contact-container {
   padding: 2rem;
