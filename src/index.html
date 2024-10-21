@@ -24,7 +24,7 @@
       property="og:description"
       content="Contribute to Hacktoberfest by editing the HacktoberWall mural and become part of the open-source community!"
     />
-    <meta property="og:image" content="/img/logo.png" />
+    <meta property="og:image" content="/img/logo.webp" />
     <meta property="og:url" content="https://hacktoberwall.formen.cc/" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="HacktoberWall" />
@@ -34,7 +34,7 @@
     <meta property="og:image:height" content="1024" />
 
     <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="/img/logo.png" />
+    <meta name="twitter:card" content="/img/logo.webp" />
     <meta
       name="twitter:title"
       content="HacktoberWall | Join Hacktoberfest & Contribute!"
@@ -43,15 +43,15 @@
       name="twitter:description"
       content="Contribute to Hacktoberfest by editing the HacktoberWall mural and become part of the open-source community!"
     />
-    <meta name="twitter:image" content="/img/logo.png" />
+    <meta name="twitter:image" content="/img/logo.webp" />
     <meta name="twitter:image:alt" content="Hacktoberfest Logo" />
 
     <!-- Favicon -->
-    <link rel="icon" href="/img/favicon.ico" type="image/x-icon" />
-    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="/img/favicon.ico" type="./image/x-icon" />
+    <link rel="shortcut icon" href="/img/favicon.ico" type="./image/x-icon" />
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/style.min.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
       rel="stylesheet"
@@ -69,13 +69,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="./img/favicon.ico" />
   </head>
 
   <body>
     <header>
-      <img id="flyingGhost" src="img/flying ghost.png" alt="Flying Ghost" style="display:none;" />
+      <img id="flyingGhost" src="img/flying ghost.webp" alt="Flying Ghost" style="display:none;" loading="lazy" />
       <div>
         <a
           href="#"
@@ -120,7 +118,7 @@
     </header>
 
     <!-- Ghost Image for Animation -->
-    <img id="flyingGhost" src="img/flying ghost.png" alt="Flying Ghost" />
+    <img id="flyingGhost" src="img/flying ghost.webp" alt="Flying Ghost" />
 
     <div id="loading-screen" aria-live="polite" aria-busy="true">
       <div id="spinner" role="status" aria-label="Loading"></div>
@@ -130,13 +128,13 @@
       <div class="carousel-slide">
         ☀️ Join the Hacktoberfest mural! Add your contribution by updating the
         JSON file and leave your mark on this collaborative artwork! ☀️
-        <img id="triggerImage" src="img/Pumpkin.jpg" alt="Pumpkin" class="pumpkin"> </img>
+        <img id="triggerImage" src="img/Pumpkin.webp" alt="Pumpkin" class="pumpkin" loading="lazy"> </img>
       </div>
 
       <div id="imagePopup" class="popup">
         <span class="close-btn">&times;</span>
         <div class="popup-content-container">
-          <img class="popup-content" id="popupImage" src="img/Angry_Pumpkin.png">
+          <img class="popup-content" id="popupImage" src="img/Angry_Pumpkin.webp" loading="lazy">
           <div id="caption"></div>
         </div>
       </div>
@@ -144,7 +142,7 @@
 
     <!-- Mascot Container -->
     <div id="mascotContainer">
-      <img id="mascotImage" src="img/mascot.webp" alt="Hacktoberfest Mascot" />
+      <img id="mascotImage" src="img/mascot.webp" alt="Hacktoberfest Mascot" loading="lazy" />
       <div id="speechBubble">Happy Hacktoberfest!</div>
     </div>
 
@@ -268,10 +266,10 @@
     >
       ↑
     </button>
-    <script src="cookies.js"></script>
-    <script src="contributor.js"></script>
+    <script src="js/cookies.min.js"></script>
+    <script src="js/contributor.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js" integrity="sha256-huW7yWl7tNfP7lGk46XE+Sp0nCotjzYodhVKlwaNeco=" crossorigin="anonymous"></script>
-    <script src="app.js"></script>
+    <script src="js/app.min.js"></script>
     <script>
       // // Show the flying ghost and change the footer message if it's Halloween
       // if (document.body.classList.contains('halloween-mode')) {

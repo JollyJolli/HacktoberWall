@@ -26,7 +26,6 @@ getCookies = (name) => {
 }
 
 cookieMessage = () => {
-  console.log('test')
   if (!getCookies('cookiesAccepted')) {
     document.querySelector('#cookies-container').classList.remove('hidden')
   }

@@ -45,11 +45,10 @@
     <meta name="twitter:image:alt" content="Hacktoberfest Logo" />
 
     <!-- Favicon -->    
-    <link rel="icon" href="/img/favicon.ico" type="image/x-icon" />
-    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
-    <link rel="icon" type="image/png" href="./img/favicon.ico" />
+    <link rel="icon" href="./img/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon" />
     
-    <link rel="stylesheet" href="form.css">
+    <link rel="stylesheet" href="css/form.min.css">
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
       rel="stylesheet"
@@ -129,13 +128,13 @@
     <div class="carousel-slide">
       ☀️ Join the Hacktoberfest mural! Add your contribution by updating the
       JSON file and leave your mark on this collaborative artwork! ☀️
-      <img id="triggerImage" src="img/Pumpkin.jpg" alt="Pumpkin" class="pumpkin"> </img>
+      <img id="triggerImage" src="img/Pumpkin.jpg" alt="Pumpkin" class="pumpkin" loading="lazy"> </img>
     </div>
 
     <div id="imagePopup" class="popup">
       <span class="close-btn">&times;</span>
       <div class="popup-content-container">
-        <img class="popup-content" id="popupImage" src="img/Angry_Pumpkin.png">
+        <img class="popup-content" id="popupImage" src="img/Angry_Pumpkin.png" loading="lazy">
         <div id="caption"></div>
       </div>
     </div>
@@ -143,7 +142,7 @@
 
   <!-- Mascot Container -->
   <div id="mascotContainer">
-    <img id="mascotImage" src="img/mascot.webp" alt="Hacktoberfest Mascot" />
+    <img id="mascotImage" src="img/mascot.webp" alt="Hacktoberfest Mascot" loading="lazy"/>
     <div id="speechBubble">Happy Hacktoberfest!</div>
   </div>
 
@@ -185,6 +184,6 @@
     </section>
   </main>
 
-    <script src="form.js"></script>
+    <script src="js/form.min.js"></script>
 </body>
 </html>

@@ -25,7 +25,7 @@
   /* scrollbar styles */
   scrollbar-width: thin;
   scrollbar-color: #555 #1c1c1c;
-  cursor: url('./img/icons8-ghost-16.png'), pointer;
+  cursor: url('../img/icons8-ghost-16.webp'), pointer;
 }
 
 body {
@@ -34,7 +34,7 @@ body {
   color: var(--text-light);
   line-height: 1.6;
   transition: background-color 0.3s, color 0.3s, background-image 0.3s;
-  background-image: url('img/bgm.png');
+  background-image: url('../img/bgm.webp');
   /* Background image for light mode */
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -47,13 +47,13 @@ body {
 body.dark-mode {
   background-color: var(--bg-dark);
   color: var(--text-dark);
-  background-image: url('img/dark.png');
+  background-image: url('../img/dark.webp');
   /* Background image for dark mode */
 }
 body.halloween-mode {
   background-color: var(--bg-halloween);
   color: var(--text-halloween);
-  background-image: url('img/halloween-bg.png'); /* Add a spooky background */
+  background-image: url('../img/halloween-bg.webp'); /* Add a spooky background */
 }
 .halloween-mode button {
   background-color: var(--accent-halloween);
@@ -103,9 +103,6 @@ header {
 #toggleButton {
   margin-right: 1rem;
 }
-
-
-
 
 .search-container {
   display: flex;
@@ -310,7 +307,7 @@ h1 {
 
 /* Participant Card Styling with Glowing Borders */
 .participant {
-  background-image: url('img/brick_wall.jpg');
+  background-image: url('../img/brick_wall.webp');
   background-size: cover;
   background-repeat: no-repeat;
   color: white;

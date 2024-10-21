@@ -23,6 +23,7 @@
 ![Star History Chart](https://api.star-history.com/svg?repos=jollyjolli/HacktoberWall&type=Date)](https://star-history.com/#jollyjolli/HacktoberWall&Date)
 
 ## 🎁 Contributors
+
 <a href="https://github.com/jollyjolli/hacktoberwall/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=jollyjolli/hacktoberwall&max=1000" />
 </a>
@@ -42,13 +43,13 @@ Open the `index.html` file in your preferred web browser to see **HacktoberWall*
 
 ### 3. Contribute
 
-- To add your name, simply edit the `contributors.json` file:
+- To add your name, simply edit the `contributors.json` file in data folder:
 
 ```json
 [
-    {
-        "name": "YourName"
-    }
+  {
+    "name": "YourName"
+  }
 ]
 ```
 
