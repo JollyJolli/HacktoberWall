@@ -45,6 +45,7 @@ function initializeThemeSwitching() {
     }
   })
 }
+
 function flyInGhost() {
   const ghost = document.getElementById('flyingGhost')
   ghost.style.right = '100px' // Move it to the left side of the screen
