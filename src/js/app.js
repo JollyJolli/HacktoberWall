@@ -366,3 +366,27 @@ var closeBtn = document.getElementsByClassName('close-btn')[0]
 closeBtn.onclick = function () {
   popup.style.display = 'none' // Hide the popup
 }
+
+const owners = [
+  { name: "Jolly", username: "JollyJolli", elementId: "owner-jolly" },
+  { name: "Phanty78", username: "Phanty78", elementId: "owner-phanty" },
+];
+
+async function fetchGitHubProfiles() {
+  for (const owner of owners) {
+      try {
+          const response = await fetch(`https://api.github.com/users/${owner.username}`);
+          if (!response.ok) {
+              throw new Error(`Error fetching data: ${response.statusText}`);
+          }
+          const data = await response.json();
+          const ownerElement = document.getElementById(owner.elementId);
+          const profilePicture = ownerElement.querySelector(".profile-picture");
+          profilePicture.src = data.avatar_url;
+      } catch (error) {
+          console.error("Failed to fetch profile:", error);
+      }
+  }
+}
+
+document.addEventListener("DOMContentLoaded", fetchGitHubProfiles);
