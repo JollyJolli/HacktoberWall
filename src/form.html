@@ -1,129 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HacktoberWall | Feedback Form</title>
-    <meta
-      name="description"
-      content="Contribute to Hacktoberfest by editing the HacktoberWall mural and become part of the open-source community!"
-    />
-    <meta
-      name="keywords"
-      content="HacktoberWall, Hacktoberfest, open source, contribute, coding, developers"
-    />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HacktoberWall | Feedback Form</title>
+  <meta name="description"
+    content="Contribute to Hacktoberfest by editing the HacktoberWall mural and become part of the open-source community!" />
+  <meta name="keywords" content="HacktoberWall, Hacktoberfest, open source, contribute, coding, developers" />
 
-    <!-- Open Graph Meta Tags for Social Media Sharing -->
-    <meta
-      property="og:title"
-      content="HacktoberWall | Join Hacktoberfest & Contribute!"
-    />
-    <meta
-      property="og:description"
-      content="Contribute to Hacktoberfest by editing the HacktoberWall mural and become part of the open-source community!"
-    />
-    <meta property="og:image" content="/img/logo.png" />
-    <meta property="og:url" content="https://hacktoberwall.formen.cc/" />
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="HacktoberWall" />
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:image:alt" content="Hacktoberfest Logo" />
-    <meta property="og:image:width" content="1024" />
-    <meta property="og:image:height" content="1024" />
+  <!-- Open Graph Meta Tags for Social Media Sharing -->
+  <meta property="og:title" content="HacktoberWall | Join Hacktoberfest & Contribute!" />
+  <meta property="og:description"
+    content="Contribute to Hacktoberfest by editing the HacktoberWall mural and become part of the open-source community!" />
+  <meta property="og:image" content="/img/logo.png" />
+  <meta property="og:url" content="https://hacktoberwall.formen.cc/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="HacktoberWall" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image:alt" content="Hacktoberfest Logo" />
+  <meta property="og:image:width" content="1024" />
+  <meta property="og:image:height" content="1024" />
 
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="/img/logo.png" />
-    <meta
-      name="twitter:title"
-      content="HacktoberWall | Join Hacktoberfest & Contribute!"
-    />
-    <meta
-      name="twitter:description"
-      content="Contribute to Hacktoberfest by editing the HacktoberWall mural and become part of the open-source community!"
-    />
-    <meta name="twitter:image" content="/img/logo.png" />
-    <meta name="twitter:image:alt" content="Hacktoberfest Logo" />
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="/img/logo.png" />
+  <meta name="twitter:title" content="HacktoberWall | Join Hacktoberfest & Contribute!" />
+  <meta name="twitter:description"
+    content="Contribute to Hacktoberfest by editing the HacktoberWall mural and become part of the open-source community!" />
+  <meta name="twitter:image" content="/img/logo.png" />
+  <meta name="twitter:image:alt" content="Hacktoberfest Logo" />
 
-    <!-- Favicon -->    
-    <link rel="icon" href="./img/favicon.ico" type="image/x-icon" />
-    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon" />
-    
-    <link rel="stylesheet" href="css/form.min.css">
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-      rel="stylesheet"
-    />
+  <!-- Favicon -->
+  <link rel="icon" href="./img/favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/form.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
 </head>
+
 <body>
   <header>
     <div>
-      <a
-        href="/index.html"
-        id="titleLink"
-        class="header-title"
-        aria-label="HacktoberWall Home"
-        style="cursor: pointer"
-      >
+      <a href="/index.html" id="titleLink" class="header-title" aria-label="HacktoberWall Home" style="cursor: pointer">
         HacktoberWall
       </a>
       <i id="halloweenIcon" class="fas fa-ghost" aria-hidden="true"></i>
     </div>
     <div class="header-controls">
-      <button
-        id="surpriseButton"
-        class="surprise-btn"
-        aria-label="Surprise Me!"
-        tabindex="0"
-      >
+      <button id="surpriseButton" class="surprise-btn" aria-label="Surprise Me!" tabindex="0">
         Surprise Me!
       </button>
-      <button
-        id="surpriseButton"
-        class="contact-btn"
-        aria-label="Contact"
-        tabindex="0"
-      >
+      <button id="surpriseButton" class="contact-btn" aria-label="Contact" tabindex="0">
         <a href="index.html">Home</a>
-        
+
       </button>
-      <button
-        id="toggleButton"
-        class="toggle-btn"
-        aria-label="Toggle between dark mode and light mode"
-        tabindex="0"
-      >
+      <button id="toggleButton" class="toggle-btn" aria-label="Toggle between dark mode and light mode" tabindex="0">
         <i class="fas fa-sun" aria-hidden="true"></i>
       </button>
     </div>
   </header>
 
-  <!-- Ghost Image for Animation -->
-  <!-- <img id="flyingGhost" src="img/flying ghost.png" alt="Flying Ghost" /> -->
-  <!-- <div id="feedbackSection">
-        <h2>Feedback</h2>
-        <form id="feedbackForm">
-            <label for="comments">Comments:</label>
-            <textarea id="comments" name="comments" required></textarea>
-            
-            <label for="contact">Contact:</label>
-            <input type="text" id="contact" name="contact" placeholder="Email or Phone">
-            
-            <button type="submit">Submit Feedback</button>
-        </form>
-        <p id="thankYouMessage" style="display: none;">Thank you for your feedback!</p>
-  </div> -->
   <div class="carousel">
     <div class="carousel-slide">
       ☀️ Join the Hacktoberfest mural! Add your contribution by updating the
@@ -142,7 +87,7 @@
 
   <!-- Mascot Container -->
   <div id="mascotContainer">
-    <img id="mascotImage" src="img/mascot.webp" alt="Hacktoberfest Mascot" loading="lazy"/>
+    <img id="mascotImage" src="img/mascot.webp" alt="Hacktoberfest Mascot" loading="lazy" />
     <div id="speechBubble">Happy Hacktoberfest!</div>
   </div>
 
@@ -163,15 +108,13 @@
     </div>
   </div>
 
-  
-
   <main class="container">
     <section class="contact-section">
       <div class="contact-header">
         <h2>Contact Us</h2>
         <hr>
       </div>
-      
+
       <div class="contact-container">
         <form id="contactForm">
           <input type="text" name="name" id="form-name" placeholder="Name">
@@ -184,6 +127,8 @@
     </section>
   </main>
 
-    <script src="js/form.min.js"></script>
+  <script src="js/form.min.js"></script>
+
 </body>
+
 </html>
