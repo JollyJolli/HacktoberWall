@@ -10,22 +10,71 @@ jobs:
   add_labels:
     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout the repository
-        uses: actions/checkout@v3
+    env:
+      # Define labels as variables for easy modification
+      LABELS: |
+        hacktoberfest
+        hacktoberfest-accepted
+        hacktoberfest2024
 
+    steps:
       - name: Add Hacktoberfest labels to issues
         if: github.event_name == 'issues'
-        run: |
-          curl -X POST -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-          -H "Accept: application/vnd.github.v3+json" \
-          https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels \
-          -d '{"labels":["hacktoberfest", "hacktoberfest-accepted", "hacktoberfest2024"]}'
+        uses: actions-ecosystem/action-add-labels@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          labels: ${{ env.LABELS }}
+        continue-on-error: true  # Avoid failures due to non-critical errors
+        id: add_labels_issues
 
       - name: Add Hacktoberfest labels to pull requests
         if: github.event_name == 'pull_request'
+        uses: actions-ecosystem/action-add-labels@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          labels: ${{ env.LABELS }}
+        continue-on-error: true  # Avoid failures due to non-critical errors
+        id: add_labels_pr
+
+      # Validate if labels already exist to avoid duplicates
+      - name: Avoid duplicate labels on issues
+        if: github.event_name == 'issues' && steps.add_labels_issues.outcome == 'success'
         run: |
-          curl -X POST -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-          -H "Accept: application/vnd.github.v3+json" \
-          https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels \
-          -d '{"labels":["hacktoberfest", "hacktoberfest-accepted", "hacktoberfest2024"]}'
+          echo "Checking if labels already exist on issue #${{ github.event.issue.number }}..."
+          existing_labels=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+                            -H "Accept: application/vnd.github.v3+json" \
+                            https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels \
+                            | jq -r '.[].name')
+
+          for label in ${{ env.LABELS }}; do
+            if [[ "$existing_labels" == *"$label"* ]]; then
+              echo "Label '$label' already exists, skipping."
+            else
+              echo "Adding label '$label'."
+              curl -X POST -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+              -H "Accept: application/vnd.github.v3+json" \
+              https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels \
+              -d "{\"labels\":[\"$label\"]}"
+            fi
+          done
+
+      - name: Avoid duplicate labels on pull requests
+        if: github.event_name == 'pull_request' && steps.add_labels_pr.outcome == 'success'
+        run: |
+          echo "Checking if labels already exist on pull request #${{ github.event.pull_request.number }}..."
+          existing_labels=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+                            -H "Accept: application/vnd.github.v3+json" \
+                            https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels \
+                            | jq -r '.[].name')
+
+          for label in ${{ env.LABELS }}; do
+            if [[ "$existing_labels" == *"$label"* ]]; then
+              echo "Label '$label' already exists, skipping."
+            else
+              echo "Adding label '$label'."
+              curl -X POST -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+              -H "Accept: application/vnd.github.v3+json" \
+              https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels \
+              -d "{\"labels\":[\"$label\"]}"
+            fi
+          done
