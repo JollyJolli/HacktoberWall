@@ -22,7 +22,7 @@
   /* scrollbar styles */
   scrollbar-width: thin;
   scrollbar-color: #555 #1c1c1c;
-  cursor: url('./img/icons8-ghost-16.png'), pointer;
+  cursor: url('../img/icons8-ghost-16.webp'), pointer;
 }
 
 body {
@@ -31,7 +31,7 @@ body {
   color: var(--text-light);
   line-height: 1.6;
   transition: background-color 0.3s, color 0.3s, background-image 0.3s;
-  background-image: url('img/bgm.png');
+  background-image: url('../img/bgm.webp');
   /* Background image for light mode */
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -44,7 +44,7 @@ body {
 body.dark-mode {
   background-color: var(--bg-dark);
   color: var(--text-dark);
-  background-image: url('img/dark.png');
+  background-image: url('../img/dark.webp');
   /* Background image for dark mode */
 }
 
@@ -342,7 +342,6 @@ body.dark-mode .feebback-Btn {
   footer {
     font-size: 0.8rem;
   }
-
 }
 
 @media (max-width: 480px) {
@@ -357,32 +356,31 @@ body.dark-mode .feebback-Btn {
     align-items: center;
     gap: 0.5rem;
   }
-
 }
 
 body.halloween-mode #feedbackSection {
-    background-color: #1c1c1c; /* Dark background */
-    color: #f9a825; /* Halloween yellow for text */
-    box-shadow: 0 8px 20px rgba(255, 165, 0, 0.7); /* Orange glow */
+  background-color: #1c1c1c; /* Dark background */
+  color: #f9a825; /* Halloween yellow for text */
+  box-shadow: 0 8px 20px rgba(255, 165, 0, 0.7); /* Orange glow */
 }
 
 body.halloween-mode h2 {
-    color: #ff5722; /* Halloween orange for the title */
+  color: #ff5722; /* Halloween orange for the title */
 }
 
-body.halloween-mode #comments, 
+body.halloween-mode #comments,
 body.halloween-mode #contact {
-    border-color: #ff5722; /* Orange border for form fields */
-    background-color: #333; /* Dark background for input fields */
-    color: #f9a825; /* Yellow text */
+  border-color: #ff5722; /* Orange border for form fields */
+  background-color: #333; /* Dark background for input fields */
+  color: #f9a825; /* Yellow text */
 }
 
 body.halloween-mode button {
-    background-color: #d32f2f; /* Red for a spooky button */
+  background-color: #d32f2f; /* Red for a spooky button */
 }
 
 body.halloween-mode button:hover {
-    background-color: #ff5722; /* Brighter orange on hover */
+  background-color: #ff5722; /* Brighter orange on hover */
 }
 
 .contact-container {
@@ -395,12 +393,12 @@ body.halloween-mode button:hover {
 }
 
 form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
 }
 
 form input {
@@ -413,14 +411,14 @@ form input {
   transition: all 0.3s ease-out;
 }
 
-form input:focus{
+form input:focus {
   outline: none;
   transform: translateX(-10px) translateY(-5px);
   box-shadow: 10px 10px var(--accent-light);
   /* background-color: #cff7ce; */
 }
 
-.dark-mode form input:focus{
+.dark-mode form input:focus {
   box-shadow: 10px 10px var(--accent-dark);
   /* background-color: #f0d6e6; */
 }
@@ -435,19 +433,19 @@ form textarea {
   transition: all 0.3s ease-out;
 }
 
-form textarea:focus{
+form textarea:focus {
   outline: none;
   transform: translateX(-10px) translateY(-5px);
   box-shadow: 10px 10px var(--accent-light);
   /* background-color: #cff7ce; */
 }
 
-.dark-mode form textarea:focus{
+.dark-mode form textarea:focus {
   box-shadow: 10px 10px var(--accent-dark);
   /* background-color: #f0d6e6; */
 }
 
-form button{
+form button {
   background-color: var(--accent-light);
   color: white;
   border: none;
@@ -460,7 +458,7 @@ form button{
   margin-right: 0;
 }
 
-.dark-mode form button{
+.dark-mode form button {
   background-color: var(--accent-dark);
 }
 
@@ -527,28 +525,28 @@ form button{
   letter-spacing: 0%;
 }
 
-.dark-mode .contact-section h2{
+.dark-mode .contact-section h2 {
   color: var(--accent-dark);
 }
 
 .contact-section hr {
-    width: 20%;
-    min-width: 100px;
-    border: 0;
-    border-bottom: 7px solid var(--accent-light) ;
+  width: 20%;
+  min-width: 100px;
+  border: 0;
+  border-bottom: 7px solid var(--accent-light);
 }
 
-.dark-mode .contact-section hr{
-  border-bottom: 7px solid var(--accent-dark) ;
+.dark-mode .contact-section hr {
+  border-bottom: 7px solid var(--accent-dark);
 }
 
-.contact-header{
-    position: relative;
-    left: 20%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
+.contact-header {
+  position: relative;
+  left: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 button {
