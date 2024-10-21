@@ -1053,3 +1053,80 @@ a:focus {
   font-weight: 400;
   text-shadow: 2px 2px 4px orange;
 }
+
+.about-us-btn{
+  background-color: var(--accent-light);
+  color: #fff;
+  border: none;
+  padding: .5rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: .9rem;
+  transition: .3s;
+  margin-top: .5rem;
+  margin-right: 0;
+}
+.about-us-btn>a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.about-us-btn:hover,
+.about-us-btn:focus {
+  background-color: #0056b3;
+  outline: 2px solid #ffffff;
+}
+
+.about-us {
+  padding: 20px;
+  text-align: center; 
+}
+
+.about-us {
+  background-color: transparent; /* Transparent background */
+  padding: 2rem;
+}
+
+.about-us {
+  background-color: transparent;
+  padding: 2rem;
+}
+
+.owners {
+  display: flex;
+  justify-content: space-between; /* Space between the owner cards */
+  flex-wrap: wrap; /* Wrap the items if the screen is too small */
+}
+
+.owner-card {
+  display: flex;
+  flex-direction: column; /* Stack image on top of the text */
+  align-items: center;
+  background-color: transparent; /* Transparent background */
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 1rem;
+  width: 48%; /* Adjust the width to make the cards fit side by side */
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for some depth */
+  text-align: center; /* Center the content inside */
+}
+
+.owner-card img.profile-picture {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+.owner-card .owner-info {
+  padding: 0.5rem;
+}
+
+
+@media (min-width: 600px) {
+  .owners {
+    flex-direction: row; 
+  }
+}
