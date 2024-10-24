@@ -1,0 +1,68 @@
+name: Assign Self
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  assign:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for /assign-me in comment
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const commentBody = context.payload.comment.body.trim();
+            const issueNumber = context.payload.issue.number;
+            const commenter = context.payload.comment.user.login;
+            const issueAssignees = context.payload.issue.assignees.map(assignee => assignee.login);
+
+            // List of valid commands
+            const validCommands = ['/assign-me', '/assign', '/self-assign', '/asgm'];
+
+            // Check if the comment contains one of the valid commands
+            const commandFound = validCommands.some(command => commentBody.includes(command));
+
+            if (commandFound) {
+              if (issueAssignees.length > 0) {
+                // If the issue is already assigned, handle accordingly
+                if (issueAssignees.includes(commenter)) {
+                  // If the commenter is already assigned, notify them
+                  const message = `@${commenter}, you are already assigned to this issue!`;
+                  await github.rest.issues.createComment({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    issue_number: issueNumber,
+                    body: message
+                  });
+                } else {
+                  // Notify that the issue is assigned to someone else
+                  const assigneeNames = issueAssignees.join(', ');
+                  const message = `This issue is already assigned to ${assigneeNames}. You cannot assign yourself.`;
+                  await github.rest.issues.createComment({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    issue_number: issueNumber,
+                    body: message
+                  });
+                }
+              } else {
+                // Assign the commenter to the issue
+                await github.rest.issues.addAssignees({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issueNumber,
+                  assignees: [commenter]
+                });
+
+                // Post a friendly confirmation comment
+                const message = `Great! @${commenter} is now assigned to this issue. 🎉`;
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issueNumber,
+                  body: message
+                });
+              }
+            }
