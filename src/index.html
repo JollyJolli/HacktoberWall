@@ -50,6 +50,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
 
 
+  <link rel="stylesheet" href="css/modal.min.css" />
 
 </head>
 
@@ -130,6 +131,7 @@
     </div>
   </div>
 
+
   <main class="container">
     <section class="wall-section">
       <h2>Participants</h2>
@@ -181,28 +183,34 @@
     </div>
 
     <section id="about-us-section" class="about-us">
-      <h2>About Us</h2>
-      <p>HacktoberWall was created to help beginner contributors in the open-source community participate in the Hacktoberfest event.</p>
-    
-      <div class="owners">
-        <div id="owner-jolly" class="owner-card">
-          <img src="" alt="Jolly's Profile Picture" class="profile-picture" />
-          <div class="owner-info">
-            <h3>Jolly (Owner)</h3>
-            <p>Jolly is the creator of HacktoberWall and is passionate about open-source contributions. This project marks his first participation in Hacktoberfest!</p>
+      <div class="aboutus-container">
+        <h2>About Us</h2>
+        <p>HacktoberWall was created to help beginner contributors in the open-source community participate in the
+          Hacktoberfest event.</p>
+
+        <div class="owners">
+          <div id="owner-jolly" class="owner-card">
+            <img src="" alt="Jolly's Profile Picture" class="profile-picture" />
+            <div class="owner-info">
+              <h3>Jolly (Owner)</h3>
+              <p>Jolly is the creator of HacktoberWall and is passionate about open-source contributions. This project
+                marks his first participation in Hacktoberfest!</p>
+            </div>
           </div>
-        </div>
-    
-        <div id="owner-phanty" class="owner-card">
-          <img src="" alt="Phanty78's Profile Picture" class="profile-picture" />
-          <div class="owner-info">
-            <h3>Phanty78 (Co-Owner)</h3>
-            <p>Phanty78 joined Jolly to co-manage HacktoberWall and has made significant contributions to the project.</p>
+
+          <div id="owner-phanty" class="owner-card">
+            <img src="" alt="Phanty78's Profile Picture" class="profile-picture" />
+            <div class="owner-info">
+              <h3>Phanty78 (Co-Owner)</h3>
+              <p>Phanty78 joined Jolly to co-manage HacktoberWall and has made significant contributions to the project.
+              </p>
+            </div>
           </div>
         </div>
       </div>
+
     </section>
-    
+
   </main>
 
   <footer>
@@ -224,6 +232,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js"
     integrity="sha256-huW7yWl7tNfP7lGk46XE+Sp0nCotjzYodhVKlwaNeco=" crossorigin="anonymous"></script>
   <script src="js/app.min.js"></script>
+  <script src="js/modal.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const navToggle = document.getElementById('navToggle');

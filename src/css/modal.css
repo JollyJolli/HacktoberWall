@@ -1,0 +1,33 @@
+.modal-pumpkin {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateX(-50%) translateY(0px);
+    }
+
+    50% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+
+    100% {
+        transform: translateX(-50%) translateY(0px);
+    }
+}
+
+@media (max-width: 480px) {
+    .hacktoberfest-modal-title {
+        font-size: 2rem;
+    }
+
+    .hacktoberfest-modal-body {
+        font-size: 1rem;
+    }
+}
