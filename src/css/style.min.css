@@ -857,6 +857,8 @@ a:focus {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   padding-top: 1.5rem;
+  background-color: #f4f4f9;
+  background: rgba(255, 255, 255, 0.45);
 }
 .owner-card {
   display: flex;
