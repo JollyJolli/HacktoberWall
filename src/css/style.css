@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Sedgwick+Ave&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Sedgwick+Ave&display=swap");
 
 :root {
   --bg-light: #fefdf8;
@@ -25,16 +25,19 @@
   /* scrollbar styles */
   scrollbar-width: thin;
   scrollbar-color: #555 #1c1c1c;
-  cursor: url('../img/icons8-ghost-16.webp'), pointer;
+  cursor: url("../img/icons8-ghost-16.webp"), pointer;
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   background-color: var(--bg-light);
   color: var(--text-light);
   line-height: 1.6;
-  transition: background-color 0.3s, color 0.3s, background-image 0.3s;
-  background-image: url('../img/bgm.webp');
+  transition:
+    background-color 0.3s,
+    color 0.3s,
+    background-image 0.3s;
+  background-image: url("../img/bgm.webp");
   /* Background image for light mode */
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -47,14 +50,14 @@ body {
 body.dark-mode {
   background-color: var(--bg-dark);
   color: var(--text-dark);
-  background-image: url('../img/dark.webp');
+  background-image: url("../img/dark.webp");
   /* Background image for dark mode */
 }
 
 body.halloween-mode {
   background-color: var(--bg-halloween);
   color: var(--text-halloween);
-  background-image: url('../img/halloween-bg.webp'); /* Add a spooky background */
+  background-image: url("../img/halloween-bg.webp"); /* Add a spooky background */
 }
 
 .halloween-mode button {
@@ -174,7 +177,9 @@ header {
   cursor: pointer;
   color: var(--accent-light);
   font-size: 1.2rem;
-  transition: transform 0.3s ease, color 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease;
 }
 
 #searchButton:hover {
@@ -309,7 +314,7 @@ h1 {
 
 /* Participant Card Styling with Glowing Borders */
 .participant {
-  background-image: url('../img/brick_wall.webp');
+  background-image: url("../img/brick_wall.webp");
   background-size: cover;
   background-repeat: no-repeat;
   color: white;
@@ -320,12 +325,15 @@ h1 {
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
-  font-family: 'Sedgwick Ave', cursive;
+  font-family: "Sedgwick Ave", cursive;
   font-weight: 400;
   font-style: normal;
   position: relative;
   cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s ease-in-out;
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s,
+    border-color 0.3s ease-in-out;
   border: 2px solid transparent;
   /* Add a transparent border initially */
   /*Add text-outline*/
@@ -333,7 +341,7 @@ h1 {
 }
 
 .participant::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -354,7 +362,9 @@ h1 {
   transform: translateY(-10px) scale(1.05);
   /* Add a glowing border effect */
   border-color: rgba(255, 255, 255, 0.6);
-  box-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 5px rgba(255, 255, 255, 0.4),
+  box-shadow:
+    0 0 5px rgba(255, 255, 255, 0.5),
+    0 0 5px rgba(255, 255, 255, 0.4),
     0 0 30px rgba(66, 205, 47, 0.6);
 }
 
@@ -547,7 +557,10 @@ footer a:hover {
   display: none;
   /* Hidden by default */
   z-index: 1000;
-  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
@@ -756,7 +769,9 @@ body.dark-mode .feebback-Btn {
   outline: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transition effects */
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s; /* Smooth transition effects */
 }
 
 .sort-select:hover {
@@ -1048,25 +1063,25 @@ a:focus {
   color: #ccc;
   font-size: 50px;
   padding: 10px 0;
-  font-family: 'Creepster', system-ui;
+  font-family: "Creepster", system-ui;
   font-style: normal;
   font-weight: 400;
   text-shadow: 2px 2px 4px orange;
 }
 
-.about-us-btn{
+.about-us-btn {
   background-color: var(--accent-light);
   color: #fff;
   border: none;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   border-radius: 20px;
   cursor: pointer;
-  font-size: .9rem;
-  transition: .3s;
-  margin-top: .5rem;
+  font-size: 0.9rem;
+  transition: 0.3s;
+  margin-top: 0.5rem;
   margin-right: 0;
 }
-.about-us-btn>a {
+.about-us-btn > a {
   color: #fff;
   text-decoration: none;
 }
@@ -1079,7 +1094,7 @@ a:focus {
 
 .about-us {
   padding: 20px;
-  text-align: center; 
+  text-align: center;
 }
 
 .about-us {
@@ -1124,9 +1139,8 @@ a:focus {
   padding: 0.5rem;
 }
 
-
 @media (min-width: 600px) {
   .owners {
-    flex-direction: row; 
+    flex-direction: row;
   }
 }
