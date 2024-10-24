@@ -390,3 +390,12 @@ async function fetchGitHubProfiles() {
 }
 
 document.addEventListener("DOMContentLoaded", fetchGitHubProfiles);
+
+document.addEventListener('DOMContentLoaded', function() {
+  const navToggle = document.getElementById('navToggle');
+  const headerControls = document.querySelector('.header-controls');
+
+  navToggle.addEventListener('click', function() {
+    headerControls.classList.toggle('show');
+  });
+});

@@ -49,6 +49,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
 
+
   <link rel="stylesheet" href="css/modal.min.css" />
 
 </head>
@@ -56,35 +57,32 @@
 <body>
 
   <header>
-    <img id="flyingGhost" src="../src/img/flying ghost.webp" alt="Flying Ghost" style="display:none;" loading="lazy" />
-    <div>
-      <a href="/index.html" id="titleLink" class="header-title" aria-label="HacktoberWall Home" style="cursor: pointer">
+    <div class="header-left">
+      <a href="/index.html" id="titleLink" class="header-title" aria-label="HacktoberWall Home">
         HacktoberWall
       </a>
       <i id="halloweenIcon" class="fas fa-ghost" aria-hidden="true"></i>
     </div>
-    <div>
-      <a href="#" id="titleLink" class="header-title" aria-label="Home"></a>
-      <i id="halloweenIcon" class="fas fa-ghost" aria-hidden="true"></i>
-    </div>
 
-    <div class="header-controls">
-      <button id="surpriseButton" class="contact-btn" aria-label="Contact" tabindex="0">
+    <button id="navToggle" aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <nav id="headerControls" class="header-controls">
+      <button id="surpriseButton" class="contact-btn" aria-label="Contact">
         <a href="tos.html">ToS</a>
       </button>
       <button id="aboutUsButton" class="about-us-btn" aria-label="About Us">
         <a href="#about-us-section">About Us</a>
       </button>
-      <button id="surpriseButton" class="surprise-btn" aria-label="Surprise Me!" tabindex="0">
+      <button id="surpriseButton" class="surprise-btn" aria-label="Surprise Me!">
         Surprise Me!
       </button>
-
-      <button id="surpriseButton" class="contact-btn" aria-label="Contact" tabindex="0">
+      <button id="surpriseButton" class="contact-btn" aria-label="Contact">
         <a href="form.html">Contact</a>
       </button>
-      <button id="toggleButton" class="toggle-btn" aria-label="Toggle theme">
-    </div>
-
+      <button id="toggleButton" class="toggle-btn" aria-label="Toggle theme"></button>
+    </nav>
   </header>
 
   <!-- Ghost Image for Animation -->
@@ -236,11 +234,14 @@
   <script src="js/app.min.js"></script>
   <script src="js/modal.min.js"></script>
   <script>
-    // // Show the flying ghost and change the footer message if it's Halloween
-    // if (document.body.classList.contains('halloween-mode')) {
-    //   document.getElementById('flyingGhost').style.display = 'block';
-    //   document.getElementById('halloweenFooterMessage').style.display = 'block';
-    // }
+    document.addEventListener('DOMContentLoaded', function() {
+      const navToggle = document.getElementById('navToggle');
+      const headerControls = document.getElementById('headerControls');
+  
+      navToggle.addEventListener('click', function() {
+        headerControls.classList.toggle('show');
+      });
+    });
   </script>
 
 </body>
