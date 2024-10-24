@@ -20,7 +20,7 @@
 
 ## ⭐️ Star History
 
-![Star History Chart](https://api.star-history.com/svg?repos=jollyjolli/HacktoberWall&type=Date)](https://star-history.com/#jollyjolli/HacktoberWall&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=JollyJolli/HacktoberWall&type=Timeline)](https://star-history.com/#JollyJolli/HacktoberWall&Timeline)
 
 ## 🎁 Contributors
 
