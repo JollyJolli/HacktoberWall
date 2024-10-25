@@ -28,6 +28,11 @@
   <img src="https://contrib.rocks/image?repo=jollyjolli/hacktoberwall&max=1000" />
 </a>
 
+## 📈 HacktoberWall Repo Stats
+| 🌟 *Stars* | 🍴 *Forks* | 🐛 *Issues* | 🔔 *Open PRs* | 🔕 *Closed PRs* | 🛠 *Languages* | ✅ *Contributors* |
+|--------------|--------------|---------------|-----------------|------------------|------------------|------------------|
+| ![GitHub stars](https://img.shields.io/github/stars/JollyJolli/HacktoberWall) | ![forks](https://img.shields.io/github/forks/JollyJolli/HacktoberWall) | ![issues](https://img.shields.io/github/issues/JollyJolli/HacktoberWall?color=32CD32) | ![pull requests](https://img.shields.io/github/issues-pr/JollyJolli/HacktoberWall?color=FFFF8F) | ![Closed PRs](https://img.shields.io/github/issues-pr-closed/JollyJolli/HacktoberWall?color=20B2AA) | ![Languages](https://img.shields.io/github/languages/count/JollyJolli/HacktoberWall?color=20B2AA) | ![Contributors](https://img.shields.io/github/contributors/JollyJolli/HacktoberWall?color=00FA9A) |
+
 ## 📦 Getting Started
 
 ### 1. Clone the Repository
