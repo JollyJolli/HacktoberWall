@@ -81,9 +81,21 @@
         <a href="form.html">Contact</a>
       </button>
       <button id="toggleButton" class="toggle-btn" aria-label="Toggle theme">
+
     </div>
+    <div id="google_translate_element"></div>
+
+    <script type="text/javascript">
+      // Initialize the Google Translate widget
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+      }
+
+    </script>
 
   </header>
+
+
 
   <!-- Ghost Image for Animation -->
   <img id="flyingGhost" src="img/flying ghost.webp" alt="Flying Ghost" />
@@ -182,31 +194,34 @@
     </div>
 
     <section id="about-us-section" class="about-us">
-      <div class="aboutus-container">  
+      <div class="aboutus-container">
         <h2>About Us</h2>
-      <p>HacktoberWall was created to help beginner contributors in the open-source community participate in the Hacktoberfest event.</p>
-    
-      <div class="owners">
-        <div id="owner-jolly" class="owner-card">
-          <img src="" alt="Jolly's Profile Picture" class="profile-picture" />
-          <div class="owner-info">
-            <h3>Jolly (Owner)</h3>
-            <p>Jolly is the creator of HacktoberWall and is passionate about open-source contributions. This project marks his first participation in Hacktoberfest!</p>
+        <p>HacktoberWall was created to help beginner contributors in the open-source community participate in the
+          Hacktoberfest event.</p>
+
+        <div class="owners">
+          <div id="owner-jolly" class="owner-card">
+            <img src="" alt="Jolly's Profile Picture" class="profile-picture" />
+            <div class="owner-info">
+              <h3>Jolly (Owner)</h3>
+              <p>Jolly is the creator of HacktoberWall and is passionate about open-source contributions. This project
+                marks his first participation in Hacktoberfest!</p>
+            </div>
           </div>
-        </div>
-    
-        <div id="owner-phanty" class="owner-card">
-          <img src="" alt="Phanty78's Profile Picture" class="profile-picture" />
-          <div class="owner-info">
-            <h3>Phanty78 (Co-Owner)</h3>
-            <p>Phanty78 joined Jolly to co-manage HacktoberWall and has made significant contributions to the project.</p>
+
+          <div id="owner-phanty" class="owner-card">
+            <img src="" alt="Phanty78's Profile Picture" class="profile-picture" />
+            <div class="owner-info">
+              <h3>Phanty78 (Co-Owner)</h3>
+              <p>Phanty78 joined Jolly to co-manage HacktoberWall and has made significant contributions to the project.
+              </p>
+            </div>
           </div>
         </div>
       </div>
-      </div>
-      
+
     </section>
-    
+
   </main>
 
   <footer>
@@ -228,6 +243,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js"
     integrity="sha256-huW7yWl7tNfP7lGk46XE+Sp0nCotjzYodhVKlwaNeco=" crossorigin="anonymous"></script>
   <script src="js/app.min.js"></script>
+  <script type="text/javascript"
+    src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
   <script>
     // // Show the flying ghost and change the footer message if it's Halloween
     // if (document.body.classList.contains('halloween-mode')) {
