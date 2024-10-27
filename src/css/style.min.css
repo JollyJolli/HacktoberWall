@@ -61,7 +61,7 @@ near infinite spin}.close-btn{position:absolute;top:60px;right:35px;color:#fff;f
   align-items: stretch;
 }
 
-body.halloween-mode .header-controls {
+body.halloween-mode {
   background-color: rgba(28, 28, 28, 0.8);
 }
 
@@ -69,7 +69,11 @@ body.halloween-mode .about-us-btn,
 body.halloween-mode .contact-btn,
 body.halloween-mode .surprise-btn {
   background-color: var(--accent-halloween);
-  color: var(--text-halloween);
+  color: var(--text-dark);
+}
+
+body.halloween-mode .toggle-btn i {
+  color: #fff;
 }
 
 body.halloween-mode #navToggle {
