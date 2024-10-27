@@ -144,6 +144,7 @@ footer a:hover {
   border: none;
   cursor: pointer;
   transition: transform 0.3s;
+  margin-top: 0.5rem;
 }
 .contact-btn,
 .surprise-btn,
