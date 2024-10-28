@@ -7,7 +7,7 @@
 ## 🚀 Features
 
 - **Dynamic Mural**: View all contributors on a visually appealing grid-style wall.
-- **Easy Contribution**: Simply edit the `contributors.json` file to add your name.
+- **Easy Contribution**: Simply edit the `src/data/contributors.json` file to add your name.
 - **Responsive Design**: Optimized for various screen sizes, ensuring a great experience on both desktop and mobile.
 - **Interactive Hover Effects**: Each participant card scales slightly on hover for a more engaging experience.
 
@@ -18,6 +18,12 @@
 - **JavaScript**: Fetching and displaying participant data dynamically.
 - **JSON**: Storing contributor names in a structured format.
 
+
+## 📈 HacktoberWall Repo Stats
+| 🌟 *Stars* | 🍴 *Forks* | 🐛 *Issues* | 🔔 *Open PRs* | 🔕 *Closed PRs* | 🛠 *Languages* | ✅ *Contributors* |
+|--------------|--------------|---------------|-----------------|------------------|------------------|------------------|
+| ![GitHub stars](https://img.shields.io/github/stars/JollyJolli/HacktoberWall) | ![forks](https://img.shields.io/github/forks/JollyJolli/HacktoberWall) | ![issues](https://img.shields.io/github/issues/JollyJolli/HacktoberWall?color=32CD32) | ![pull requests](https://img.shields.io/github/issues-pr/JollyJolli/HacktoberWall?color=FFFF8F) | ![Closed PRs](https://img.shields.io/github/issues-pr-closed/JollyJolli/HacktoberWall?color=20B2AA) | ![Languages](https://img.shields.io/github/languages/count/JollyJolli/HacktoberWall?color=20B2AA) | ![Contributors](https://img.shields.io/github/contributors/JollyJolli/HacktoberWall?color=00FA9A) |
+
 ## ⭐️ Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=JollyJolli/HacktoberWall&type=Timeline)](https://star-history.com/#JollyJolli/HacktoberWall&Timeline)
@@ -27,11 +33,6 @@
 <a href="https://github.com/jollyjolli/hacktoberwall/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=jollyjolli/hacktoberwall&max=1000" />
 </a>
-
-## 📈 HacktoberWall Repo Stats
-| 🌟 *Stars* | 🍴 *Forks* | 🐛 *Issues* | 🔔 *Open PRs* | 🔕 *Closed PRs* | 🛠 *Languages* | ✅ *Contributors* |
-|--------------|--------------|---------------|-----------------|------------------|------------------|------------------|
-| ![GitHub stars](https://img.shields.io/github/stars/JollyJolli/HacktoberWall) | ![forks](https://img.shields.io/github/forks/JollyJolli/HacktoberWall) | ![issues](https://img.shields.io/github/issues/JollyJolli/HacktoberWall?color=32CD32) | ![pull requests](https://img.shields.io/github/issues-pr/JollyJolli/HacktoberWall?color=FFFF8F) | ![Closed PRs](https://img.shields.io/github/issues-pr-closed/JollyJolli/HacktoberWall?color=20B2AA) | ![Languages](https://img.shields.io/github/languages/count/JollyJolli/HacktoberWall?color=20B2AA) | ![Contributors](https://img.shields.io/github/contributors/JollyJolli/HacktoberWall?color=00FA9A) |
 
 ## 📦 Getting Started
 
@@ -48,7 +49,7 @@ Open the `index.html` file in your preferred web browser to see **HacktoberWall*
 
 ### 3. Contribute
 
-- To add your name, simply edit the `contributors.json` file in data folder:
+- To add your name, simply edit the `src/data/contributors.json` file in data folder:
 
 ```json
 [
