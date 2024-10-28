@@ -7,7 +7,7 @@
 ## 🚀 Features
 
 - **Dynamic Mural**: View all contributors on a visually appealing grid-style wall.
-- **Easy Contribution**: Simply edit the `contributors.json` file to add your name.
+- **Easy Contribution**: Simply edit the `src/data/contributors.json` file to add your name.
 - **Responsive Design**: Optimized for various screen sizes, ensuring a great experience on both desktop and mobile.
 - **Interactive Hover Effects**: Each participant card scales slightly on hover for a more engaging experience.
 
@@ -48,7 +48,7 @@ Open the `index.html` file in your preferred web browser to see **HacktoberWall*
 
 ### 3. Contribute
 
-- To add your name, simply edit the `contributors.json` file in data folder:
+- To add your name, simply edit the `src/data/contributors.json` file in data folder:
 
 ```json
 [
