@@ -32,16 +32,16 @@
   <meta name="twitter:image" content="/img/logo.webp" />
   <meta name="twitter:image:alt" content="Hacktoberfest Logo" />
 
-   <!-- Google Analytics -->
-   <script async src="https://www.googletagmanager.com/gtag/js?id=G-G6EQC4D6KY"></script>
-   <script>
-     window.dataLayer = window.dataLayer || [];
-     function gtag(){dataLayer.push(arguments);}
-     gtag('js', new Date());
- 
-     gtag('config', 'G-G6EQC4D6KY');
-   </script>
-   <!-- End Google Analytics -->
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G6EQC4D6KY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-G6EQC4D6KY');
+  </script>
+  <!-- End Google Analytics -->
 
   <!-- Favicon -->
   <link rel="icon" href="/img/favicon.ico" type="./image/x-icon" />
@@ -73,14 +73,15 @@
     </div>
 
     <div class="header-controls">
-      <button id="contactButton" class="contact-btn" aria-label="Contact">
-        <a href="form.html">Contact</a>
+      <button class="contact-btn" aria-label="Contact" onclick="window.location.href='form.html';">
+        Contact
       </button>
-      <button id="contactButton" class="contact-btn" aria-label="Contact">
-        <a href="index.html">Home</a>
+      <button class="contact-btn" aria-label="Home" onclick="window.location.href='index.html';">
+        Home
       </button>
     </div>
   </header>
+
 
   <div class="container">
     <section id="terms-of-service">
@@ -129,14 +130,17 @@
       <h3>5. Contributions</h3>
       <ul>
         <li>a) All contributions to the project are subject to review and approval by the Owners.</li>
-        <li>b) By contributing to the project, contributors agree that their contributions will be under the terms of this license.</li>
+        <li>b) By contributing to the project, contributors agree that their contributions will be under the terms of
+          this license.</li>
       </ul>
 
       <h3>6. Warranty and Liability</h3>
-      <p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT ANY WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. IN NO EVENT SHALL THE OWNERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITIES.</p>
+      <p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT ANY WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. IN NO EVENT SHALL THE
+        OWNERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITIES.</p>
 
       <h3>7. Termination</h3>
-      <p>The rights granted under this license will automatically terminate if the User fails to comply with any of its terms and conditions.</p>
+      <p>The rights granted under this license will automatically terminate if the User fails to comply with any of its
+        terms and conditions.</p>
 
       <h3>8. Miscellaneous</h3>
       <ul>
