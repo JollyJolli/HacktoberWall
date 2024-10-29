@@ -32,16 +32,20 @@
   <meta name="twitter:image" content="/img/logo.webp" />
   <meta name="twitter:image:alt" content="Hacktoberfest Logo" />
 
-   <!-- Google Analytics -->
-   <script async src="https://www.googletagmanager.com/gtag/js?id=G-G6EQC4D6KY"></script>
-   <script>
-     window.dataLayer = window.dataLayer || [];
-     function gtag(){dataLayer.push(arguments);}
-     gtag('js', new Date());
- 
-     gtag('config', 'G-G6EQC4D6KY');
-   </script>
-   <!-- End Google Analytics -->
+  <!-- Google Translate -->
+  <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G6EQC4D6KY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-G6EQC4D6KY');
+  </script>
+  <!-- End Google Analytics -->
 
   <!-- Favicon -->
   <link rel="icon" href="/img/favicon.ico" type="./image/x-icon" />
@@ -92,6 +96,7 @@
       <button id="surpriseButton" class="contact-btn" aria-label="Contact">
         <a href="form.html">Contact</a>
       </button>
+      <div id="google_translate_element"></div>
       <button id="toggleButton" class="toggle-btn" aria-label="Toggle theme"></button>
     </nav>
   </header>
@@ -245,11 +250,11 @@
   <script src="js/app.min.js"></script>
   <script src="js/modal.min.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       const navToggle = document.getElementById('navToggle');
       const headerControls = document.getElementById('headerControls');
-  
-      navToggle.addEventListener('click', function() {
+
+      navToggle.addEventListener('click', function () {
         headerControls.classList.toggle('show');
       });
     });
