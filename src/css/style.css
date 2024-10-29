@@ -95,6 +95,7 @@ header {
 }
 
 .header-controls {
+  background-color: rgba(255, 165, 0, 0.8);
   margin-left: auto;
   display: flex;
   align-items: center;
@@ -108,6 +109,8 @@ header {
 
 #toggleButton {
   margin-right: 1rem;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
 }
 
 .search-container {
@@ -428,7 +431,7 @@ footer a:hover {
 
 .toggle-btn {
   font-size: 1.5rem;
-  background: none;
+  background: var(--accent-dark);
   border: none;
   cursor: pointer;
   transition: transform 0.3s;
@@ -440,11 +443,11 @@ footer a:hover {
 
 .toggle-btn i {
   font-size: 1.5rem;
-  color: var(--accent-light);
+  color: var(--accent-dark);
   transition: color 0.3s;
 }
 
-.dark-mode .toggle-btn i {
+.dark-mode i {
   color: white;
 }
 
@@ -697,6 +700,7 @@ body.dark-mode .feebback-Btn {
   }
 
   .header-controls {
+    background-color: rgba(255, 165, 0, 0.8);
     flex-direction: column;
     align-items: flex-end;
   }
@@ -733,6 +737,7 @@ body.dark-mode .feebback-Btn {
   }
 
   .header-controls {
+    background-color: rgba(255, 165, 0, 0.8);
     width: 100%;
     flex-direction: column;
     align-items: center;
