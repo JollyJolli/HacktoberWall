@@ -32,16 +32,16 @@
   <meta name="twitter:image" content="/img/logo.webp" />
   <meta name="twitter:image:alt" content="Hacktoberfest Logo" />
 
-   <!-- Google Analytics -->
-   <script async src="https://www.googletagmanager.com/gtag/js?id=G-G6EQC4D6KY"></script>
-   <script>
-     window.dataLayer = window.dataLayer || [];
-     function gtag(){dataLayer.push(arguments);}
-     gtag('js', new Date());
- 
-     gtag('config', 'G-G6EQC4D6KY');
-   </script>
-   <!-- End Google Analytics -->
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G6EQC4D6KY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-G6EQC4D6KY');
+  </script>
+  <!-- End Google Analytics -->
 
   <!-- Favicon -->
   <link rel="icon" href="/img/favicon.ico" type="./image/x-icon" />
@@ -80,20 +80,15 @@
     </button>
 
     <nav id="headerControls" class="header-controls">
-      <button id="surpriseButton" class="contact-btn" aria-label="Contact">
-        <a href="tos.html">ToS</a>
-      </button>
-      <button id="aboutUsButton" class="about-us-btn" aria-label="About Us">
-        <a href="#about-us-section">About Us</a>
-      </button>
-      <button id="surpriseButton" class="surprise-btn" aria-label="Surprise Me!">
-        Surprise Me!
-      </button>
-      <button id="surpriseButton" class="contact-btn" aria-label="Contact">
-        <a href="form.html">Contact</a>
-      </button>
+      <button class="contact-btn" aria-label="ToS" onclick="window.location.href='tos.html';">ToS</button>
+      <button class="about-us-btn" aria-label="About Us" onclick="window.location.href='#about-us-section';">About
+        Us</button>
+      <button class="surprise-btn" aria-label="Surprise Me!">Surprise Me!</button>
+      <button class="contact-btn" aria-label="Contact" onclick="window.location.href='form.html';">Contact</button>
       <button id="toggleButton" class="toggle-btn" aria-label="Toggle theme"></button>
     </nav>
+
+
   </header>
 
   <!-- Ghost Image for Animation -->
@@ -245,11 +240,11 @@
   <script src="js/app.min.js"></script>
   <script src="js/modal.min.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       const navToggle = document.getElementById('navToggle');
       const headerControls = document.getElementById('headerControls');
-  
-      navToggle.addEventListener('click', function() {
+
+      navToggle.addEventListener('click', function () {
         headerControls.classList.toggle('show');
       });
     });
