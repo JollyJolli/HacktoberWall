@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HacktoberWall Directory</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* Color Variables */
+    :root {
+      --bg-primary: #f2f5f7;
+      --bg-secondary: #ffffff;
+      --text-primary: #2b2d42;
+      --text-secondary: #606060;
+      --accent-color: #00796b;
+      --accent-hover: #005a4d;
+    }
+
+    /* Reset and Global Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 0 20px;
+    }
+
+    /* Header Styles */
+    header {
+      background-color: var(--bg-secondary);
+      padding: 15px 0;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      margin-bottom: 50px;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent-color);
+      text-decoration: none;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+    .nav-links a {
+      color: var(--text-secondary);
+      font-weight: 500;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover {
+      color: var(--accent-color);
+    }
+
+    /* Main Content */
+    main {
+      padding: 40px 0;
+    }
+    .section {
+      margin-bottom: 50px;
+    }
+    .section h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--text-primary);
+    }
+    .section p {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      margin-bottom: 15px;
+    }
+
+    /* Directory Section */
+    .directory {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+    }
+    .year-card {
+      background-color: var(--bg-secondary);
+      padding: 30px;
+      border-radius: 10px;
+      width: 220px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .year-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+    .year-card a {
+      font-size: 1.5rem;
+      color: var(--accent-color);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .year-card a:hover {
+      color: var(--accent-hover);
+    }
+    .coming-soon {
+      color: var(--text-secondary);
+      font-weight: 500;
+      font-size: 1rem;
+    }
+
+    /* Footer Styles */
+    footer {
+      background-color: var(--bg-secondary);
+      padding: 15px 0;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      border-top: 1px solid #e0e0e0;
+      margin-top: 50px;
+    }
+    .contact-email {
+      color: var(--accent-color);
+      font-weight: 500;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .contact-email:hover {
+      color: var(--accent-hover);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#" class="logo">HacktoberWall</a>
+        <ul class="nav-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Directory</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <!-- About Section -->
+      <section class="section">
+        <h2>About HacktoberWall</h2>
+        <p>HacktoberWall is an open-source initiative encouraging newcomers to contribute to open source projects. Our annual archive showcases contributor names, marking each year with a unique design and visual style.</p>
+        <p>Founded by <strong>Jolly (Owner)</strong> and <strong>Phanty (Co-owner)</strong>, HacktoberWall remains committed to promoting inclusivity and community in open source.</p>
+      </section>
+
+      <!-- Directory Section -->
+      <section class="section">
+        <h2>Explore Each Year</h2>
+        <div class="directory" id="directory"></div>
+      </section>
+
+      <!-- Contact Section -->
+      <section class="section">
+        <h2>Contact Us</h2>
+        <p>If you have questions or would like to contribute, please reach out:</p>
+        <a href="mailto:formen@duck.com" class="contact-email">formen@duck.com</a>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      &copy; 2024 HacktoberWall. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    // Data for Directory
+    const years = [
+      { year: 2024, url: "2024/src/index.html" },
+      { year: 2025, url: null }
+    ];
+
+    // Populate Directory
+    const directory = document.getElementById("directory");
+
+    years.forEach(entry => {
+      const card = document.createElement("div");
+      card.classList.add("year-card");
+
+      if (entry.url) {
+        card.innerHTML = `<a href="${entry.url}">${entry.year}</a>`;
+      } else {
+        card.innerHTML = `${entry.year} <span class="coming-soon">(Coming Soon)</span>`;
+      }
+
+      directory.appendChild(card);
+    });
+  </script>
+</body>
+</html>
