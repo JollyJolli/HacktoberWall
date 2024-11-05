@@ -7,9 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css" rel="stylesheet">
   <style>
-    /* Color Variables */
     :root {
       --bg-primary: #F5F5F5;
       --bg-secondary: #FFFFFF;
@@ -19,12 +17,12 @@
       --accent-hover: #4E48D8;
     }
 
-    /* Reset and Global Styles */
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
+
     body {
       font-family: 'Inter', sans-serif;
       background-color: var(--bg-primary);
@@ -32,13 +30,13 @@
       line-height: 1.6;
       font-size: 16px;
     }
+
     .container {
       max-width: 1200px;
       margin: auto;
       padding: 0 30px;
     }
 
-    /* Header Styles */
     header {
       background-color: var(--bg-secondary);
       padding: 20px 0;
@@ -50,15 +48,18 @@
       z-index: 100;
       transition: background-color 0.3s, box-shadow 0.3s;
     }
+
     header.scrolled {
       background-color: rgba(255, 255, 255, 0.95);
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
+
     .header-content {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
+
     .logo {
       font-family: 'Playfair Display', serif;
       font-size: 2.4rem;
@@ -67,16 +68,14 @@
       text-decoration: none;
       text-transform: uppercase;
       letter-spacing: 2px;
-      transition: color 0.3s;
     }
-    .logo:hover {
-      color: var(--accent-hover);
-    }
+
     .nav-links {
       list-style: none;
       display: flex;
       gap: 30px;
     }
+
     .nav-links a {
       color: var(--text-secondary);
       font-weight: 500;
@@ -85,18 +84,19 @@
       letter-spacing: 1px;
       transition: color 0.3s;
     }
+
     .nav-links a:hover {
       color: var(--accent-color);
     }
 
-    /* Main Content */
     .main-content {
       padding-top: 120px;
     }
+
     .section {
       padding: 100px 0;
-      scroll-snap-align: start;
     }
+
     .section h2 {
       font-size: 2.6rem;
       font-weight: 700;
@@ -105,18 +105,19 @@
       font-family: 'Playfair Display', serif;
       letter-spacing: 1px;
     }
+
     .section p {
       font-size: 1.1rem;
       color: var(--text-secondary);
       margin-bottom: 20px;
     }
 
-    /* Directory Section */
     .directory {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 40px;
     }
+
     .year-card {
       background-color: var(--bg-secondary);
       padding: 40px;
@@ -124,53 +125,28 @@
       text-align: center;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
       transition: transform 0.3s, box-shadow 0.4s;
-      position: relative;
-      overflow: hidden;
     }
+
     .year-card:hover {
       transform: translateY(-10px);
       box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
     }
-    .year-card:before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(45deg, var(--accent-color), var(--accent-hover));
-      opacity: 0.08;
-      transition: opacity 0.3s;
-    }
-    .year-card:hover:before {
-      opacity: 0.12;
-    }
+
     .year-card a {
       font-size: 2rem;
       color: var(--accent-color);
       font-weight: 700;
       text-decoration: none;
       text-transform: uppercase;
-      letter-spacing: 2px;
-      font-family: 'Playfair Display', serif;
-      position: relative;
-      z-index: 1;
-      transition: color 0.3s;
     }
-    .year-card a:hover {
-      color: var(--accent-hover);
-    }
+
     .coming-soon {
       color: var(--text-secondary);
       font-weight: 500;
       font-size: 1.1rem;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      position: relative;
-      z-index: 1;
     }
 
-    /* Footer Styles */
     footer {
       background-color: var(--bg-secondary);
       padding: 20px 0;
@@ -179,46 +155,77 @@
       font-size: 1rem;
       border-top: 1px solid #eee;
     }
+
     .contact-email {
       color: var(--accent-color);
       font-weight: 500;
       text-decoration: none;
       transition: color 0.3s;
     }
+
     .contact-email:hover {
       color: var(--accent-hover);
     }
   </style>
 </head>
-<body data-scroll-container>
+<body>
   <header id="header">
     <div class="container">
       <div class="header-content">
         <a href="#" class="logo">HacktoberWall</a>
         <ul class="nav-links">
           <li><a href="#about">About</a></li>
-          <li><a href="#directory">Directory</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#contribute">Contribute</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
     </div>
   </header>
 
-  <div class="main-content" data-scroll-section>
+  <div class="main-content">
     <!-- About Section -->
     <section class="section" id="about">
       <div class="container">
         <h2>About HacktoberWall</h2>
-        <p>HacktoberWall is an open-source initiative that encourages newcomers to contribute to open source projects. Our annual archive showcases contributor names, each year marked with a unique design and visual style.</p>
-        <p>Founded by <strong>Jolly (Owner)</strong> and <strong>Phanty (Co-owner)</strong>, HacktoberWall remains committed to promoting inclusivity and community in open source, especially during the spooky season of Hacktoberfest.</p>
+        <p>HacktoberWall is a simple yet engaging web app designed to celebrate Hacktoberfest! It allows participants to contribute their names to a virtual mural by editing a JSON file, making it easy for everyone to join in and showcase their participation.</p>
       </div>
     </section>
 
-    <!-- Directory Section -->
-    <section class="section" id="directory">
+    <!-- Features Section -->
+    <section class="section" id="features">
       <div class="container">
-        <h2>Explore Each Year</h2>
-        <div class="directory" id="directory"></div>
+        <h2>Features</h2>
+        <p><strong>Dynamic Mural:</strong> View all contributors on a visually appealing grid-style wall.</p>
+        <p><strong>Easy Contribution:</strong> Simply edit the contributors.json file to add your name.</p>
+        <p><strong>Responsive Design:</strong> Optimized for various screen sizes.</p>
+        <p><strong>Interactive Hover Effects:</strong> Each participant card scales slightly on hover.</p>
+      </div>
+    </section>
+
+    <!-- Contribute Section -->
+    <section class="section" id="contribute">
+      <div class="container">
+        <h2>How to Contribute</h2>
+        <p>We would love for you to join us! Follow these steps to contribute:</p>
+        <ol>
+          <li><strong>Fork the Repository:</strong> Make a copy of the repository in your GitHub account.</li>
+          <li><strong>Create a Branch:</strong> Set up a new branch for your contribution.</li>
+          <li><strong>Make Changes:</strong> Modify the code as needed or add your name to the contributors.json file.</li>
+          <li><strong>Minify Files:</strong> Minify your CSS and JS files before submitting.</li>
+          <li><strong>Commit Changes:</strong> Use descriptive commit messages following Conventional Commits standards.</li>
+          <li><strong>Submit a Pull Request:</strong> Describe your changes and submit your PR.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Directory Section with Year Cards -->
+    <section class="section" id="directory-section">
+      <div class="container">
+        <h2>Hacktoberfest Contributions by Year</h2>
+        <div class="directory" id="directory">
+          <!-- JavaScript will populate this area with year cards -->
+        </div>
       </div>
     </section>
 
@@ -238,55 +245,36 @@
     </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
   <script>
-    // Initialize Locomotive Scroll
-    document.addEventListener('DOMContentLoaded', () => {
-      const scroll = new LocomotiveScroll({
-        el: document.querySelector('[data-scroll-container]'),
-        smooth: true,
-        smartphone: {
-          smooth: true
-        },
-        tablet: {
-          smooth: true
-        }
-      });
+    // Data for Directory Section
+    const years = [
+      { year: 2024, url: "2024/src/index.html" },
+      { year: 2025, url: null }
+    ];
 
-      // Toggle header background on scroll
-      const header = document.getElementById("header");
-      scroll.on("scroll", (instance) => {
-        if (instance.scroll.y > 0) {
-          header.classList.add("scrolled");
-        } else {
-          header.classList.remove("scrolled");
-        }
-      });
+    // Populate Directory
+    const directory = document.getElementById("directory");
+    years.forEach(item => {
+      const card = document.createElement("div");
+      card.classList.add("year-card");
 
-      // Data for Directory
-      const years = [
-        { year: 2024, url: "2024/src/index.html" },
-        { year: 2025, url: null }
-      ];
+      if (item.url) {
+        card.innerHTML = `<a href="${item.url}">${item.year}</a>`;
+      } else {
+        card.innerHTML = `<p class="coming-soon">${item.year} - Coming Soon</p>`;
+      }
 
-      // Populate Directory
-      const directory = document.getElementById("directory");
+      directory.appendChild(card);
+    });
 
-      years.forEach(entry => {
-        const card = document.createElement("div");
-        card.classList.add("year-card");
-
-        if (entry.url) {
-          const link = document.createElement("a");
-          link.href = entry.url;
-          link.textContent = entry.year;
-          card.appendChild(link);
-        } else {
-          card.innerHTML = `${entry.year} <span class="coming-soon">(Coming Soon)</span>`;
-        }
-
-        directory.appendChild(card);
-      });
+    // Sticky Header on Scroll
+    const header = document.getElementById("header");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 50) {
+        header.classList.add("scrolled");
+      } else {
+        header.classList.remove("scrolled");
+      }
     });
   </script>
 </body>
