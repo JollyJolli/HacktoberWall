@@ -1,64 +1,84 @@
 Open Source Software License with Reserved Rights
 
-Copyright (c) 2024 HacktoberWall
+Copyright (c) 2024–2025 HacktoberWall
+Last edited: June 17, 2025
 
 1. Definitions
 
-- "Software" refers to the entire project and its source code.
-- "Derivative Works" means any work based on or derived from the Software.
-- "Owners" refers to the original owners and main maintainers of the project.
-- "User" refers to any person or entity that uses, modifies, or distributes the Software.
+- "Software" means the entire project, including but not limited to the source code, files, data structures, assets, documentation, configurations, and any associated materials.
+- "Derivative Works" means any work that is based upon, adapted from, integrated with, or incorporates components of the Software.
+- "Owners" refers to the original creators and current main maintainers of the Software who hold authority over licensing and distribution.
+- "User" means any individual, group, or organization that accesses, installs, uses, modifies, copies, or distributes the Software or any portion of it.
 
 2. Permissions
 
-Permission is granted, free of charge, to any person obtaining a copy of this Software to:
+Permission is granted, free of charge, to any User obtaining a copy of the Software, to:
 
-a) Use the Software for educational and academic research purposes.
-b) Contribute to the development of the project through pull requests or improvement proposals.
-c) Modify the Software for personal, non-commercial use.
+a) Use the Software strictly for personal, educational, research, or non-commercial experimentation.  
+b) View, study, and explore the source code for learning or debugging purposes.  
+c) Propose contributions via pull requests, issues, or suggestions for improvement.  
+d) Modify the Software for personal use only, without redistribution.
 
 3. Restrictions
 
-The User MAY NOT:
+The User MAY NOT, without prior explicit written authorization from the Owners:
 
-a) Use the Software for commercial purposes without explicit written permission from the Owners.
-b) Create projects that substantially replicate the functionality of the Software.
-c) Distribute modified copies of the Software without prior authorization from the Owners.
-d) Create Derivative Works without explicit permission from the Owners.
+a) Use the Software, or any part of it, for commercial, promotional, or revenue-generating activities.  
+b) Distribute the Software (modified or unmodified) through any medium, platform, or repository.  
+c) Develop, release, or contribute to Derivative Works that closely replicate the Software’s core features, purpose, or functionality.  
+d) Rebrand, relicense, or claim ownership of any portion of the Software.  
+e) Misrepresent affiliation with or endorsement by HacktoberWall or its maintainers.  
+f) Incorporate the Software into any project involving AI model training, surveillance systems, or military applications.
 
 4. Attribution Requirements
 
-Any authorized Derivative Work MUST:
+If express permission is granted for Derivative Works or redistribution, the following conditions apply:
 
-a) Include a clear reference to the original project in:
-   - The project's README file
-   - The project’s documentation
-   - Relevant source code
-b) Keep intact all copyright, patent, and trademark notices.
-c) Clearly indicate that modifications have been made to the original Software.
+a) The original project (HacktoberWall) must be clearly credited in the README, documentation, and source files.  
+b) The original license, copyright, and notices must remain intact.  
+c) A changelog or clear note must identify all modifications made.  
+d) Any public forks or reuploads must include a visible link to the original repository.
 
 5. Contributions
 
-a) All contributions to the project are subject to review and approval by the Owners.
-b) By contributing to the project, contributors agree that their contributions will be governed by the terms of this license.
-c) By contributing to the project, the contributor agrees that their name or username may be displayed on the project's website or public pages as part of the contributor acknowledgment.
+a) All contributions submitted to the official repository or development channel are subject to review and final approval by the Owners.  
+b) By contributing, the contributor grants the Owners a non-exclusive, worldwide, royalty-free, perpetual license to use, modify, sublicense, and distribute the contribution as part of the Software.  
+c) The contributor retains ownership of their submitted code, but acknowledges it may be publicly listed, merged, or altered.  
+d) Contributors agree that their public name or handle may appear in project acknowledgments, changelogs, and contributor lists.
 
 6. Warranty and Liability
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. IN NO EVENT SHALL THE OWNERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITIES.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT ANY WARRANTY OR GUARANTEE OF ANY KIND, WHETHER EXPRESS, IMPLIED, OR STATUTORY.  
+THE OWNERS SHALL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES ARISING FROM THE USE OR INABILITY TO USE THE SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 
 7. Data Privacy
 
-The Software does not collect or process personal data unless explicitly stated. If personal data is collected, it will be handled in accordance with applicable data protection laws, including but not limited to the General Data Protection Regulation (GDPR). By contributing, the User consents to the inclusion of their name or username on the project's public pages as part of the acknowledgment of contributions.
+The Software does not intentionally collect or process any personal data.  
+If future versions introduce data collection, a separate and clear Privacy Policy will be included.  
+By contributing to the project, Users consent to the public display of their username or chosen identifier unless they request anonymity in writing.
 
 8. Termination
 
-The rights granted under this license will automatically terminate if the User breaches any of its terms and conditions.
+Any breach of this license immediately and automatically terminates all granted rights.  
+Upon termination, the User must stop using the Software and destroy all copies, including modified versions.  
+The Owners reserve the right to revoke access or ban contributions from any User violating community standards or license terms.
 
-9. Miscellaneous
+9. Jurisdiction and Dispute Resolution
 
-a) This license constitutes the entire agreement regarding the use of the Software.
-b) The Owners reserve the right to modify the terms of this license in future versions.
-c) For any use not explicitly covered by this license, written permission from the Owners is required.
+This License is governed by and shall be interpreted under the laws of the United States of America.  
+Any legal disputes arising from this License shall be resolved in a U.S. court of competent jurisdiction, unless otherwise agreed upon in writing by both parties.
 
-To request permissions or special authorizations, contact: https://github.com/jollyjolli
+10. License Modification
+
+The Owners may modify the terms of this license for future versions of the Software.  
+Changes will be documented and dated clearly. Prior versions remain valid under their original terms for copies obtained before the change date.
+
+11. Miscellaneous
+
+- This License constitutes the entire agreement between the User and the Owners regarding use of the Software.  
+- If any provision of this License is held to be unenforceable, the rest shall remain in effect.  
+- Failure to enforce any term shall not be considered a waiver of future enforcement.  
+- Any permissions not explicitly granted herein are reserved by the Owners.
+
+To request permissions, commercial licenses, or clarification of terms, contact:
+https://github.com/jollyjolli
