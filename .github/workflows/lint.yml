@@ -1,0 +1,50 @@
+name: Lint Code
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  eslint:
+    name: ESLint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: |
+          npm install --save-dev eslint
+          npm install --save-dev eslint-config-standard
+
+      - name: Run ESLint
+        run: npx eslint . --ext .js --max-warnings 0
+        continue-on-error: true
+
+  stylelint:
+    name: Stylelint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: |
+          npm install --save-dev stylelint
+          npm install --save-dev stylelint-config-standard
+
+      - name: Run Stylelint
+        run: npx stylelint "**/*.css"
+        continue-on-error: true
