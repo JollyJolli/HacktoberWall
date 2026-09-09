@@ -978,24 +978,13 @@ footer nav a {
   text-decoration:line-through;
 }
 .giant-year {
-  color: var(--orange);
-  text-decoration: none;
-  transition: color .2s, transform .2s, text-shadow .2s;
-}
-.giant-year:hover {
   color: var(--ink);
-  transform: translateX(8px);
-  text-shadow: 10px 0 0 #d7d2c4;
+  text-decoration: none;
 }
+.old-year:focus-visible,
 .giant-year:focus-visible {
   outline: 4px solid var(--ink);
   outline-offset: 8px;
-}
-.year-arrow {
-  transition: transform .2s;
-}
-.giant-year:hover .year-arrow {
-  transform: translate(8px,-8px);
 }
 .wordmark,
 footer a,
@@ -1049,10 +1038,6 @@ footer a:hover,
   color: var(--orange);
 }
 @media (max-width: 760px) {
-  .giant-year:hover {
-    transform: none;
-    text-shadow: none;
-  }
   .contribute-layout {
     grid-template-columns: 1fr;
   }
@@ -1060,3 +1045,8 @@ footer a:hover,
     width: 100%;
   }
 }
+.old-year {
+  color: inherit;
+  text-decoration: none;
+}
+
