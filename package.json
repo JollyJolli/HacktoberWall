@@ -1,0 +1,10 @@
+{
+  "name": "hacktoberwall",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build.cjs",
+    "lint": "node --check assets/landing.js && node --check 2026/assets/2026.js && node scripts/check-site.cjs && node scripts/check-2026.cjs",
+    "test": "node scripts/check-site.cjs && node scripts/check-2026.cjs"
+  }
+}

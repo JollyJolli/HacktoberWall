@@ -1,281 +1,254 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HacktoberWall</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg-primary: #F5F5F5;
-      --bg-secondary: #FFFFFF;
-      --text-primary: #333333;
-      --text-secondary: #666666;
-      --accent-color: #6C63FF;
-      --accent-hover: #4E48D8;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg-primary);
-      color: var(--text-primary);
-      line-height: 1.6;
-      font-size: 16px;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 0 30px;
-    }
-
-    header {
-      background-color: var(--bg-secondary);
-      padding: 20px 0;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 100;
-      transition: background-color 0.3s, box-shadow 0.3s;
-    }
-
-    header.scrolled {
-      background-color: rgba(255, 255, 255, 0.95);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .header-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.4rem;
-      font-weight: 700;
-      color: var(--accent-color);
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-    }
-
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 30px;
-    }
-
-    .nav-links a {
-      color: var(--text-secondary);
-      font-weight: 500;
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      transition: color 0.3s;
-    }
-
-    .nav-links a:hover {
-      color: var(--accent-color);
-    }
-
-    .main-content {
-      padding-top: 120px;
-    }
-
-    .section {
-      padding: 100px 0;
-    }
-
-    .section h2 {
-      font-size: 2.6rem;
-      font-weight: 700;
-      margin-bottom: 30px;
-      color: var(--text-primary);
-      font-family: 'Playfair Display', serif;
-      letter-spacing: 1px;
-    }
-
-    .section p {
-      font-size: 1.1rem;
-      color: var(--text-secondary);
-      margin-bottom: 20px;
-    }
-
-    .directory {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 40px;
-    }
-
-    .year-card {
-      background-color: var(--bg-secondary);
-      padding: 40px;
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-      transition: transform 0.3s, box-shadow 0.4s;
-    }
-
-    .year-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
-    }
-
-    .year-card a {
-      font-size: 2rem;
-      color: var(--accent-color);
-      font-weight: 700;
-      text-decoration: none;
-      text-transform: uppercase;
-    }
-
-    .coming-soon {
-      color: var(--text-secondary);
-      font-weight: 500;
-      font-size: 1.1rem;
-      text-transform: uppercase;
-    }
-
-    footer {
-      background-color: var(--bg-secondary);
-      padding: 20px 0;
-      text-align: center;
-      color: var(--text-secondary);
-      font-size: 1rem;
-      border-top: 1px solid #eee;
-    }
-
-    .contact-email {
-      color: var(--accent-color);
-      font-weight: 500;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-
-    .contact-email:hover {
-      color: var(--accent-hover);
-    }
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ee6336">
+  <title>HacktoberWall — The wall returns in 2026</title>
+  <meta name="description" content="A wall built by an open-source community. Explore the 2024 archive, meet the names behind it, and follow HacktoberWall's return in 2026. No 2025 edition. A new chapter ahead.">
+  <link rel="canonical" href="https://hacktoberwall.formen.cc/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="HacktoberWall">
+  <meta property="og:title" content="HacktoberWall — A year off. A wall to come back to.">
+  <meta property="og:description" content="2024: built together. 2025: no edition. 2026: we're coming back. Explore the wall that started it all.">
+  <meta property="og:url" content="https://hacktoberwall.formen.cc/">
+  <meta property="og:image" content="https://hacktoberwall.formen.cc/assets/social.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="HacktoberWall: 2024 built together, 2025 a pause, 2026 the return.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="HacktoberWall returns in 2026">
+  <meta name="twitter:description" content="A year off. A wall to come back to. Follow the next chapter of HacktoberWall.">
+  <meta name="twitter:image" content="https://hacktoberwall.formen.cc/assets/social.png">
+  <meta name="twitter:image:alt" content="HacktoberWall returns in 2026">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/landing.min.css">
+  <script src="assets/landing.min.js" defer></script>
 </head>
 <body>
-  <header id="header">
-    <div class="container">
-      <div class="header-content">
-        <a href="#" class="logo">HacktoberWall</a>
-        <ul class="nav-links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#features">Features</a></li>
-          <li><a href="#contribute">Contribute</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-    </div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header wrap">
+    <a class="wordmark" href="./" aria-label="HacktoberWall home"><span class="wall-mark" aria-hidden="true"><i></i><i></i><i></i></span>HacktoberWall</a>
+    <nav aria-label="Main navigation"><a href="#archive">The archive <span>2024</span></a><a href="#next">The return <span>2026 ↗</span></a></nav>
   </header>
-
-  <div class="main-content">
-    <!-- About Section -->
-    <section class="section" id="about">
-      <div class="container">
-        <h2>About HacktoberWall</h2>
-        <p>HacktoberWall is a simple yet engaging web app designed to celebrate Hacktoberfest! It allows participants to contribute their names to a virtual mural by editing a JSON file, making it easy for everyone to join in and showcase their participation.</p>
+  <main id="main">
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <div class="hero-top"><span class="eyebrow">An open-source wall. A collective story.</span><span class="edition-label">Next edition / 2026</span></div>
+      <h1 id="hero-title">A year off.<br>A wall to <em>come back to.</em></h1>
+      <div class="hero-bottom"><p>In 2024, we built it together.<br>In 2025, we skipped an edition.<br>In 2026, <strong>we’re coming back.</strong></p><a class="text-link" href="#archive">First, see what we started <span aria-hidden="true">↓</span></a></div>
+      <div class="year-installation" aria-label="2024: built together. 2025: no edition. 2026: the return.">
+        <div class="year-history"><span class="eyebrow">01 / Built together</span><span class="old-year">2024</span><span class="year-cut"><span>2025</span> <small>No edition</small></span></div>
+        <div class="year-next"><span class="eyebrow">02 / To be continued</span><span class="giant-year">2026<span class="year-arrow" aria-hidden="true">↗</span></span><span class="year-note">Same wall. New chapter.</span></div>
+      </div>
+      <div class="hero-caption"><span>Made of names, pull requests & first steps.</span><span>Scroll to the beginning ↓</span></div>
+    </section>
+    <section class="archive section" id="archive" aria-labelledby="archive-title">
+      <div class="wrap">
+        <div class="section-kicker"><span>01 / The first chapter</span><span>Est. 2024</span></div>
+        <div class="editorial-heading"><h2 id="archive-title">It started<br>with a name.</h2><div><p>A small invitation for Hacktoberfest: edit a JSON file, open a pull request, leave your name on the wall.</p><p>Then people made it their own. Search, themes, fun facts, a Halloween mascot. A first contribution became something you could point to.</p><a class="text-link" href="2024/src/index.html">Step inside the 2024 edition <span aria-hidden="true">↗</span></a></div></div>
+        <div class="mural-heading"><span class="eyebrow">The names are the wall.</span><span>121 entries in the preserved archive</span></div>
+        <div class="name-wall" id="name-wall" aria-label="Names from the archived mural"><!-- ARCHIVE_NAMES -->
+<span class="name-tile">Kriti Raj</span>
+<span class="name-tile">Tyrant</span>
+<span class="name-tile">Ojas</span>
+<span class="name-tile">Thrishal Doma</span>
+<span class="name-tile">AnuskaRoy</span>
+<span class="name-tile">RupamGanguly46</span>
+<span class="name-tile">Anantraj Prasad</span>
+<span class="name-tile">Shaurya Thapliyal</span>
+<span class="name-tile">Piyush Negi</span>
+<span class="name-tile">BRijesh2001singh</span>
+<span class="name-tile">MahalaxmiNK</span>
+<span class="name-tile">DanishSheih</span>
+<span class="name-tile">JollyJolli</span>
+<span class="name-tile">Ishan Sawai</span>
+<span class="name-tile">Nidhi</span>
+<span class="name-tile">Saksham</span>
+<span class="name-tile">exilonium</span>
+<span class="name-tile">SnowFlowerr</span>
+<span class="name-tile">HirotoTsujii</span>
+<span class="name-tile">akadeepesh</span>
+<span class="name-tile">Anish</span>
+<span class="name-tile">Rasesh</span>
+<span class="name-tile">Piyush</span>
+<span class="name-tile">Ashu</span>
+<span class="name-tile">Hrishikesh</span>
+<span class="name-tile">Aditya</span>
+<span class="name-tile">Bupendra</span>
+<span class="name-tile">Sanket</span>
+<span class="name-tile">Swaroop</span>
+<span class="name-tile">EspeonIV</span>
+<span class="name-tile">Suprabhat</span>
+<span class="name-tile">Shree Gowtham</span>
+<span class="name-tile">Simcodes</span>
+<span class="name-tile">Aung Kaung Myint</span>
+<span class="name-tile">Irfan Ansari</span>
+<span class="name-tile">Aiushi Sengupta</span>
+<span class="name-tile">Suvojit Modak</span>
+<span class="name-tile">Ooreoluwa</span>
+<span class="name-tile">Supratim</span>
+<span class="name-tile">JayShukla8</span>
+<span class="name-tile">Adarsh Kushwaha</span>
+<span class="name-tile">Swarup Kumar Sahu</span>
+<span class="name-tile">Dheeraj Kumar</span>
+<span class="name-tile">Sayantan Nandi</span>
+<span class="name-tile">Maël Donnart</span>
+<span class="name-tile">Elisabeth Erkekoglou</span>
+<span class="name-tile">Jakob Joas</span>
+<span class="name-tile">DevyRuxpin</span>
+<span class="name-tile">Imbeshat</span>
+<span class="name-tile">sumant7</span>
+<span class="name-tile">AACHAL2303PATIL</span>
+<span class="name-tile">G Sai Vishwas</span>
+<span class="name-tile">Tushar Khandelwal</span>
+<span class="name-tile">Shankhesh Ambaliya</span>
+<span class="name-tile">Srijan Baniyal</span>
+<span class="name-tile">Arth</span>
+<span class="name-tile">Srinidhi Kulkarni</span>
+<span class="name-tile">Huzail</span>
+<span class="name-tile">Pankaj Rastapur</span>
+<span class="name-tile">Deepasha</span>
+<span class="name-tile">Saksham Dewan</span>
+<span class="name-tile">Mihir Gupta</span>
+<span class="name-tile">Dev Wadhwa</span>
+<span class="name-tile">Naman Srivastava</span>
+<span class="name-tile">Jarvis</span>
+<span class="name-tile">Coderxyz</span>
+<span class="name-tile">SKADE2303</span>
+<span class="name-tile">Gauri Chauhan</span>
+<span class="name-tile">Sankalp</span>
+<span class="name-tile">Whalesharx</span>
+<span class="name-tile">Aiden</span>
+<span class="name-tile">infernodragon456</span>
+<span class="name-tile">Shrutika</span>
+<span class="name-tile">Utkarsh</span>
+<span class="name-tile">Aadhavan</span>
+<span class="name-tile">Cristina EU1</span>
+<span class="name-tile">Navya Jain</span>
+<span class="name-tile">Aditya Chandel</span>
+<span class="name-tile">Heshan Maduwantha</span>
+<span class="name-tile">Jisha Jacob</span>
+<span class="name-tile">Abhishek Rout</span>
+<span class="name-tile">mwango</span>
+<span class="name-tile">Shiva Karthik</span>
+<span class="name-tile">Anzar Ahmad</span>
+<span class="name-tile">Krupakar Reddy</span>
+<span class="name-tile">Jaya Darshini</span>
+<span class="name-tile">Carmelo Cueto</span>
+<span class="name-tile">its-wasp</span>
+<span class="name-tile">pizofreude</span>
+<span class="name-tile">aditi-manthri</span>
+<span class="name-tile">Sanskar Khandelwal</span>
+<span class="name-tile">Taylor Dean</span>
+<span class="name-tile">Sneha Chandra</span>
+<span class="name-tile">Anushka Jain</span>
+<span class="name-tile">TNT</span>
+<span class="name-tile">Karthikeya</span>
+<span class="name-tile">Veda Varshit</span>
+<span class="name-tile">Veekshitha Nelluru</span>
+<span class="name-tile">Sai charan</span>
+<span class="name-tile">Sahil</span>
+<span class="name-tile">Siddhant Prasad</span>
+<span class="name-tile">Tanchuoi</span>
+<span class="name-tile">Maram Shanmukha Siva Sekhar Yeswanth</span>
+<span class="name-tile">Ravijot Sinha</span>
+<span class="name-tile">Kapil564</span>
+<span class="name-tile">BlazePhenom</span>
+<span class="name-tile">Sayed Zahur</span>
+<span class="name-tile">Ansh Mahajan</span>
+<span class="name-tile">Piyush Kr. Mahato</span>
+<span class="name-tile">Sanaa Ara</span>
+<span class="name-tile">Sanskruti Gangwal</span>
+<span class="name-tile">Yeashu</span>
+<span class="name-tile">Ankita</span>
+<span class="name-tile">Siddhant Prasad</span>
+<span class="name-tile">Nirbhay Kumar</span>
+<span class="name-tile">Ved Pawar</span>
+<span class="name-tile">Choudhary khushboo Girdhariram</span>
+<span class="name-tile">Choudhary khushboo Girdhariram</span>
+<span class="name-tile">Darshan Bagade</span>
+<span class="name-tile">Monika Dalawat</span>
+<span class="name-tile">Sabeer Junaid</span>
+<!-- /ARCHIVE_NAMES --></div>
+        <div class="mural-bottom"><p>Every tile is an entry from the original mural.<br>Kept as written. Including additions after 2024.</p><a href="2024/src/data/contributors.json">View the original JSON ↗</a></div>
       </div>
     </section>
-
-    <!-- Features Section -->
-    <section class="section" id="features">
-      <div class="container">
-        <h2>Features</h2>
-        <p><strong>Dynamic Mural:</strong> View all contributors on a visually appealing grid-style wall.</p>
-        <p><strong>Easy Contribution:</strong> Simply edit the contributors.json file to add your name.</p>
-        <p><strong>Responsive Design:</strong> Optimized for various screen sizes.</p>
-        <p><strong>Interactive Hover Effects:</strong> Each participant card scales slightly on hover.</p>
-      </div>
+    <section class="pulse section wrap" id="features" aria-labelledby="pulse-title">
+      <div class="section-kicker"><span>02 / The ripple effect</span><span>Small contributions add up.</span></div>
+      <div class="pulse-intro"><h2 id="pulse-title">One wall.<br>A lot of hands.</h2><p>Behind the names: people opening pull requests, fixing the page, and helping it grow. Here’s the activity they left behind.</p></div>
+      <figure class="activity"><div class="activity-head"><div><strong>399</strong><span>commits in October 2024</span></div><p>One month of building together.<br>One bar for each day.</p></div><div class="commit-chart" role="img" aria-label="October 2024: 399 commits, peaking at 47 on October 31."><!-- COMMIT_BARS -->
+<span class="commit-bar" style="--count:6;--day:0" title="2024-10-01: 6 commits"></span>
+<span class="commit-bar" style="--count:12;--day:1" title="2024-10-02: 12 commits"></span>
+<span class="commit-bar" style="--count:19;--day:2" title="2024-10-03: 19 commits"></span>
+<span class="commit-bar" style="--count:9;--day:3" title="2024-10-04: 9 commits"></span>
+<span class="commit-bar" style="--count:1;--day:4" title="2024-10-05: 1 commits"></span>
+<span class="commit-bar" style="--count:5;--day:5" title="2024-10-06: 5 commits"></span>
+<span class="commit-bar" style="--count:15;--day:6" title="2024-10-07: 15 commits"></span>
+<span class="commit-bar" style="--count:9;--day:7" title="2024-10-08: 9 commits"></span>
+<span class="commit-bar" style="--count:9;--day:8" title="2024-10-09: 9 commits"></span>
+<span class="commit-bar" style="--count:5;--day:9" title="2024-10-10: 5 commits"></span>
+<span class="commit-bar" style="--count:12;--day:10" title="2024-10-11: 12 commits"></span>
+<span class="commit-bar" style="--count:12;--day:11" title="2024-10-12: 12 commits"></span>
+<span class="commit-bar" style="--count:2;--day:12" title="2024-10-13: 2 commits"></span>
+<span class="commit-bar" style="--count:0;--day:13" title="2024-10-14: 0 commits"></span>
+<span class="commit-bar" style="--count:17;--day:14" title="2024-10-15: 17 commits"></span>
+<span class="commit-bar" style="--count:7;--day:15" title="2024-10-16: 7 commits"></span>
+<span class="commit-bar" style="--count:27;--day:16" title="2024-10-17: 27 commits"></span>
+<span class="commit-bar" style="--count:32;--day:17" title="2024-10-18: 32 commits"></span>
+<span class="commit-bar" style="--count:19;--day:18" title="2024-10-19: 19 commits"></span>
+<span class="commit-bar" style="--count:8;--day:19" title="2024-10-20: 8 commits"></span>
+<span class="commit-bar" style="--count:30;--day:20" title="2024-10-21: 30 commits"></span>
+<span class="commit-bar" style="--count:9;--day:21" title="2024-10-22: 9 commits"></span>
+<span class="commit-bar" style="--count:5;--day:22" title="2024-10-23: 5 commits"></span>
+<span class="commit-bar" style="--count:17;--day:23" title="2024-10-24: 17 commits"></span>
+<span class="commit-bar" style="--count:9;--day:24" title="2024-10-25: 9 commits"></span>
+<span class="commit-bar" style="--count:1;--day:25" title="2024-10-26: 1 commits"></span>
+<span class="commit-bar" style="--count:6;--day:26" title="2024-10-27: 6 commits"></span>
+<span class="commit-bar" style="--count:12;--day:27" title="2024-10-28: 12 commits"></span>
+<span class="commit-bar" style="--count:29;--day:28" title="2024-10-29: 29 commits"></span>
+<span class="commit-bar" style="--count:8;--day:29" title="2024-10-30: 8 commits"></span>
+<span class="commit-bar" style="--count:47;--day:30" title="2024-10-31: 47 commits"></span>
+<!-- /COMMIT_BARS --></div><figcaption><span>01 OCT</span><span>15 OCT</span><span>31 OCT ’24</span></figcaption></figure>
+      <details class="data-details"><summary>Explore the daily counts & sources</summary><div class="data-detail-body"><p>Counts use Git author dates from the checked-out history. Merge commits are included. Repository snapshot: <a href="https://github.com/JollyJolli/HacktoberWall/commit/d2f9198">d2f9198</a>.</p><table><caption>Commits by day, October 2024</caption><thead><tr><th scope="col">Day</th><th scope="col">Commits</th></tr></thead><tbody><!-- COMMIT_ROWS -->
+<tr><th scope="row">2024-10-01</th><td>6</td></tr>
+<tr><th scope="row">2024-10-02</th><td>12</td></tr>
+<tr><th scope="row">2024-10-03</th><td>19</td></tr>
+<tr><th scope="row">2024-10-04</th><td>9</td></tr>
+<tr><th scope="row">2024-10-05</th><td>1</td></tr>
+<tr><th scope="row">2024-10-06</th><td>5</td></tr>
+<tr><th scope="row">2024-10-07</th><td>15</td></tr>
+<tr><th scope="row">2024-10-08</th><td>9</td></tr>
+<tr><th scope="row">2024-10-09</th><td>9</td></tr>
+<tr><th scope="row">2024-10-10</th><td>5</td></tr>
+<tr><th scope="row">2024-10-11</th><td>12</td></tr>
+<tr><th scope="row">2024-10-12</th><td>12</td></tr>
+<tr><th scope="row">2024-10-13</th><td>2</td></tr>
+<tr><th scope="row">2024-10-14</th><td>0</td></tr>
+<tr><th scope="row">2024-10-15</th><td>17</td></tr>
+<tr><th scope="row">2024-10-16</th><td>7</td></tr>
+<tr><th scope="row">2024-10-17</th><td>27</td></tr>
+<tr><th scope="row">2024-10-18</th><td>32</td></tr>
+<tr><th scope="row">2024-10-19</th><td>19</td></tr>
+<tr><th scope="row">2024-10-20</th><td>8</td></tr>
+<tr><th scope="row">2024-10-21</th><td>30</td></tr>
+<tr><th scope="row">2024-10-22</th><td>9</td></tr>
+<tr><th scope="row">2024-10-23</th><td>5</td></tr>
+<tr><th scope="row">2024-10-24</th><td>17</td></tr>
+<tr><th scope="row">2024-10-25</th><td>9</td></tr>
+<tr><th scope="row">2024-10-26</th><td>1</td></tr>
+<tr><th scope="row">2024-10-27</th><td>6</td></tr>
+<tr><th scope="row">2024-10-28</th><td>12</td></tr>
+<tr><th scope="row">2024-10-29</th><td>29</td></tr>
+<tr><th scope="row">2024-10-30</th><td>8</td></tr>
+<tr><th scope="row">2024-10-31</th><td>47</td></tr>
+<!-- /COMMIT_ROWS --></tbody></table></div></details>
+      <div class="repo-ledger"><a href="https://github.com/JollyJolli/HacktoberWall/graphs/contributors"><strong>133</strong><span>GitHub contributors</span><span aria-hidden="true">↗</span></a><a href="https://github.com/JollyJolli/HacktoberWall/pulls?q=is%3Apr+is%3Amerged"><strong>164</strong><span>Merged pull requests</span><span aria-hidden="true">↗</span></a><a href="https://github.com/JollyJolli/HacktoberWall/forks"><strong>124</strong><span>Forks of the wall</span><span aria-hidden="true">↗</span></a><a href="https://github.com/JollyJolli/HacktoberWall/stargazers"><strong>36</strong><span>GitHub stars</span><span aria-hidden="true">↗</span></a></div>
+      <p class="source-note">Repository totals, verified 9 September 2026. These are all-time counts, not 2024-only figures. <a href="assets/impact.json">Snapshot & sources ↗</a></p>
     </section>
-
-    <!-- Contribute Section -->
-    <section class="section" id="contribute">
-      <div class="container">
-        <h2>How to Contribute</h2>
-        <p>We would love for you to join us! Follow these steps to contribute:</p>
-        <ol>
-          <li><strong>Fork the Repository:</strong> Make a copy of the repository in your GitHub account.</li>
-          <li><strong>Create a Branch:</strong> Set up a new branch for your contribution.</li>
-          <li><strong>Make Changes:</strong> Modify the code as needed or add your name to the contributors.json file.</li>
-          <li><strong>Minify Files:</strong> Minify your CSS and JS files before submitting.</li>
-          <li><strong>Commit Changes:</strong> Use descriptive commit messages following Conventional Commits standards.</li>
-          <li><strong>Submit a Pull Request:</strong> Describe your changes and submit your PR.</li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- Directory Section with Year Cards -->
-    <section class="section" id="directory-section">
-      <div class="container">
-        <h2>Hacktoberfest Contributions by Year</h2>
-        <div class="directory" id="directory">
-          <!-- JavaScript will populate this area with year cards -->
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="section" id="contact">
-      <div class="container">
-        <h2>Contact Us</h2>
-        <p>If you have questions or would like to contribute, please reach out:</p>
-        <a href="mailto:formen@duck.com" class="contact-email">formen@duck.com</a>
-      </div>
-    </section>
-  </div>
-
-  <footer>
-    <div class="container">
-      &copy; 2024 HacktoberWall. All rights reserved.
-    </div>
-  </footer>
-
-  <script>
-    // Data for Directory Section
-    const years = [
-      { year: 2024, url: "2024/src/index.html" },
-      { year: 2025, url: null }
-    ];
-
-    // Populate Directory
-    const directory = document.getElementById("directory");
-    years.forEach(item => {
-      const card = document.createElement("div");
-      card.classList.add("year-card");
-
-      if (item.url) {
-        card.innerHTML = `<a href="${item.url}">${item.year}</a>`;
-      } else {
-        card.innerHTML = `<p class="coming-soon">${item.year} - Coming Soon</p>`;
-      }
-
-      directory.appendChild(card);
-    });
-
-    // Sticky Header on Scroll
-    const header = document.getElementById("header");
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 50) {
-        header.classList.add("scrolled");
-      } else {
-        header.classList.remove("scrolled");
-      }
-    });
-  </script>
+    <section class="people section" id="about" aria-labelledby="people-title"><div class="wrap people-layout"><div class="people-heading"><span class="eyebrow">Built by people, for first steps.</span><h2 id="people-title">You didn’t have<br>to know it all.<br><em>Just start.</em></h2><p>Jolly created HacktoberWall to help beginners take part in open source. Phanty78 joined as co-owner. The community took it from there.</p><a class="text-link" href="https://github.com/JollyJolli/HacktoberWall/graphs/contributors">Meet the repository contributors <span aria-hidden="true">↗</span></a></div><figure class="archive-art"><img src="2024/src/img/mascot.webp" alt="The illustrated Hacktoberfest mascot from the original 2024 wall" width="500" height="500" loading="lazy"><figcaption><span>From the original wall</span><span>2024 ↗</span></figcaption></figure></div></section>
+    <section class="pause wrap" aria-labelledby="pause-title"><div class="section-kicker"><span>The space between chapters</span><span>2025</span></div><div class="pause-line" aria-hidden="true"><span>2025</span><i></i></div><div class="pause-copy"><h2 id="pause-title">Then we skipped a year.</h2><p>No 2025 edition.<br>That’s part of the story, too.</p></div></section>
+    <section class="return section" id="next" aria-labelledby="next-title"><div class="wrap"><div class="section-kicker"><span>03 / The next chapter</span><span>2026</span></div><h2 id="next-title">The wall<br>isn’t <em>finished.</em></h2><div class="return-bottom"><p>HacktoberWall returns in 2026.<br>The details are still to come.<br>Be here when the next chapter opens.</p><a class="cta" href="2026/">Enter HacktoberWall 2026 <span aria-hidden="true">↗</span></a></div><p class="follow-note" id="contribute">Join by adding one JSON file in <code>2026/data/contributors/</code>, or improve the 2026 website through a pull request.</p></div></section>
+  </main>
+  <footer class="wrap" id="contact"><a class="wordmark" href="./">HacktoberWall</a><p>A wall is nothing without its people.</p><nav aria-label="Footer"><a href="2024/src/index.html">2024 archive</a><a href="2026/">2026 edition</a><a href="https://github.com/JollyJolli/HacktoberWall">GitHub ↗</a><a href="mailto:formen@duck.com">Say hello ↗</a></nav><div class="footer-bottom"><span>2024 → 2026</span><a href="LICENSE">Project license</a><a href="#main">Back to top ↑</a></div></footer>
 </body>
 </html>

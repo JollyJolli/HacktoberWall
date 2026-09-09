@@ -1,0 +1,152 @@
+{
+  "forks": 124,
+  "sources": [
+    "https://api.github.com/repos/JollyJolli/HacktoberWall",
+    "https://api.github.com/repos/JollyJolli/HacktoberWall/contributors?per_page=100&page=1",
+    "https://api.github.com/repos/JollyJolli/HacktoberWall/contributors?per_page=100&page=2",
+    "https://api.github.com/search/issues?q=repo:JollyJolli/HacktoberWall+is:pr+is:merged"
+  ],
+  "verifiedAt": "2026-09-09",
+  "mergedPullRequests": 164,
+  "stars": 36,
+  "contributors": 133,
+  "repository": "JollyJolli/HacktoberWall",
+  "scope": "All-time repository totals, not 2024-only figures",
+  "archive": {
+    "source": "2024/src/data/contributors.json",
+    "entries": 121,
+    "note": "Entries, not verified unique people; includes post-2024 additions."
+  },
+  "history": {
+    "revision": "d2f9198",
+    "commits": 460,
+    "october2024Commits": 399,
+    "method": "git log d2f9198 --format=%as; author dates, including merges",
+    "daily": [
+      {
+        "date": "2024-10-01",
+        "commits": 6
+      },
+      {
+        "date": "2024-10-02",
+        "commits": 12
+      },
+      {
+        "date": "2024-10-03",
+        "commits": 19
+      },
+      {
+        "date": "2024-10-04",
+        "commits": 9
+      },
+      {
+        "date": "2024-10-05",
+        "commits": 1
+      },
+      {
+        "date": "2024-10-06",
+        "commits": 5
+      },
+      {
+        "date": "2024-10-07",
+        "commits": 15
+      },
+      {
+        "date": "2024-10-08",
+        "commits": 9
+      },
+      {
+        "date": "2024-10-09",
+        "commits": 9
+      },
+      {
+        "date": "2024-10-10",
+        "commits": 5
+      },
+      {
+        "date": "2024-10-11",
+        "commits": 12
+      },
+      {
+        "date": "2024-10-12",
+        "commits": 12
+      },
+      {
+        "date": "2024-10-13",
+        "commits": 2
+      },
+      {
+        "date": "2024-10-14",
+        "commits": 0
+      },
+      {
+        "date": "2024-10-15",
+        "commits": 17
+      },
+      {
+        "date": "2024-10-16",
+        "commits": 7
+      },
+      {
+        "date": "2024-10-17",
+        "commits": 27
+      },
+      {
+        "date": "2024-10-18",
+        "commits": 32
+      },
+      {
+        "date": "2024-10-19",
+        "commits": 19
+      },
+      {
+        "date": "2024-10-20",
+        "commits": 8
+      },
+      {
+        "date": "2024-10-21",
+        "commits": 30
+      },
+      {
+        "date": "2024-10-22",
+        "commits": 9
+      },
+      {
+        "date": "2024-10-23",
+        "commits": 5
+      },
+      {
+        "date": "2024-10-24",
+        "commits": 17
+      },
+      {
+        "date": "2024-10-25",
+        "commits": 9
+      },
+      {
+        "date": "2024-10-26",
+        "commits": 1
+      },
+      {
+        "date": "2024-10-27",
+        "commits": 6
+      },
+      {
+        "date": "2024-10-28",
+        "commits": 12
+      },
+      {
+        "date": "2024-10-29",
+        "commits": 29
+      },
+      {
+        "date": "2024-10-30",
+        "commits": 8
+      },
+      {
+        "date": "2024-10-31",
+        "commits": 47
+      }
+    ]
+  }
+}

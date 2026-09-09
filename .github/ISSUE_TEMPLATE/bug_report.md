@@ -1,38 +1,37 @@
 ---
 name: Bug report
-about: Create a report to help us improve
+about: Report a problem with HacktoberWall
 title: ''
 labels: ''
 assignees: ''
-
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+**Where is the bug?**
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+- [ ] 2026 edition (`2026/`)
+- [ ] 2024 archive (`2024/`)
+- [ ] Documentation or repository setup
+
+**Describe the bug**
+
+What happened?
+
+**Steps to reproduce**
+
+1. Go to `...`
+2. Do `...`
+3. See `...`
 
 **Expected behavior**
-A clear and concise description of what you expected to happen.
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+What did you expect to happen?
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+**Device and browser**
 
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
+- Device:
+- OS:
+- Browser:
 
 **Additional context**
-Add any other context about the problem here.
+
+Add screenshots, links, or notes if they help.

@@ -14,5 +14,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           labels: |
             hacktoberfest
-            hacktoberfest2024
-            hacktoberfest-accepted
+            hacktoberfest2026

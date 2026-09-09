@@ -14,8 +14,7 @@ jobs:
       # Define labels as variables for easy modification
       LABELS: |
         hacktoberfest
-        hacktoberfest-accepted
-        hacktoberfest2024
+        hacktoberfest2026
 
     steps:
       - name: Add Hacktoberfest labels to issues

@@ -1,0 +1,29 @@
+// Progressive enhancement: the archive and all evidence are present without JS.
+const wall = document.querySelector('.name-wall');
+if (wall) {
+  const toggle = document.createElement('button');
+  toggle.type = 'button';
+  toggle.className = 'wall-toggle';
+  toggle.setAttribute('aria-expanded', 'false');
+  toggle.setAttribute('aria-controls', 'name-wall');
+  toggle.textContent = 'Unfold all 121 entries +';
+  wall.after(toggle);
+  toggle.addEventListener('click', () => {
+    const expanded = toggle.getAttribute('aria-expanded') !== 'true';
+    const top = wall.getBoundingClientRect().top + window.scrollY;
+    wall.classList.toggle('expanded', expanded);
+    toggle.setAttribute('aria-expanded', String(expanded));
+    toggle.textContent = expanded ? 'Fold the wall −' : 'Unfold all 121 entries +';
+    if (!expanded && window.scrollY > top) window.scrollTo({ top, behavior: 'instant' });
+  });
+}
+if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const chart = document.querySelector('.commit-chart');
+  const observer = new IntersectionObserver((entries) => {
+    if (entries.some(entry => entry.isIntersecting)) {
+      chart.classList.add('chart-in');
+      observer.disconnect();
+    }
+  }, { threshold: 0.2 });
+  if (chart) observer.observe(chart);
+}

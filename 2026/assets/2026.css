@@ -1,0 +1,65 @@
+body {
+  margin: 0;
+  padding: 24px;
+  font-family: Arial, sans-serif;
+  background: #fafafa;
+  color: #111;
+}
+
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 40px;
+  margin-bottom: 8px;
+}
+
+h2 {
+  margin-top: 40px;
+}
+
+.contributors {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  border: 1px solid #ddd;
+  background: white;
+  padding: 16px;
+}
+
+.card img {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+}
+
+.card h3 {
+  margin: 12px 0 4px;
+}
+
+.card p {
+  margin: 6px 0;
+}
+
+.meta {
+  color: #555;
+  font-size: 14px;
+}
+
+.learned {
+  padding-left: 18px;
+}
+
+.links a {
+  margin-right: 10px;
+}
+
+footer {
+  margin-top: 48px;
+  border-top: 1px solid #ddd;
+}
