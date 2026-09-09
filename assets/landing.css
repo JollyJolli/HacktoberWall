@@ -977,6 +977,86 @@ footer nav a {
 .year-cut>span {
   text-decoration:line-through;
 }
-
-
-
+.giant-year {
+  color: var(--orange);
+  text-decoration: none;
+  transition: color .2s, transform .2s, text-shadow .2s;
+}
+.giant-year:hover {
+  color: var(--ink);
+  transform: translateX(8px);
+  text-shadow: 10px 0 0 #d7d2c4;
+}
+.giant-year:focus-visible {
+  outline: 4px solid var(--ink);
+  outline-offset: 8px;
+}
+.year-arrow {
+  transition: transform .2s;
+}
+.giant-year:hover .year-arrow {
+  transform: translate(8px,-8px);
+}
+.wordmark,
+footer a,
+.source-note a,
+.mural-bottom a {
+  transition: color .2s, background .2s, text-decoration-color .2s;
+}
+.wordmark:hover,
+footer a:hover,
+.source-note a:hover,
+.mural-bottom a:hover {
+  color: var(--orange);
+  text-decoration-color: var(--orange);
+}
+.name-tile {
+  transition: background .18s, color .18s, border-color .18s, transform .18s;
+}
+.name-tile:hover {
+  background: var(--orange);
+  color: var(--dark);
+  border-color: var(--orange);
+  transform: translateY(-2px);
+}
+.contribute {
+  border-top: 1px solid var(--line);
+}
+.contribute-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 440px);
+  gap: clamp(28px, 6vw, 80px);
+  align-items: start;
+}
+.contribute h2 {
+  margin-bottom: 20px;
+}
+.contribute p {
+  max-width: 56ch;
+  font-size: clamp(20px, 2.2vw, 30px);
+  line-height: 1.15;
+}
+.contribute ol {
+  margin: 0;
+  padding-left: 24px;
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.9;
+}
+.contribute .text-link {
+  grid-column: 1 / -1;
+  width: fit-content;
+  color: var(--orange);
+}
+@media (max-width: 760px) {
+  .giant-year:hover {
+    transform: none;
+    text-shadow: none;
+  }
+  .contribute-layout {
+    grid-template-columns: 1fr;
+  }
+  .contribute .text-link {
+    width: 100%;
+  }
+}
