@@ -1,4 +1,5 @@
 {
+  "NOTE": "Please put your file name in lowercase, and dont forget to add yourself in the index.json file!",
   "github": "your-github-username",
   "name": "Your Name",
   "country": null,
