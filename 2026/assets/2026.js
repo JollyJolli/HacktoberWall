@@ -24,15 +24,49 @@ function addLink(parent, href, text) {
   parent.append(link);
 }
 
+function getInitials(name) {
+  const initials = String(name || '')
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map(part => part[0])
+    .join('');
+
+  return initials.toUpperCase() || '?';
+}
+
+function createAvatar(profile) {
+  const avatarContainer = document.createElement('div');
+  avatarContainer.className = 'avatar';
+
+  const avatar = document.createElement('img');
+  avatar.className = 'avatar-image';
+  avatar.alt = `${profile.name} avatar`;
+  avatar.loading = 'lazy';
+
+  const fallback = document.createElement('span');
+  fallback.className = 'avatar-fallback';
+  fallback.textContent = getInitials(profile.name);
+  fallback.hidden = true;
+  fallback.setAttribute('role', 'img');
+  fallback.setAttribute('aria-label', `${profile.name} avatar unavailable`);
+
+  avatar.addEventListener('error', () => {
+    avatar.hidden = true;
+    fallback.hidden = false;
+  }, { once: true });
+
+  avatar.src = `https://github.com/${encodeURIComponent(profile.github)}.png?size=128`;
+  avatarContainer.append(avatar, fallback);
+  return avatarContainer;
+}
+
 function renderContributor(profile) {
   const card = document.createElement('article');
   card.className = 'card';
 
-  const avatar = document.createElement('img');
-  avatar.src = `https://github.com/${encodeURIComponent(profile.github)}.png?size=128`;
-  avatar.alt = `${profile.name} avatar`;
-  avatar.loading = 'lazy';
-  card.append(avatar);
+  card.append(createAvatar(profile));
 
   addText(card, 'h3', profile.name);
   addText(card, 'p', `@${profile.github}`, 'meta');

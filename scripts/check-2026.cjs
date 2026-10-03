@@ -11,9 +11,17 @@ const html = read('index.html');
 const names = JSON.parse(read('data/contributors/index.json'));
 const files = fs.readdirSync(contributorsDir);
 const contributorFiles = files.filter(file => file.endsWith('.json') && file !== '_template.json' && file !== 'index.json');
+const script = read('assets/2026.js');
+const styles = read('assets/2026.css');
 
 assert.equal((html.match(/<h1\b/g) || []).length, 1, '2026 page should have one h1');
-assert(read('assets/2026.js').includes('data/contributors/index.json'), '2026 script should load the generated contributor index');
+assert(script.includes('data/contributors/index.json'), '2026 script should load the generated contributor index');
+assert(script.includes("avatar.addEventListener('error'"), 'avatars should handle failed image requests');
+assert(script.includes('avatar.hidden = true'), 'failed avatar images should be hidden');
+assert(script.includes('fallback.hidden = false'), 'failed avatar images should reveal a fallback');
+assert(script.includes("fallback.setAttribute('aria-label'"), 'avatar fallbacks should have accessible text');
+assert.match(styles, /\.avatar\s*{[^}]*width:\s*64px;[^}]*height:\s*64px;/s, 'avatar containers should preserve their dimensions');
+assert.match(styles, /\.avatar-image\[hidden\][^{]*{[^}]*display:\s*none;/s, 'failed avatar images should not remain visible');
 assert(Array.isArray(names), 'generated index should be an array of contributor names');
 assert(!names.includes('your-github-username'), 'template must not be rendered');
 assert.equal(names.length, contributorFiles.length, 'generated contributor count should match real JSON files');
