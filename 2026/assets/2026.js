@@ -1,5 +1,6 @@
 const container = document.querySelector('#contributors');
 const status = document.querySelector('#status');
+let profiles = [];
 
 const roleLabels = {
   'first-contribution': 'First contribution',
@@ -98,16 +99,43 @@ function safeName(name) {
 async function loadContributors() {
   const response = await fetch('data/contributors/index.json');
   const names = await response.json();
-  const profiles = await Promise.all(names.map(async name => {
+  profiles = await Promise.all(names.map(async name => {
     const safe = safeName(name);
     const response = await fetch(`data/contributors/${safe}.json`);
     return response.json();
   }));
 
   container.replaceChildren(...profiles.map(renderContributor));
-  status.textContent = `${profiles.length} contributor${profiles.length === 1 ? '' : 's'}`;
+  status.textContent = `${profiles.length} total contributor${profiles.length === 1 ? '' : 's'}`;
 }
 
 loadContributors().catch(() => {
   status.textContent = 'Could not load contributors.';
 });
+
+// Search Function
+const title = document.querySelector("#contributors-title"); 
+const searchBox = document.createElement("input");
+searchBox.type = "text";
+searchBox.placeholder = "Search";
+searchBox.classList.add("searchBox");
+title.insertAdjacentElement("afterend",searchBox);
+
+searchBox.addEventListener("keyup",(e)=>{
+    container.innerHTML="";
+    [...profiles].filter(a => 
+      a.name
+      .toLowerCase()
+      .includes(e.target.value.trim().toLowerCase()) 
+      || 
+      a.github
+      .toLowerCase()
+      .includes(e.target.value.trim().toLowerCase())
+    ).forEach(a=>{
+        container.append(renderContributor(a));
+    });
+    if(container.innerHTML == ""){
+      container.append(document.createElement("p").textContent="No contributors found.");
+    }
+})
+
