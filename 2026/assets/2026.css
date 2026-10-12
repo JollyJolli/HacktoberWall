@@ -1,9 +1,60 @@
+:root {
+  color-scheme: light;
+  --bg: #fafafa;
+  --text: #111;
+  --muted: #555;
+  --card: #fff;
+  --border: #ddd;
+  --link: #0645ad;
+  --avatar-bg: #e8e8e8;
+  --avatar-text: #333;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #121212;
+  --text: #ececec;
+  --muted: #b0b0b0;
+  --card: #1e1e1e;
+  --border: #3a3a3a;
+  --link: #8ab4f8;
+  --avatar-bg: #333;
+  --avatar-text: #ececec;
+}
+
+a {
+  color: var(--link);
+}
+
+code {
+  background: var(--avatar-bg);
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+
+.theme-toggle {
+  float: right;
+  padding: 6px 12px;
+  font: inherit;
+  color: var(--text);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.theme-toggle:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--link);
+  outline-offset: 2px;
+}
+
 body {
   margin: 0;
   padding: 24px;
   font-family: Arial, sans-serif;
-  background: #fafafa;
-  color: #111;
+  background: var(--bg);
+  color: var(--text);
 }
 
 main {
@@ -27,8 +78,8 @@ h2 {
 }
 
 .card {
-  border: 1px solid #ddd;
-  background: white;
+  border: 1px solid var(--border);
+  background: var(--card);
   padding: 16px;
 }
 
@@ -53,8 +104,8 @@ h2 {
   box-sizing: border-box;
   align-items: center;
   justify-content: center;
-  background: #e8e8e8;
-  color: #333;
+  background: var(--avatar-bg);
+  color: var(--avatar-text);
   font-size: 20px;
   font-weight: 700;
   letter-spacing: 1px;
@@ -78,7 +129,7 @@ h2 {
 }
 
 .meta {
-  color: #555;
+  color: var(--muted);
   font-size: 14px;
 }
 
@@ -92,5 +143,5 @@ h2 {
 
 footer {
   margin-top: 48px;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid var(--border);
 }
