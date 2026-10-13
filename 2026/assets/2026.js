@@ -139,3 +139,18 @@ searchBox.addEventListener("keyup",(e)=>{
     }
 })
 
+const root = document.documentElement;
+const toggle = document.querySelector('#theme-toggle');
+
+function syncToggle() {
+  const dark = root.dataset.theme === 'dark';
+  toggle.textContent = dark ? 'Light mode' : 'Dark mode';
+  toggle.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+}
+
+toggle.addEventListener('click', () => {
+  root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+  try { localStorage.setItem('theme', root.dataset.theme); } catch (e) {}
+  syncToggle();
+});
+syncToggle();
