@@ -159,3 +159,11 @@ footer {
   font-size: large;
   border: 1px solid var(--border);
 }
+@media screen and (width < 500px) {
+  .searchBox{
+    font-size: medium;
+  }
+  .FilterBox{
+    font-size: medium;
+  }
+}

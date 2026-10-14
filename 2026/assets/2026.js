@@ -114,7 +114,7 @@ loadContributors().catch(() => {
 });
 
 // Array containing the profiles
-let chosenProfiles = [...profiles];
+let chosenProfiles = [];
 
 // Search Function
 const title = document.querySelector("#contributors-title");
@@ -175,7 +175,6 @@ function choosingProfiles(s,f) {
       break;
     }
     case "Random":{
-      
       chosenProfiles = shuffleArray([...chosenProfiles]);
       console.log("123");
     }
