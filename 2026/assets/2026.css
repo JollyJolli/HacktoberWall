@@ -150,4 +150,12 @@ footer {
 .searchBox{
   margin-bottom: 10px;
   font-size: large;
+  border: 1px solid var(--border);
+}
+
+/* Filter Function */
+.FilterBox{
+  margin-left: 10px;
+  font-size: large;
+  border: 1px solid var(--border);
 }
