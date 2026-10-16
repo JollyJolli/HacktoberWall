@@ -68,7 +68,7 @@ function renderContributor(profile) {
   card.className = 'card';
 
   card.append(createAvatar(profile));
-
+  card.dataset.id = profile.github; // Github Username are unique
   addText(card, 'h3', profile.name);
   addText(card, 'p', `@${profile.github}`, 'meta');
   addText(card, 'p', [roleLabels[profile.role] || profile.role, profile.country].filter(Boolean).join(' - '), 'meta');
@@ -113,32 +113,125 @@ loadContributors().catch(() => {
   status.textContent = 'Could not load contributors.';
 });
 
+// Array containing the filtered profiles
+let chosenProfiles = [];
+
 // Search Function
-const title = document.querySelector("#contributors-title"); 
+const title = document.querySelector("#contributors-title");
 const searchBox = document.createElement("input");
 searchBox.type = "text";
 searchBox.placeholder = "Search";
 searchBox.classList.add("searchBox");
-title.insertAdjacentElement("afterend",searchBox);
+title.insertAdjacentElement("afterend", searchBox);
 
-searchBox.addEventListener("keyup",(e)=>{
-    container.innerHTML="";
-    [...profiles].filter(a => 
-      a.name
-      .toLowerCase()
-      .includes(e.target.value.trim().toLowerCase()) 
-      || 
-      a.github
-      .toLowerCase()
-      .includes(e.target.value.trim().toLowerCase())
-    ).forEach(a=>{
-        container.append(renderContributor(a));
-    });
-    if(container.innerHTML == ""){
-      container.append(document.createElement("p").textContent="No contributors found.");
-    }
+searchBox.addEventListener("keyup", (e) => {
+  choosingProfiles(searchBox.value, filter.value);
 })
 
+// Filter
+const filter = document.createElement("select");
+filter.classList.add("FilterBox");
+searchBox.insertAdjacentElement("afterend", filter);
+createFilterSelect();
+function createFilterSelect() {
+  const option = ["Default", "Names A-Z", "Names Z-A", "Github names A-Z", "Github names Z-A", "Random"];
+  option.forEach((a) => {
+    const opt = document.createElement("option");
+    opt.textContent = a;
+    filter.append(opt);
+  })
+}
+
+filter.addEventListener("change", () => {
+  choosingProfiles(searchBox.value, filter.value);
+})
+
+function choosingProfiles(s, f) {
+  container.innerHTML = "";
+  chosenProfiles = [...profiles].filter(a =>
+    a.name
+      .toLowerCase()
+      .includes(s.trim().toLowerCase())
+    ||
+    a.github
+      .toLowerCase()
+      .includes(s.trim().toLowerCase())
+  );
+  switch (f) {
+    case "Names A-Z": {
+      chosenProfiles = [...chosenProfiles].sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
+      break;
+    }
+    case "Names Z-A": {
+      chosenProfiles = [...chosenProfiles].sort((a, b) => b.name.toLowerCase().localeCompare(a.name.toLowerCase()));
+      break;
+    }
+    case "Github names A-Z": {
+      chosenProfiles = [...chosenProfiles].sort((a, b) => a.github.toLowerCase().localeCompare(b.github.toLowerCase()));
+      break;
+    }
+    case "Github names Z-A": {
+      chosenProfiles = [...chosenProfiles].sort((a, b) => b.github.toLowerCase().localeCompare(a.github.toLowerCase()));
+      break;
+    }
+    case "Random": {
+      chosenProfiles = shuffleArray([...chosenProfiles]);
+      console.log("123");
+    }
+  }
+  chosenProfiles.forEach(a => {
+    container.append(renderContributor(a));
+  });
+  if (container.innerHTML == "") {
+    container.append(document.createElement("p").textContent = "No contributors found.");
+  }
+}
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    console.log(j);
+
+    let temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+    console.log(array);
+
+  }
+  return array;
+}
+// Random Contributor Selector
+const randomContributor = document.createElement("button");
+randomContributor.textContent = "Random Contributor";
+filter.insertAdjacentElement("afterend", randomContributor);
+randomContributor.classList.add("Btn");
+randomContributor.classList.add("randomContributingButton");
+
+randomContributor.addEventListener("click", () => {
+  choosingProfiles(searchBox.value, filter.value);
+  if(choosingProfiles.length == 0){
+    return;
+  }
+  let a = chosenProfiles[Math.floor(Math.random() * (chosenProfiles.length))];
+  findingRandomContributor(document.querySelector(`[data-id=${a.github}]`));
+});
+function findingRandomContributor(a) {
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  a.scrollIntoView({
+    block: "center",
+    behavior: prefersReducedMotion ? "instant" : "smooth"
+  });
+  glowingEffect(a);
+}
+function glowingEffect(a) {
+  a.classList.add("glowingEffect");
+  setTimeout(() => {
+    a.classList.remove("glowingEffect");
+  }, 6000);
+}
+// Light-Dark Mode
 const root = document.documentElement;
 const toggle = document.querySelector('#theme-toggle');
 
@@ -150,7 +243,7 @@ function syncToggle() {
 
 toggle.addEventListener('click', () => {
   root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
-  try { localStorage.setItem('theme', root.dataset.theme); } catch (e) {}
+  try { localStorage.setItem('theme', root.dataset.theme); } catch (e) { }
   syncToggle();
 });
 syncToggle();
