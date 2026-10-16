@@ -68,7 +68,7 @@ function renderContributor(profile) {
   card.className = 'card';
 
   card.append(createAvatar(profile));
-
+  card.dataset.id = profile.github; // Github Username are unique
   addText(card, 'h3', profile.name);
   addText(card, 'p', `@${profile.github}`, 'meta');
   addText(card, 'p', [roleLabels[profile.role] || profile.role, profile.country].filter(Boolean).join(' - '), 'meta');
@@ -113,7 +113,7 @@ loadContributors().catch(() => {
   status.textContent = 'Could not load contributors.';
 });
 
-// Array containing the profiles
+// Array containing the filtered profiles
 let chosenProfiles = [];
 
 // Search Function
@@ -125,7 +125,7 @@ searchBox.classList.add("searchBox");
 title.insertAdjacentElement("afterend", searchBox);
 
 searchBox.addEventListener("keyup", (e) => {
-  choosingProfiles(searchBox.value,filter.value);
+  choosingProfiles(searchBox.value, filter.value);
 })
 
 // Filter
@@ -134,7 +134,7 @@ filter.classList.add("FilterBox");
 searchBox.insertAdjacentElement("afterend", filter);
 createFilterSelect();
 function createFilterSelect() {
-  const option = ["Default", "Names A-Z", "Names Z-A", "Github names A-Z","Github names Z-A", "Random"];
+  const option = ["Default", "Names A-Z", "Names Z-A", "Github names A-Z", "Github names Z-A", "Random"];
   option.forEach((a) => {
     const opt = document.createElement("option");
     opt.textContent = a;
@@ -142,39 +142,39 @@ function createFilterSelect() {
   })
 }
 
-filter.addEventListener("change",()=>{
-  choosingProfiles(searchBox.value,filter.value);
+filter.addEventListener("change", () => {
+  choosingProfiles(searchBox.value, filter.value);
 })
 
-function choosingProfiles(s,f) {
+function choosingProfiles(s, f) {
   container.innerHTML = "";
   chosenProfiles = [...profiles].filter(a =>
     a.name
-    .toLowerCase()
-    .includes(s.trim().toLowerCase())
+      .toLowerCase()
+      .includes(s.trim().toLowerCase())
     ||
     a.github
-    .toLowerCase()
-    .includes(s.trim().toLowerCase())
+      .toLowerCase()
+      .includes(s.trim().toLowerCase())
   );
   switch (f) {
-    case "Names A-Z":{
-      chosenProfiles = [...chosenProfiles].sort((a,b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
+    case "Names A-Z": {
+      chosenProfiles = [...chosenProfiles].sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
       break;
     }
-    case "Names Z-A":{
-      chosenProfiles = [...chosenProfiles].sort((a,b) => b.name.toLowerCase().localeCompare(a.name.toLowerCase()));
+    case "Names Z-A": {
+      chosenProfiles = [...chosenProfiles].sort((a, b) => b.name.toLowerCase().localeCompare(a.name.toLowerCase()));
       break;
     }
-    case "Github names A-Z":{
-      chosenProfiles = [...chosenProfiles].sort((a,b) => a.github.toLowerCase().localeCompare(b.github.toLowerCase()));
+    case "Github names A-Z": {
+      chosenProfiles = [...chosenProfiles].sort((a, b) => a.github.toLowerCase().localeCompare(b.github.toLowerCase()));
       break;
     }
-    case "Github names Z-A":{
-      chosenProfiles = [...chosenProfiles].sort((a,b) => b.github.toLowerCase().localeCompare(a.github.toLowerCase()));
+    case "Github names Z-A": {
+      chosenProfiles = [...chosenProfiles].sort((a, b) => b.github.toLowerCase().localeCompare(a.github.toLowerCase()));
       break;
     }
-    case "Random":{
+    case "Random": {
       chosenProfiles = shuffleArray([...chosenProfiles]);
       console.log("123");
     }
@@ -186,20 +186,52 @@ function choosingProfiles(s,f) {
     container.append(document.createElement("p").textContent = "No contributors found.");
   }
 }
-function shuffleArray(array){
-  for(let i=array.length-1; i>0; i--){
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
     console.log(j);
-    
+
     let temp = array[i];
     array[i] = array[j];
     array[j] = temp;
     console.log(array);
-    
+
   }
   return array;
 }
+// Random Contributor Selector
+const randomContributor = document.createElement("button");
+randomContributor.textContent = "Random Contributor";
+filter.insertAdjacentElement("afterend", randomContributor);
+randomContributor.classList.add("Btn");
+randomContributor.classList.add("randomContributingButton");
 
+randomContributor.addEventListener("click", () => {
+  choosingProfiles(searchBox.value, filter.value);
+  if(choosingProfiles.length == 0){
+    return;
+  }
+  let a = chosenProfiles[Math.floor(Math.random() * (chosenProfiles.length))];
+  findingRandomContributor(document.querySelector(`[data-id=${a.github}]`));
+});
+function findingRandomContributor(a) {
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  a.scrollIntoView({
+    block: "center",
+    behavior: prefersReducedMotion ? "instant" : "smooth"
+  });
+  glowingEffect(a);
+}
+function glowingEffect(a) {
+  a.classList.add("glowingEffect");
+  setTimeout(() => {
+    a.classList.remove("glowingEffect");
+  }, 6000);
+}
+// Light-Dark Mode
 const root = document.documentElement;
 const toggle = document.querySelector('#theme-toggle');
 
