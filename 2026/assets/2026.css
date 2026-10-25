@@ -150,4 +150,44 @@ footer {
 .searchBox{
   margin-bottom: 10px;
   font-size: large;
+  border: 1px solid var(--border);
+}
+
+/* Filter Function */
+.FilterBox{
+  margin: 10px;
+  font-size: large;
+  border: 1px solid var(--border);
+}
+.Btn{
+  padding: 4px;
+  font-size: medium;
+}
+.randomContributingButton{
+  margin-bottom: 10px;
+}
+.glowingEffect{
+  animation: glowCard 6s linear;
+}
+@keyframes glowCard {
+ 0%,100%{
+    outline: 0px solid transparent;
+  }
+  10%,90%{
+    outline: 2px solid silver;
+  }
+}
+@media (prefers-reduced-motion: reduce){
+  .glowingEffect{
+    animation: none;
+    outline: 2px solid silver;
+  }
+}
+@media screen and (width < 500px) {
+  .searchBox{
+    font-size: medium;
+  }
+  .FilterBox{
+    font-size: medium;
+  }
 }
