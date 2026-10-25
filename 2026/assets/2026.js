@@ -1,6 +1,8 @@
 const container = document.querySelector('#contributors');
 const status = document.querySelector('#status');
+const retryButton = document.querySelector('#retry-loading');
 let profiles = [];
+const loadedProfiles = new Map();
 
 const roleLabels = {
   'first-contribution': 'First contribution',
@@ -118,23 +120,91 @@ function renderStatistics() {
   statistics.hidden = false;
 }
 
-async function loadContributors() {
-  const response = await fetch('data/contributors/index.json');
-  const names = await response.json();
-  profiles = await Promise.all(names.map(async name => {
-    const safe = safeName(name);
-    const response = await fetch(`data/contributors/${safe}.json`);
-    return response.json();
-  }));
-
-  container.replaceChildren(...profiles.map(renderContributor));
-  status.textContent = `${profiles.length} total contributor${profiles.length === 1 ? '' : 's'}`;
-  renderStatistics();
+function setLoadingState() {
+  status.className = 'status status-loading';
+  status.textContent = 'Loading contributors...';
+  container.setAttribute('aria-busy', 'true');
+  if (retryButton) {
+    retryButton.hidden = true;
+    retryButton.disabled = true;
+  }
 }
 
-loadContributors().catch(() => {
-  status.textContent = 'Could not load contributors.';
-});
+function renderProfiles() {
+  profiles = [...loadedProfiles.values()];
+  container.replaceChildren(...profiles.map(renderContributor));
+}
+
+function setFinishedState() {
+  container.setAttribute('aria-busy', 'false');
+  if (retryButton) retryButton.disabled = false;
+}
+
+async function loadContributors() {
+  setLoadingState();
+  try {
+    const response = await fetch('data/contributors/index.json');
+    if (response.ok === false) throw new Error('Contributor list request failed');
+    const names = await response.json();
+    if (!Array.isArray(names)) throw new Error('Contributor list is invalid');
+
+    if (names.length === 0) {
+      loadedProfiles.clear();
+      renderProfiles();
+      status.className = 'status status-empty';
+      status.textContent = 'No contributors yet.';
+      renderStatistics();
+      return;
+    }
+
+    const currentNames = new Set(names.map(safeName));
+    for (const name of loadedProfiles.keys()) {
+      if (!currentNames.has(name)) loadedProfiles.delete(name);
+    }
+
+    const missingNames = names.filter(name => !loadedProfiles.has(safeName(name)));
+    const results = await Promise.allSettled(missingNames.map(async name => {
+      const safe = safeName(name);
+      const response = await fetch(`data/contributors/${safe}.json`);
+      if (response.ok === false) throw new Error(`Contributor profile request failed: ${safe}`);
+      return [safe, await response.json()];
+    }));
+    const failedNames = [];
+    for (let i = 0; i < results.length; i++) {
+      const result = results[i];
+      if (result.status === 'fulfilled') loadedProfiles.set(...result.value);
+      else failedNames.push(missingNames[i]);
+    }
+
+    renderProfiles();
+    if (failedNames.length > 0) {
+      status.className = profiles.length ? 'status status-partial' : 'status status-error';
+      status.textContent = profiles.length
+        ? `Loaded ${profiles.length} of ${names.length} contributors. ${failedNames.length} profile${failedNames.length === 1 ? '' : 's'} could not be loaded.`
+        : 'Could not load contributors.';
+      if (retryButton) retryButton.hidden = false;
+    } else {
+      status.className = 'status status-success';
+      status.textContent = `${profiles.length} total contributor${profiles.length === 1 ? '' : 's'}`;
+    }
+    if (failedNames.length > 0) {
+      document.querySelector('#contributor-stats').hidden = true;
+    } else {
+      renderStatistics();
+    }
+  } catch {
+    status.className = 'status status-error';
+    status.textContent = profiles.length
+      ? `Could not refresh contributors. ${profiles.length} loaded profile${profiles.length === 1 ? '' : 's'} remain visible.`
+      : 'Could not load contributors.';
+    if (retryButton) retryButton.hidden = false;
+  } finally {
+    setFinishedState();
+  }
+}
+
+if (retryButton) retryButton.addEventListener('click', loadContributors);
+loadContributors();
 
 // Array containing the filtered profiles
 let chosenProfiles = [];

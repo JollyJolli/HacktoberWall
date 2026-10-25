@@ -25,8 +25,9 @@
     <section aria-labelledby="contributors-title">
       <h2 id="contributors-title">Contributors</h2>
       <p id="contributor-stats" class="meta" role="status" hidden></p>
-      <div id="contributors" class="contributors"></div>
-      <p id="status">Loading contributors...</p>
+      <div id="contributors" class="contributors" aria-busy="true"></div>
+      <p id="status" class="status status-loading" role="status" aria-live="polite" aria-atomic="true">Loading contributors...</p>
+      <button id="retry-loading" class="retry-loading" type="button" hidden>Retry loading contributors</button>
     </section>
 
     <footer>
