@@ -39,3 +39,86 @@ for (const name of names) {
 for (const file of ['assets/2026.js']) execFileSync(process.execPath, ['--check', path.join(edition, file)]);
 assert.equal(execFileSync('git', ['status', '--porcelain', '--untracked-files=all', '--', '2024/'], { cwd: root, encoding: 'utf8' }).trim(), '', 'Protected 2024 edition changed');
 console.log('PASS: 2026 contributor names index, JSON profiles, page wiring, JS syntax, and 2024 integrity.');
+
+assert.match(html, /<p id="contributor-stats" class="meta" role="status" hidden><\/p>/);
+assert(html.indexOf('id="contributor-stats"') < html.indexOf('id="contributors"'), 'Statistics should be above the Wall');
+
+async function checkStatistics() {
+  const vm = require('node:vm');
+  // Run the page script with a minimal DOM, including its real loading and search handlers.
+  class Element {
+    constructor() {
+      this.children = []; this.listeners = {}; this.textContent = ''; this.hidden = false;
+      this.classList = { add() {} }; this.dataset = {};
+    }
+    append(...children) { this.children.push(...children); }
+    replaceChildren(...children) { this.children = children; }
+    set innerHTML(value) { assert.equal(value, ''); this.children = []; }
+    get innerHTML() { return this.children.length ? 'content' : ''; }
+    setAttribute(name, value) { this[name] = value; }
+    addEventListener(name, handler) { this.listeners[name] = handler; }
+    insertAdjacentElement(position, element) { this.inserted = element; }
+  }
+  async function load(data, fail = false) {
+    const elements = Object.fromEntries(['contributors', 'status', 'contributors-title', 'contributor-stats', 'theme-toggle'].map(id => [`#${id}`, new Element()]));
+    elements['#contributor-stats'].hidden = true;
+    const root = new Element();
+    const requests = [];
+    vm.runInNewContext(script, {
+      document: { querySelector: selector => elements[selector], createElement: () => new Element(), documentElement: root },
+      localStorage: { setItem() {} },
+      fetch: async url => {
+        requests.push(url);
+        if (fail === true || fail === url) throw new Error('Load failed');
+        return { json: async () => url.endsWith('/index.json') ? data.map((_, i) => String(i)) : data[Number(url.match(/(\d+)\.json$/)[1])] };
+      }
+    });
+    await new Promise(setImmediate);
+    return { elements, root, requests, statistics: elements['#contributor-stats'] };
+  }
+  const data = names.map(name => JSON.parse(fs.readFileSync(path.join(contributorsDir, `${name}.json`), 'utf8')));
+  const loaded = await load(data);
+  assert(loaded.statistics.textContent.startsWith(`${data.length} contributor`), 'Totals must follow the current contributor index');
+  assert.equal(loaded.statistics.hidden, false);
+  assert.equal(loaded.elements['#contributors'].children.length, data.length);
+  assert.equal(loaded.requests.length, data.length + 1, 'Statistics must not make extra requests');
+  const summary = loaded.statistics.textContent;
+  for (const value of ['NO SUCH CONTRIBUTOR', data[0].github.toUpperCase(), '']) {
+    loaded.elements['#contributors-title'].inserted.listeners.keyup({ target: { value } });
+    assert.equal(loaded.statistics.textContent, summary, 'Search must not change the full-Wall totals');
+    if (value === 'NO SUCH CONTRIBUTOR') assert.equal(loaded.elements['#contributors'].children[0], 'No contributors found.');
+    else if (value) assert.equal(loaded.elements['#contributors'].children[0].className, 'card', 'Username search should still match regardless of case');
+  }
+  assert.equal(loaded.elements['#contributors'].children.length, data.length, 'Clearing search restores cards');
+  loaded.elements['#theme-toggle'].listeners.click();
+  assert.equal(loaded.root.dataset.theme, 'dark');
+  loaded.elements['#theme-toggle'].listeners.click();
+  assert.equal(loaded.root.dataset.theme, 'light');
+  const profile = { github: 'example', name: 'Example', message: 'Hello', links: { github: 'https://github.com/example' } };
+  const fixture = [
+    { ...profile, country: 'India', role: 'first-contribution' },
+    { ...profile, country: 'India', role: 'first-contribution' },
+    { ...profile, country: 'Mexico/Brasil', role: 'builder' },
+    { ...profile, country: 'India', role: 'contributor' }
+  ];
+  assert.equal((await load(fixture)).statistics.textContent, '4 contributors · 3 countries · 2 first contributions · 1 contributor-role profile · 1 builder');
+  const expanded = await load([...fixture, { ...profile, role: 'builder' }]);
+  assert.equal(expanded.statistics.textContent, '5 contributors · 3 countries · 2 first contributions · 1 contributor-role profile · 2 builders');
+  const variants = [undefined, null, '', '  ', ' India ', 'INDIA', 'New   Zealand', 'new zealand', ' Mexico / Brasil / '];
+  const mixed = await load(variants.map(country => ({ ...profile, country, role: 'builder' })));
+  assert.equal(mixed.statistics.textContent, '9 contributors · 4 countries · 0 first contributions · 0 contributor-role profiles · 9 builders');
+  // Mexico/Brasil is deliberately two represented countries, not a third country name.
+  const single = await load([{ ...profile, country: 'Mexico/Brasil', role: 'contributor' }]);
+  assert.equal(single.statistics.textContent, '1 contributor · 2 countries · 0 first contributions · 1 contributor-role profile · 0 builders');
+  assert.equal((await load([fixture[0]])).statistics.textContent, '1 contributor · 1 country · 1 first contribution · 0 contributor-role profiles · 0 builders');
+  const empty = await load([]);
+  assert.equal(empty.statistics.textContent, '0 contributors · 0 countries · 0 first contributions · 0 contributor-role profiles · 0 builders');
+  const failed = await load(data, true);
+  assert.equal(failed.statistics.hidden, true, 'Failed loads must not display misleading zero totals');
+  assert.equal(failed.elements['#status'].textContent, 'Could not load contributors.');
+  const failedProfile = await load(fixture, 'data/contributors/0.json');
+  assert.equal(failedProfile.statistics.hidden, true, 'Partial profile loads must not show complete totals');
+  assert.equal(failedProfile.elements['#status'].textContent, 'Could not load contributors.');
+  console.log('PASS: loaded-profile statistics, optional countries, roles, empty/error states, search, and theme handlers.');
+}
+checkStatistics().catch(error => { console.error(error); process.exitCode = 1; });
