@@ -8,6 +8,7 @@
   --link: #0645ad;
   --avatar-bg: #e8e8e8;
   --avatar-text: #333;
+  --error: #a33422;
 }
 
 :root[data-theme="dark"] {
@@ -20,6 +21,7 @@
   --link: #8ab4f8;
   --avatar-bg: #333;
   --avatar-text: #ececec;
+  --error: #ff9b87;
 }
 
 a {
@@ -131,6 +133,34 @@ h2 {
 .meta {
   color: var(--muted);
   font-size: 14px;
+}
+
+.status {
+  margin: 12px 0;
+}
+
+.status-loading {
+  color: var(--muted);
+}
+
+.status-partial,
+.status-error {
+  color: var(--error);
+}
+
+.retry-loading {
+  margin: 0 0 12px;
+  padding: 6px 10px;
+  font: inherit;
+  color: var(--text);
+  background: var(--card);
+  border: 1px solid var(--border);
+  cursor: pointer;
+}
+
+.retry-loading:focus-visible {
+  outline: 2px solid var(--link);
+  outline-offset: 2px;
 }
 
 .learned {
