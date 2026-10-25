@@ -115,7 +115,9 @@ async function checkStatistics() {
   assert.equal(loaded.requests.length, data.length + 1, 'Statistics must not make extra requests');
   const summary = loaded.statistics.textContent;
   for (const value of ['NO SUCH CONTRIBUTOR', data[0].github.toUpperCase(), '']) {
-    loaded.elements['#contributors-title'].inserted.listeners.keyup({ target: { value } });
+    const input = loaded.elements['#contributors-title'].inserted;
+    input.value = value;
+    input.listeners.keyup({ target: input });
     assert.equal(loaded.statistics.textContent, summary, 'Search must not change the full-Wall totals');
     if (value === 'NO SUCH CONTRIBUTOR') assert.equal(loaded.elements['#contributors'].children[0], 'No contributors found.');
     else if (value) assert.equal(loaded.elements['#contributors'].children[0].className, 'card', 'Username search should still match regardless of case');
@@ -149,7 +151,7 @@ async function checkStatistics() {
   assert.equal(failed.elements['#status'].textContent, 'Could not load contributors.');
   const failedProfile = await load(fixture, 'data/contributors/0.json');
   assert.equal(failedProfile.statistics.hidden, true, 'Partial profile loads must not show complete totals');
-  assert.equal(failedProfile.elements['#status'].textContent, 'Could not load contributors.');
+  assert.equal(failedProfile.elements['#status'].textContent, 'Loaded 3 of 4 contributors. 1 profile could not be loaded.');
   console.log('PASS: loaded-profile statistics, optional countries, roles, empty/error states, search, and theme handlers.');
 }
 checkStatistics().catch(error => { console.error(error); process.exitCode = 1; });
