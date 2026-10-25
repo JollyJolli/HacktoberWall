@@ -96,6 +96,28 @@ function safeName(name) {
   return String(name).toLowerCase().replace(/[^a-z0-9-]/g, '');
 }
 
+function renderStatistics() {
+  const countries = new Set();
+  for (const profile of profiles) {
+    if (typeof profile.country !== 'string') continue;
+    // A slash-separated value such as Mexico/Brasil represents both countries.
+    for (const country of profile.country.split('/')) {
+      const normalized = country.trim().replace(/\s+/g, ' ').toLowerCase();
+      if (normalized) countries.add(normalized);
+    }
+  }
+  const countRole = role => profiles.filter(profile => profile.role === role).length;
+  const statistics = document.querySelector('#contributor-stats');
+  statistics.textContent = [
+    [profiles.length, 'contributor'],
+    [countries.size, 'country', 'countries'],
+    [countRole('first-contribution'), 'first contribution'],
+    [countRole('contributor'), 'contributor-role profile'],
+    [countRole('builder'), 'builder']
+  ].map(([count, singular, plural = `${singular}s`]) => `${count} ${count === 1 ? singular : plural}`).join(' · ');
+  statistics.hidden = false;
+}
+
 async function loadContributors() {
   const response = await fetch('data/contributors/index.json');
   const names = await response.json();
@@ -107,6 +129,7 @@ async function loadContributors() {
 
   container.replaceChildren(...profiles.map(renderContributor));
   status.textContent = `${profiles.length} total contributor${profiles.length === 1 ? '' : 's'}`;
+  renderStatistics();
 }
 
 loadContributors().catch(() => {
