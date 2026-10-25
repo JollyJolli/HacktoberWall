@@ -141,6 +141,49 @@ h2 {
   margin-right: 10px;
 }
 
+.details-button,
+.dialog-close {
+  padding: 6px 10px;
+  font: inherit;
+  color: var(--text);
+  background: var(--card);
+  border: 1px solid var(--border);
+  cursor: pointer;
+}
+
+.details-button:focus-visible,
+.dialog-close:focus-visible {
+  outline: 2px solid var(--link);
+  outline-offset: 2px;
+}
+
+.contributor-dialog {
+  box-sizing: border-box;
+  width: 600px;
+  max-width: calc(100vw - 32px);
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 20px;
+  color: var(--text);
+  background: var(--card);
+  border: 1px solid var(--border);
+}
+
+.contributor-dialog::backdrop {
+  background: rgb(0 0 0 / 62%);
+}
+
+.dialog-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.dialog-heading h2 {
+  margin-top: 0;
+}
+
 footer {
   margin-top: 48px;
   border-top: 1px solid var(--border);
