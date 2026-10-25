@@ -27,6 +27,14 @@ function addLink(parent, href, text) {
   parent.append(link);
 }
 
+function addSafeDialogLink(parent, href, text) {
+  if (typeof href !== 'string') return;
+  let url;
+  try { url = new URL(href); } catch { return; }
+  if (url.protocol !== 'https:') return;
+  addLink(parent, url.href, text);
+}
+
 function getInitials(name) {
   const initials = String(name || '')
     .trim()
@@ -91,8 +99,58 @@ function renderContributor(profile) {
   addLink(links, profile.links?.linkedin, 'LinkedIn');
   if (links.children.length) card.append(links);
 
+  const detailsButton = document.createElement('button');
+  detailsButton.className = 'details-button';
+  detailsButton.type = 'button';
+  detailsButton.textContent = 'View details';
+  detailsButton.setAttribute('aria-haspopup', 'dialog');
+  detailsButton.addEventListener('click', () => openContributorDialog(profile, detailsButton));
+  card.append(detailsButton);
+
   return card;
 }
+
+const contributorDialog = document.querySelector('#contributor-dialog');
+const dialogTitle = document.querySelector('#contributor-dialog-title');
+const dialogContent = document.querySelector('#contributor-dialog-content');
+const dialogClose = document.querySelector('#contributor-dialog-close');
+let dialogTrigger = null;
+
+function openContributorDialog(profile, trigger) {
+  dialogTrigger = trigger;
+  dialogTitle.textContent = `${profile.name} details`;
+  dialogContent.replaceChildren();
+  dialogContent.append(createAvatar(profile));
+  addText(dialogContent, 'p', `@${profile.github}`, 'meta');
+  addText(dialogContent, 'p', [roleLabels[profile.role] || profile.role, profile.country].filter(Boolean).join(' - '), 'meta');
+  addText(dialogContent, 'p', profile.message);
+  addText(dialogContent, 'p', profile.bio);
+
+  if (Array.isArray(profile.learned) && profile.learned.length) {
+    const list = document.createElement('ul');
+    list.className = 'learned';
+    for (const item of profile.learned) addText(list, 'li', item);
+    dialogContent.append(list);
+  }
+
+  const links = document.createElement('p');
+  links.className = 'links';
+  addSafeDialogLink(links, profile.links?.github, 'GitHub');
+  addSafeDialogLink(links, profile.links?.website, 'Website');
+  addSafeDialogLink(links, profile.links?.linkedin, 'LinkedIn');
+  if (links.children.length) dialogContent.append(links);
+
+  contributorDialog.showModal();
+  dialogTitle.focus();
+}
+
+if (dialogClose && contributorDialog) dialogClose.addEventListener('click', () => contributorDialog.close());
+if (contributorDialog) contributorDialog.addEventListener('close', () => {
+  const trigger = dialogTrigger;
+  dialogTrigger = null;
+  if (trigger?.isConnected) trigger.focus();
+  else searchBox.focus();
+});
 
 function safeName(name) {
   return String(name).toLowerCase().replace(/[^a-z0-9-]/g, '');
