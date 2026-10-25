@@ -14,6 +14,37 @@ const contributorFiles = files.filter(file => file.endsWith('.json') && file !==
 const script = read('assets/2026.js');
 const styles = read('assets/2026.css');
 
+const pageUrl = 'https://hacktoberwall.formen.cc/2026/';
+const head = html.split('</head>')[0];
+function metadata(pattern, expected) {
+  const matches = [...head.matchAll(pattern)];
+  assert.equal(matches.length, 1, `Expected one ${pattern}`);
+  assert.equal(matches[0][1], expected);
+}
+const title = 'HacktoberWall 2026';
+const description = 'Join HacktoberWall 2026, an open-source contributor wall for first contributions, community contributors, and builders.';
+const imageUrl = 'https://hacktoberwall.formen.cc/assets/social.png';
+const imageAlt = 'HacktoberWall: 2024, a pause in 2025, and the return in 2026.';
+metadata(/<title>([^<]+)<\/title>/g, title);
+metadata(/<link rel="canonical" href="([^"]+)"/g, pageUrl);
+metadata(/<link rel="icon" href="([^"]+)" type="image\/svg\+xml"/g, '../assets/favicon.svg');
+for (const [key, value] of Object.entries({
+  description, 'twitter:card': 'summary_large_image', 'twitter:title': title,
+  'twitter:description': description, 'twitter:image': imageUrl, 'twitter:image:alt': imageAlt
+})) metadata(new RegExp(`<meta name="${key}" content="([^"]+)"`, 'g'), value);
+for (const [key, value] of Object.entries({
+  type: 'website', site_name: 'HacktoberWall', title, description, url: pageUrl,
+  image: imageUrl, 'image:width': '1200', 'image:height': '630', 'image:alt': imageAlt
+})) metadata(new RegExp(`<meta property="og:${key}" content="([^"]+)"`, 'g'), value);
+for (const asset of [imageUrl, new URL('../assets/favicon.svg', pageUrl).href]) {
+  const url = new URL(asset);
+  assert.equal(url.origin, new URL(pageUrl).origin, 'Sharing assets should use the canonical host');
+  assert(fs.existsSync(path.join(root, url.pathname)), `Missing repository-owned asset: ${asset}`);
+}
+const image = fs.readFileSync(path.join(root, 'assets/social.png'));
+assert.equal(image.readUInt32BE(16), 1200, 'Open Graph image width should match the asset');
+assert.equal(image.readUInt32BE(20), 630, 'Open Graph image height should match the asset');
+
 assert.equal((html.match(/<h1\b/g) || []).length, 1, '2026 page should have one h1');
 assert(script.includes('data/contributors/index.json'), '2026 script should load the generated contributor index');
 assert(script.includes("avatar.addEventListener('error'"), 'avatars should handle failed image requests');
