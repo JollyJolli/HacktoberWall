@@ -80,24 +80,44 @@ async function checkStatistics() {
   class Element {
     constructor() {
       this.children = []; this.listeners = {}; this.textContent = ''; this.hidden = false;
-      this.classList = { add() {} }; this.dataset = {};
+      this.classNames = new Set();
+      this.classList = {
+        add: name => this.classNames.add(name),
+        remove: name => this.classNames.delete(name),
+        contains: name => this.classNames.has(name)
+      };
+      this.dataset = {}; this.attributes = {};
     }
     append(...children) { this.children.push(...children); }
     replaceChildren(...children) { this.children = children; }
     set innerHTML(value) { assert.equal(value, ''); this.children = []; }
     get innerHTML() { return this.children.length ? 'content' : ''; }
-    setAttribute(name, value) { this[name] = value; }
+    setAttribute(name, value) { this.attributes[name] = value; }
     addEventListener(name, handler) { this.listeners[name] = handler; }
     insertAdjacentElement(position, element) { this.inserted = element; }
+    scrollIntoView(options) { this.scrollOptions = options; }
   }
-  async function load(data, fail = false) {
+  async function load(data, fail = false, hash = '') {
     const elements = Object.fromEntries(['contributors', 'status', 'contributors-title', 'contributor-stats', 'theme-toggle'].map(id => [`#${id}`, new Element()]));
     elements['#contributor-stats'].hidden = true;
     const root = new Element();
     const requests = [];
+    const timers = [];
+    const windowListeners = {};
+    const window = {
+      location: { hash },
+      addEventListener: (name, handler) => { windowListeners[name] = handler; },
+      matchMedia: () => ({ matches: false })
+    };
     vm.runInNewContext(script, {
-      document: { querySelector: selector => elements[selector], createElement: () => new Element(), documentElement: root },
+      document: {
+        querySelector: selector => elements[selector],
+        getElementById: id => elements['#contributors'].children.find(child => child.id === id) || null,
+        createElement: () => new Element(), documentElement: root
+      },
       localStorage: { setItem() {} },
+      window,
+      setTimeout(callback) { timers.push(callback); return timers.length; },
       fetch: async url => {
         requests.push(url);
         if (fail === true || fail === url) throw new Error('Load failed');
@@ -105,13 +125,19 @@ async function checkStatistics() {
       }
     });
     await new Promise(setImmediate);
-    return { elements, root, requests, statistics: elements['#contributor-stats'] };
+    return { elements, root, requests, statistics: elements['#contributor-stats'], window, windowListeners, timers };
   }
   const data = names.map(name => JSON.parse(fs.readFileSync(path.join(contributorsDir, `${name}.json`), 'utf8')));
   const loaded = await load(data);
   assert(loaded.statistics.textContent.startsWith(`${data.length} contributor`), 'Totals must follow the current contributor index');
   assert.equal(loaded.statistics.hidden, false);
   assert.equal(loaded.elements['#contributors'].children.length, data.length);
+  const jolly = loaded.elements['#contributors'].children.find(card => card.id === 'contributor-jollyjolli');
+  assert(jolly, 'Contributor cards should have stable IDs derived from usernames');
+  const links = jolly.children.find(child => child.className === 'links');
+  const shareLink = links.children.find(child => child.textContent === 'Share profile');
+  assert.equal(shareLink.href, '#JollyJolli', 'Each card should expose a copyable, openable contributor URL');
+  assert.equal(shareLink.attributes['aria-label'], "Share JollyJolli's profile");
   assert.equal(loaded.requests.length, data.length + 1, 'Statistics must not make extra requests');
   const summary = loaded.statistics.textContent;
   for (const value of ['NO SUCH CONTRIBUTOR', data[0].github.toUpperCase(), '']) {
@@ -123,6 +149,34 @@ async function checkStatistics() {
     else if (value) assert.equal(loaded.elements['#contributors'].children[0].className, 'card', 'Username search should still match regardless of case');
   }
   assert.equal(loaded.elements['#contributors'].children.length, data.length, 'Clearing search restores cards');
+  const navigated = await load(data, false, '#JollyJolli');
+  const navigatedCard = navigated.elements['#contributors'].children.find(card => card.id === 'contributor-jollyjolli');
+  assert.equal(navigatedCard.scrollOptions.block, 'center');
+  assert.equal(navigatedCard.scrollOptions.behavior, 'smooth', 'A valid initial hash should scroll to its card');
+  assert(navigatedCard.classList.contains('glowingEffect'), 'A valid initial hash should briefly highlight its card');
+  navigated.timers[0]();
+  assert(!navigatedCard.classList.contains('glowingEffect'), 'The temporary highlight should clear after its timeout');
+  const hashSearch = navigated.elements['#contributors-title'].inserted;
+  hashSearch.value = 'Jolly';
+  hashSearch.listeners.keyup({ target: hashSearch });
+  assert.equal(navigated.elements['#contributors'].children.length, 1, 'Search should still filter cards when a share hash is present');
+  assert.equal(navigated.elements['#contributors'].children[0].id, 'contributor-jollyjolli');
+  const hashSort = hashSearch.inserted;
+  hashSort.value = 'Names Z-A';
+  hashSort.listeners.change();
+  assert.equal(navigated.elements['#contributors'].children[0].id, 'contributor-jollyjolli', 'Sorting should preserve the filtered share target');
+  assert(navigated.elements['#contributors'].children[0].scrollOptions, 'The share target should remain navigable after re-rendering');
+  const missingHash = await load(data, false, '#not-a-contributor');
+  assert(missingHash.elements['#contributors'].children.every(card => !card.scrollOptions), 'Unknown valid usernames should be ignored');
+  const invalidHash = await load(data, false, '#bad%21user');
+  assert.equal(invalidHash.elements['#contributors'].children.every(card => !card.scrollOptions), true, 'Invalid usernames should be ignored safely');
+  const malformedHash = await load(data, false, '#bad%ZZ');
+  assert.equal(malformedHash.elements['#contributors'].children.every(card => !card.scrollOptions), true, 'Malformed encoded hashes should not throw');
+  assert(loaded.elements['#contributors'].children.every(card => !card.scrollOptions), 'An absent hash should leave normal page behavior unchanged');
+  const changedHash = await load(data);
+  changedHash.window.location.hash = '#jollyjolli';
+  changedHash.windowListeners.hashchange();
+  assert(changedHash.elements['#contributors'].children.find(card => card.id === 'contributor-jollyjolli').scrollOptions, 'Hash changes should navigate to the contributor');
   loaded.elements['#theme-toggle'].listeners.click();
   assert.equal(loaded.root.dataset.theme, 'dark');
   loaded.elements['#theme-toggle'].listeners.click();
@@ -152,6 +206,6 @@ async function checkStatistics() {
   const failedProfile = await load(fixture, 'data/contributors/0.json');
   assert.equal(failedProfile.statistics.hidden, true, 'Partial profile loads must not show complete totals');
   assert.equal(failedProfile.elements['#status'].textContent, 'Loaded 3 of 4 contributors. 1 profile could not be loaded.');
-  console.log('PASS: loaded-profile statistics, optional countries, roles, empty/error states, search, and theme handlers.');
+  console.log('PASS: loaded-profile statistics, optional countries, roles, empty/error states, search, share URLs, hash navigation, and theme handlers.');
 }
 checkStatistics().catch(error => { console.error(error); process.exitCode = 1; });

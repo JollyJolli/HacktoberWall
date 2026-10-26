@@ -76,7 +76,7 @@ function createAvatar(profile) {
 function renderContributor(profile) {
   const card = document.createElement('article');
   card.className = 'card';
-
+  card.id = contributorCardId(profile.github);
   card.append(createAvatar(profile));
   card.dataset.id = profile.github; // Github Username are unique
   addText(card, 'h3', profile.name);
@@ -97,7 +97,12 @@ function renderContributor(profile) {
   addLink(links, profile.links?.github, 'GitHub');
   addLink(links, profile.links?.website, 'Website');
   addLink(links, profile.links?.linkedin, 'LinkedIn');
-  if (links.children.length) card.append(links);
+  const shareLink = document.createElement('a');
+  shareLink.href = `#${encodeURIComponent(profile.github)}`;
+  shareLink.textContent = 'Share profile';
+  shareLink.setAttribute('aria-label', `Share ${profile.name}'s profile`);
+  links.append(shareLink);
+  card.append(links);
 
   const detailsButton = document.createElement('button');
   detailsButton.className = 'details-button';
@@ -156,6 +161,26 @@ function safeName(name) {
   return String(name).toLowerCase().replace(/[^a-z0-9-]/g, '');
 }
 
+function contributorCardId(username) {
+  const normalized = String(username || '');
+  if (!/^[a-z0-9-]{1,39}$/i.test(normalized)) return '';
+  return `contributor-${normalized.toLowerCase()}`;
+}
+
+function navigateToContributorHash() {
+  let username;
+  try {
+    username = decodeURIComponent(window.location.hash.slice(1));
+  } catch {
+    return;
+  }
+  const id = contributorCardId(username);
+  const card = id && document.getElementById(id);
+  if (card) findingRandomContributor(card);
+}
+
+window.addEventListener('hashchange', navigateToContributorHash);
+
 function renderStatistics() {
   const countries = new Set();
   for (const profile of profiles) {
@@ -191,6 +216,7 @@ function setLoadingState() {
 function renderProfiles() {
   profiles = [...loadedProfiles.values()];
   container.replaceChildren(...profiles.map(renderContributor));
+  navigateToContributorHash();
 }
 
 function setFinishedState() {
@@ -333,6 +359,7 @@ function choosingProfiles(s, f) {
   chosenProfiles.forEach(a => {
     container.append(renderContributor(a));
   });
+  navigateToContributorHash();
   if (container.innerHTML == "") {
     container.append(document.createElement("p").textContent = "No contributors found.");
   }
