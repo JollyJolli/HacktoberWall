@@ -191,6 +191,11 @@ function setLoadingState() {
 function renderProfiles() {
   profiles = [...loadedProfiles.values()];
   container.replaceChildren(...profiles.map(renderContributor));
+  updateCountryOptions();
+  if (profiles.length && (searchBox.value || filter.value !== "Default" || roleFilter.value !== "all" || countryFilter.value !== "all")) {
+    choosingProfiles(searchBox.value, filter.value);
+  }
+  revealFilteredHashTarget();
 }
 
 function setFinishedState() {
@@ -262,7 +267,6 @@ async function loadContributors() {
 }
 
 if (retryButton) retryButton.addEventListener('click', loadContributors);
-loadContributors();
 
 // Array containing the filtered profiles
 let chosenProfiles = [];
@@ -270,43 +274,149 @@ let chosenProfiles = [];
 // Search Function
 const title = document.querySelector("#contributors-title");
 const searchBox = document.createElement("input");
-searchBox.type = "text";
+searchBox.type = "search";
+searchBox.value = "";
 searchBox.placeholder = "Search";
+searchBox.setAttribute("aria-label", "Search contributors");
 searchBox.classList.add("searchBox");
 title.insertAdjacentElement("afterend", searchBox);
 
 searchBox.addEventListener("keyup", (e) => {
   choosingProfiles(searchBox.value, filter.value);
+  revealFilteredHashTarget();
 })
 
-// Filter
+// Sorting
 const filter = document.createElement("select");
 filter.classList.add("FilterBox");
+filter.setAttribute("aria-label", "Sort contributors");
 searchBox.insertAdjacentElement("afterend", filter);
-createFilterSelect();
-function createFilterSelect() {
-  const option = ["Default", "Names A-Z", "Names Z-A", "Github names A-Z", "Github names Z-A", "Random"];
-  option.forEach((a) => {
-    const opt = document.createElement("option");
-    opt.textContent = a;
-    filter.append(opt);
-  })
+const sortOptions = [
+  ["Default", "Default"],
+  ["Names A-Z", "Names A-Z"],
+  ["Names Z-A", "Names Z-A"],
+  ["Github names A-Z", "GitHub names A-Z"],
+  ["Github names Z-A", "GitHub names Z-A"],
+  ["Random", "Random"]
+];
+for (const [value, label] of sortOptions) {
+  const option = document.createElement("option");
+  option.value = value;
+  option.textContent = label;
+  filter.append(option);
+}
+filter.value = "Default";
+
+// Role and country filters are composed with search and sorting.
+const roleFilter = document.createElement("select");
+roleFilter.classList.add("FilterBox");
+roleFilter.setAttribute("aria-label", "Filter contributors by role");
+filter.insertAdjacentElement("afterend", roleFilter);
+const roleOptions = [
+  ["all", "All roles"],
+  ["first-contribution", roleLabels["first-contribution"]],
+  ["contributor", roleLabels.contributor],
+  ["builder", roleLabels.builder]
+];
+for (const [value, label] of roleOptions) {
+  const option = document.createElement("option");
+  option.value = value;
+  option.textContent = label;
+  roleFilter.append(option);
+}
+roleFilter.value = "all";
+
+const countryFilter = document.createElement("select");
+countryFilter.classList.add("FilterBox");
+countryFilter.setAttribute("aria-label", "Filter contributors by country");
+roleFilter.insertAdjacentElement("afterend", countryFilter);
+
+function countryParts(profile) {
+  if (typeof profile.country !== "string") return [];
+  return profile.country.split("/")
+    .map(country => country.trim().replace(/\s+/g, " "))
+    .filter(Boolean);
 }
 
-filter.addEventListener("change", () => {
+function updateCountryOptions() {
+  const selectedCountry = countryFilter.value || "all";
+  const options = new Map();
+  for (const profile of profiles) {
+    for (const country of countryParts(profile)) {
+      const key = country.toLowerCase();
+      if (!options.has(key)) options.set(key, country);
+    }
+  }
+
+  countryFilter.replaceChildren();
+  const allOption = document.createElement("option");
+  allOption.value = "all";
+  allOption.textContent = "All countries";
+  countryFilter.append(allOption);
+  for (const [key, country] of [...options].sort((a, b) => a[1].localeCompare(b[1]))) {
+    const option = document.createElement("option");
+    option.value = key;
+    option.textContent = country;
+    countryFilter.append(option);
+  }
+  countryFilter.value = selectedCountry !== "all" && options.has(selectedCountry) ? selectedCountry : "all";
+  updateFilterState();
+}
+
+function updateFilterState() {
+  filter.dataset.active = String(filter.value !== "Default");
+  roleFilter.dataset.active = String(roleFilter.value !== "all");
+  countryFilter.dataset.active = String(countryFilter.value !== "all");
+}
+
+for (const control of [filter, roleFilter, countryFilter]) {
+  control.addEventListener("change", () => {
+    updateFilterState();
+    choosingProfiles(searchBox.value, filter.value);
+    revealFilteredHashTarget();
+  });
+}
+
+function revealFilteredHashTarget() {
+  const hash = window.location?.hash;
+  if (typeof hash !== "string" || hash.length < 2) return;
+
+  let username;
+  try {
+    username = decodeURIComponent(hash.slice(1));
+  } catch {
+    return;
+  }
+  if (!username) return;
+
+  const target = profiles.find(profile => profile.github.toLowerCase() === username.toLowerCase());
+  if (!target) return;
+
+  const targetIsRendered = [...container.children].some(card =>
+    String(card.dataset?.id || "").toLowerCase() === target.github.toLowerCase()
+  );
+  if (targetIsRendered) return;
+
+  const filtersActive = searchBox.value || roleFilter.value !== "all" || countryFilter.value !== "all";
+  if (!filtersActive) return;
+
+  searchBox.value = "";
+  roleFilter.value = "all";
+  countryFilter.value = "all";
+  updateFilterState();
   choosingProfiles(searchBox.value, filter.value);
-})
+}
+
+window.addEventListener("hashchange", revealFilteredHashTarget);
+loadContributors();
 
 function choosingProfiles(s, f) {
-  container.innerHTML = "";
+  container.replaceChildren();
   chosenProfiles = [...profiles].filter(a =>
-    a.name
-      .toLowerCase()
-      .includes(s.trim().toLowerCase())
-    ||
-    a.github
-      .toLowerCase()
-      .includes(s.trim().toLowerCase())
+    (a.name.toLowerCase().includes(s.trim().toLowerCase()) ||
+      a.github.toLowerCase().includes(s.trim().toLowerCase())) &&
+    (roleFilter.value === "all" || a.role === roleFilter.value) &&
+    (countryFilter.value === "all" || countryParts(a).some(country => country.toLowerCase() === countryFilter.value))
   );
   switch (f) {
     case "Names A-Z": {
@@ -327,43 +437,40 @@ function choosingProfiles(s, f) {
     }
     case "Random": {
       chosenProfiles = shuffleArray([...chosenProfiles]);
-      console.log("123");
     }
   }
-  chosenProfiles.forEach(a => {
-    container.append(renderContributor(a));
-  });
-  if (container.innerHTML == "") {
-    container.append(document.createElement("p").textContent = "No contributors found.");
+  if (chosenProfiles.length) {
+    chosenProfiles.forEach(profile => container.append(renderContributor(profile)));
+  } else if (profiles.length) {
+    const emptyMessage = document.createElement("p");
+    emptyMessage.className = "empty-results";
+    emptyMessage.setAttribute("role", "status");
+    emptyMessage.textContent = "No contributors found.";
+    container.append(emptyMessage);
   }
 }
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
-    console.log(j);
-
     let temp = array[i];
     array[i] = array[j];
     array[j] = temp;
-    console.log(array);
-
   }
   return array;
 }
 // Random Contributor Selector
 const randomContributor = document.createElement("button");
 randomContributor.textContent = "Random Contributor";
-filter.insertAdjacentElement("afterend", randomContributor);
+countryFilter.insertAdjacentElement("afterend", randomContributor);
 randomContributor.classList.add("Btn");
 randomContributor.classList.add("randomContributingButton");
 
 randomContributor.addEventListener("click", () => {
   choosingProfiles(searchBox.value, filter.value);
-  if(choosingProfiles.length == 0){
-    return;
-  }
-  let a = chosenProfiles[Math.floor(Math.random() * (chosenProfiles.length))];
-  findingRandomContributor(document.querySelector(`[data-id=${a.github}]`));
+  if (!chosenProfiles.length) return;
+  const profile = chosenProfiles[Math.floor(Math.random() * chosenProfiles.length)];
+  const card = [...container.children].find(child => child.dataset.id === profile.github);
+  if (card) findingRandomContributor(card);
 });
 function findingRandomContributor(a) {
   const prefersReducedMotion = window.matchMedia(
