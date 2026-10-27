@@ -221,19 +221,44 @@ footer {
 
 /* Search Function */
 .searchBox{
-  margin-bottom: 10px;
+  box-sizing: border-box;
+  max-width: 100%;
+  min-height: 44px;
+  margin: 8px 8px 8px 0;
+  padding: 8px;
   font-size: large;
   border: 1px solid var(--border);
 }
 
 /* Filter Function */
 .FilterBox{
-  margin: 10px;
+  box-sizing: border-box;
+  max-width: 100%;
+  min-height: 44px;
+  margin: 8px 8px 8px 0;
+  padding: 8px;
   font-size: large;
   border: 1px solid var(--border);
 }
+.searchBox:focus-visible,
+.FilterBox:focus-visible,
+.Btn:focus-visible {
+  outline: 2px solid var(--link);
+  outline-offset: 2px;
+}
+.FilterBox[data-active="true"] {
+  border-color: var(--link);
+}
+.empty-results {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--muted);
+}
 .Btn{
-  padding: 4px;
+  box-sizing: border-box;
+  min-height: 44px;
+  max-width: 100%;
+  padding: 8px 12px;
   font-size: medium;
 }
 .randomContributingButton{

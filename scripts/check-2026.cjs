@@ -76,53 +76,188 @@ assert(html.indexOf('id="contributor-stats"') < html.indexOf('id="contributors"'
 
 async function checkStatistics() {
   const vm = require('node:vm');
-  // Run the page script with a minimal DOM, including its real loading and search handlers.
+  // Run the page script with a minimal DOM, including its real loading and filter handlers.
   class Element {
-    constructor() {
+    constructor(tagName = 'div') {
+      this.tagName = tagName;
       this.children = []; this.listeners = {}; this.textContent = ''; this.hidden = false;
-      this.classList = { add() {} }; this.dataset = {};
+      this.classNames = new Set();
+      this.classList = {
+        add: name => this.classNames.add(name),
+        remove: name => this.classNames.delete(name),
+        contains: name => this.classNames.has(name)
+      };
+      this.dataset = {}; this.attributes = {};
     }
-    append(...children) { this.children.push(...children); }
-    replaceChildren(...children) { this.children = children; }
+    append(...children) {
+      this.children.push(...children);
+      if (this.tagName === 'select' && !this.value && children.length) this.value = children[0].value;
+    }
+    replaceChildren(...children) {
+      this.children = children;
+      if (this.tagName === 'select') this.value = children[0]?.value || '';
+    }
     set innerHTML(value) { assert.equal(value, ''); this.children = []; }
     get innerHTML() { return this.children.length ? 'content' : ''; }
-    setAttribute(name, value) { this[name] = value; }
+    setAttribute(name, value) { this.attributes[name] = value; this[name] = value; }
     addEventListener(name, handler) { this.listeners[name] = handler; }
     insertAdjacentElement(position, element) { this.inserted = element; }
+    scrollIntoView(options) { this.scrollOptions = options; }
   }
   async function load(data, fail = false) {
-    const elements = Object.fromEntries(['contributors', 'status', 'contributors-title', 'contributor-stats', 'theme-toggle'].map(id => [`#${id}`, new Element()]));
+    const elements = Object.fromEntries(['contributors', 'status', 'contributors-title', 'contributor-stats', 'theme-toggle', 'retry-loading'].map(id => [`#${id}`, new Element()]));
     elements['#contributor-stats'].hidden = true;
     const root = new Element();
     const requests = [];
+    const timers = [];
+    const windowListeners = {};
+    const window = {
+      location: { hash: '' },
+      addEventListener: (name, handler) => { (windowListeners[name] ||= []).push(handler); },
+      matchMedia: () => ({ matches: true })
+    };
     vm.runInNewContext(script, {
-      document: { querySelector: selector => elements[selector], createElement: () => new Element(), documentElement: root },
+      document: { querySelector: selector => elements[selector], createElement: tagName => new Element(tagName), documentElement: root },
       localStorage: { setItem() {} },
+      console,
+      window,
+      setTimeout: callback => { timers.push(callback); },
       fetch: async url => {
         requests.push(url);
         if (fail === true || fail === url) throw new Error('Load failed');
-        return { json: async () => url.endsWith('/index.json') ? data.map((_, i) => String(i)) : data[Number(url.match(/(\d+)\.json$/)[1])] };
+        if (url.endsWith('/index.json')) return { json: async () => data.map((_, i) => String(i)) };
+        return { json: async () => data[Number(url.match(/(\d+)\.json$/)[1])] };
       }
     });
     await new Promise(setImmediate);
-    return { elements, root, requests, statistics: elements['#contributor-stats'] };
+    return { elements, root, requests, timers, window, windowListeners, statistics: elements['#contributor-stats'] };
   }
   const data = names.map(name => JSON.parse(fs.readFileSync(path.join(contributorsDir, `${name}.json`), 'utf8')));
   const loaded = await load(data);
-  assert(loaded.statistics.textContent.startsWith(`${data.length} contributor`), 'Totals must follow the current contributor index');
+  assert(loaded.statistics.textContent.startsWith(`${data.length} contributor`), `Totals must follow the current contributor index: ${loaded.elements['#status'].textContent}`);
   assert.equal(loaded.statistics.hidden, false);
   assert.equal(loaded.elements['#contributors'].children.length, data.length);
   assert.equal(loaded.requests.length, data.length + 1, 'Statistics must not make extra requests');
   const summary = loaded.statistics.textContent;
+  const search = loaded.elements['#contributors-title'].inserted;
+  const sort = search.inserted;
+  const role = sort.inserted;
+  const country = role.inserted;
+  const random = country.inserted;
+  assert.equal(search.attributes['aria-label'], 'Search contributors');
+  assert.equal(sort.attributes['aria-label'], 'Sort contributors');
+  assert.equal(role.attributes['aria-label'], 'Filter contributors by role');
+  assert.equal(country.attributes['aria-label'], 'Filter contributors by country');
+  assert.deepEqual(country.children.map(option => option.textContent), ['All countries', 'Brasil', 'India', 'Mexico']);
+  assert.deepEqual(role.children.map(option => option.textContent), ['All roles', 'First contribution', 'Contributor', 'Builder']);
   for (const value of ['NO SUCH CONTRIBUTOR', data[0].github.toUpperCase(), '']) {
-    const input = loaded.elements['#contributors-title'].inserted;
-    input.value = value;
-    input.listeners.keyup({ target: input });
+    search.value = value;
+    search.listeners.keyup({ target: search });
     assert.equal(loaded.statistics.textContent, summary, 'Search must not change the full-Wall totals');
-    if (value === 'NO SUCH CONTRIBUTOR') assert.equal(loaded.elements['#contributors'].children[0], 'No contributors found.');
+    if (value === 'NO SUCH CONTRIBUTOR') assert.equal(loaded.elements['#contributors'].children[0].textContent, 'No contributors found.');
     else if (value) assert.equal(loaded.elements['#contributors'].children[0].className, 'card', 'Username search should still match regardless of case');
   }
   assert.equal(loaded.elements['#contributors'].children.length, data.length, 'Clearing search restores cards');
+  country.value = 'mexico';
+  country.listeners.change();
+  assert.deepEqual(loaded.elements['#contributors'].children.map(card => card.dataset.id.toLowerCase()), ['jollyjolli'], 'Slash-separated countries should match either represented country');
+  assert.equal(country.dataset.active, 'true', 'A selected country should be visibly marked active');
+  role.value = 'builder';
+  role.listeners.change();
+  assert.deepEqual(loaded.elements['#contributors'].children.map(card => card.dataset.id.toLowerCase()), ['jollyjolli'], 'Country and role filters should compose');
+  search.value = 'Jolly';
+  search.listeners.keyup({ target: search });
+  assert.equal(loaded.elements['#contributors'].children[0].dataset.id.toLowerCase(), 'jollyjolli', 'Search should compose with both filters');
+  random.listeners.click();
+  assert.equal(loaded.elements['#contributors'].children[0].scrollOptions.behavior, 'instant', 'Random selection should use the current combined result set');
+  assert(loaded.elements['#contributors'].children[0].classList.contains('glowingEffect'), 'Random selection should briefly highlight its matching card');
+  loaded.timers.at(-1)();
+  assert(!loaded.elements['#contributors'].children[0].classList.contains('glowingEffect'), 'Random highlight should clear after its timeout');
+  search.value = 'India';
+  search.listeners.keyup({ target: search });
+  assert.equal(loaded.elements['#contributors'].children[0].textContent, 'No contributors found.');
+  random.listeners.click();
+  country.value = 'all';
+  country.listeners.change();
+  role.value = 'all';
+  role.listeners.change();
+  search.value = '';
+  search.listeners.keyup({ target: search });
+  assert.equal(loaded.elements['#contributors'].children.length, data.length, 'All roles and countries should restore every loaded profile');
+  assert.equal(role.dataset.active, 'false');
+  assert.equal(country.dataset.active, 'false');
+  country.value = 'india';
+  country.listeners.change();
+  sort.value = 'Names A-Z';
+  sort.listeners.change();
+  assert.equal(loaded.elements['#contributors'].children.length, 3, 'Sorting should preserve the country filter');
+  assert.deepEqual(loaded.elements['#contributors'].children.map(card => card.dataset.id.toLowerCase()), ['asif-hash786', 'gopikrishnamahalingam', 'udayakrishnanm']);
+  role.value = 'first-contribution';
+  role.listeners.change();
+  assert.equal(loaded.elements['#contributors'].children.length, 2, 'Role filtering should compose with country and sort');
+  search.value = 'gopi';
+  search.listeners.keyup({ target: search });
+  assert.equal(loaded.elements['#contributors'].children.length, 1, 'Search should narrow combined filters');
+  await loaded.elements['#retry-loading'].listeners.click();
+  await new Promise(setImmediate);
+  assert.equal(loaded.elements['#contributors'].children.length, 1, 'Reload should preserve active filters and search');
+  assert.equal(country.value, 'india');
+  assert.equal(role.value, 'first-contribution');
+  assert.equal(sort.value, 'Names A-Z');
+  assert.equal(search.value, 'gopi');
+
+  const hashPage = await load(data);
+  const hashSearch = hashPage.elements['#contributors-title'].inserted;
+  const hashSort = hashSearch.inserted;
+  const hashRole = hashSort.inserted;
+  const hashCountry = hashRole.inserted;
+  const hashChanged = () => hashPage.windowListeners.hashchange.forEach(handler => handler());
+  hashCountry.value = 'mexico';
+  hashCountry.listeners.change();
+  hashRole.value = 'builder';
+  hashRole.listeners.change();
+  hashSearch.value = 'Jolly';
+  hashSearch.listeners.keyup({ target: hashSearch });
+  hashSort.value = 'Names Z-A';
+  hashSort.listeners.change();
+  hashPage.window.location.hash = '#JollyJolli';
+  hashChanged();
+  assert.equal(hashPage.elements['#contributors'].children[0].dataset.id, 'JollyJolli', 'A rendered hash target should remain visible');
+  assert.equal(hashCountry.value, 'mexico');
+  assert.equal(hashRole.value, 'builder');
+  assert.equal(hashSearch.value, 'Jolly');
+
+  for (const [reason, configure] of [
+    ['search', () => { hashSearch.value = 'Asif'; hashSearch.listeners.keyup({ target: hashSearch }); }],
+    ['role', () => { hashRole.value = 'first-contribution'; hashRole.listeners.change(); }],
+    ['country', () => { hashCountry.value = 'india'; hashCountry.listeners.change(); }]
+  ]) {
+    hashPage.window.location.hash = '';
+    hashChanged();
+    configure();
+    assert(!hashPage.elements['#contributors'].children.some(card => card.dataset.id === 'JollyJolli'), `${reason} should hide the contributor before navigation`);
+    hashPage.window.location.hash = '#JollyJolli';
+    hashChanged();
+    assert(hashPage.elements['#contributors'].children.some(card => card.dataset.id === 'JollyJolli'), `A valid hash should reveal a contributor hidden by ${reason}`);
+    assert.equal(hashCountry.value, 'all', `${reason} recovery should reset country`);
+    assert.equal(hashRole.value, 'all', `${reason} recovery should reset role`);
+    assert.equal(hashSearch.value, '', `${reason} recovery should clear search`);
+    assert.equal(hashSort.value, 'Names Z-A', `${reason} recovery should preserve sorting`);
+  }
+
+  hashPage.window.location.hash = '';
+  hashCountry.value = 'india';
+  hashCountry.listeners.change();
+  hashRole.value = 'first-contribution';
+  hashRole.listeners.change();
+  hashSearch.value = 'Asif';
+  hashSearch.listeners.keyup({ target: hashSearch });
+  for (const invalidHash of ['#unknown-user', '#bad%ZZ', '']) {
+    const previous = [hashSearch.value, hashRole.value, hashCountry.value];
+    hashPage.window.location.hash = invalidHash;
+    hashChanged();
+    assert.deepEqual([hashSearch.value, hashRole.value, hashCountry.value], previous, `Invalid or absent hash ${invalidHash} must not alter filters`);
+  }
   loaded.elements['#theme-toggle'].listeners.click();
   assert.equal(loaded.root.dataset.theme, 'dark');
   loaded.elements['#theme-toggle'].listeners.click();
@@ -152,6 +287,25 @@ async function checkStatistics() {
   const failedProfile = await load(fixture, 'data/contributors/0.json');
   assert.equal(failedProfile.statistics.hidden, true, 'Partial profile loads must not show complete totals');
   assert.equal(failedProfile.elements['#status'].textContent, 'Loaded 3 of 4 contributors. 1 profile could not be loaded.');
-  console.log('PASS: loaded-profile statistics, optional countries, roles, empty/error states, search, and theme handlers.');
+  const filterFixtures = [
+    { ...profile, github: 'india-one', country: ' India ', role: 'first-contribution' },
+    { ...profile, github: 'india-two', country: 'INDIA', role: 'builder' },
+    { ...profile, github: 'split-country', country: 'Mexico / Brasil', role: 'contributor' },
+    { ...profile, github: 'no-country', country: null, role: 'builder' },
+    { ...profile, github: 'empty-country', country: '  ', role: 'builder' }
+  ];
+  const normalized = await load(filterFixtures);
+  const normalizedSearch = normalized.elements['#contributors-title'].inserted;
+  const normalizedSort = normalizedSearch.inserted;
+  const normalizedRole = normalizedSort.inserted;
+  const normalizedCountry = normalizedRole.inserted;
+  assert.deepEqual(normalizedCountry.children.map(option => option.textContent), ['All countries', 'Brasil', 'India', 'Mexico'], 'Country options should trim, normalize, split, and deduplicate country values');
+  normalizedCountry.value = 'india';
+  normalizedCountry.listeners.change();
+  assert.deepEqual(normalized.elements['#contributors'].children.map(card => card.dataset.id), ['india-one', 'india-two']);
+  normalizedCountry.value = 'brasil';
+  normalizedCountry.listeners.change();
+  assert.deepEqual(normalized.elements['#contributors'].children.map(card => card.dataset.id), ['split-country']);
+  console.log('PASS: contributor stats, filters, hash recovery, search, sorting, random selection, empty/retry states, and theme handlers.');
 }
 checkStatistics().catch(error => { console.error(error); process.exitCode = 1; });
