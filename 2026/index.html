@@ -1,8 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
   <title>HacktoberWall 2026</title>
   <meta name="description" content="Join HacktoberWall 2026, an open-source contributor wall for first contributions, community contributors, and builders.">
   <link rel="canonical" href="https://hacktoberwall.formen.cc/2026/">
@@ -22,43 +23,118 @@
   <meta name="twitter:image" content="https://hacktoberwall.formen.cc/assets/social.png">
   <meta name="twitter:image:alt" content="HacktoberWall: 2024, a pause in 2025, and the return in 2026.">
   <script>
-    // Apply saved or system theme before first paint to avoid a flash.
     try {
       const saved = localStorage.getItem('theme');
       const dark = saved ? saved === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
       document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+      document.documentElement.classList.toggle('light', !dark);
     } catch (e) {}
   </script>
   <link rel="stylesheet" href="assets/2026.css">
   <script src="assets/2026.js" defer></script>
 </head>
 <body>
-  <main>
-    <button id="theme-toggle" class="theme-toggle" type="button"></button>
-    <h1>HacktoberWall 2026</h1>
-    <p>Add your profile in <code>2026/data/contributors/&lt;github-username&gt;.json</code>.</p>
-
-    <section aria-labelledby="contributors-title">
-      <h2 id="contributors-title">Contributors</h2>
-      <p id="contributor-stats" class="meta" role="status" hidden></p>
-      <div id="contributors" class="contributors" aria-busy="true"></div>
-      <p id="status" class="status status-loading" role="status" aria-live="polite" aria-atomic="true">Loading contributors...</p>
-      <button id="retry-loading" class="retry-loading" type="button" hidden>Retry loading contributors</button>
-    </section>
-
-    <footer>
-      <h2>Contribute fast</h2>
-      <p>Fork the repo, copy <code>_template.json</code>, rename it to your GitHub username, fill it, and open a PR.</p>
-      <p>Want to improve the page too? Go for it. More info in <a href="../CONTRIBUTING.md">CONTRIBUTING.md</a>.</p>
-    </footer>
-
-    <dialog id="contributor-dialog" class="contributor-dialog" aria-labelledby="contributor-dialog-title">
-      <div class="dialog-heading">
-        <h2 id="contributor-dialog-title" tabindex="-1">Contributor details</h2>
-        <button id="contributor-dialog-close" class="dialog-close" type="button" aria-label="Close contributor details">Close</button>
+  <main class="scene" id="top">
+    <div class="scene-art" aria-hidden="true">
+      <img class="web a" src="assets/cornerweb_tl.png" alt="">
+      <img class="web b" src="assets/cornerweb_tl.png" alt="">
+      <img class="web c" src="assets/cornerweb_bl.png" alt="">
+      <i class="bat one"></i><i class="bat two"></i>
+      <i class="ghost one"></i><i class="ghost two"></i>
+      <i class="web-spider"></i>
+      <i class="pumpkin p1"></i><i class="pumpkin p2"></i>
+    </div>
+    <header class="top">
+      <a class="brand" href="#top">HacktoberWall <b>2026</b></a>
+      <button id="theme-toggle" class="theme-toggle" type="button"></button>
+    </header>
+    <section class="intro" aria-labelledby="page-title">
+      <div class="intro-copy">
+        <h1 id="page-title">Enter the <span>Wall.</span></h1>
+        <p>Meet the people haunting open source this October.</p>
       </div>
-      <div id="contributor-dialog-content"></div>
-    </dialog>
+      <p class="intro-note">Leave your mark among the lanterns.<br>Find a contributor. Follow their work.</p>
+    </section>
+    <section class="wall-wrap" aria-label="Contributor cemetery">
+      <div class="filter-toolbar">
+        <form class="controls" id="filters" role="search">
+          <button class="filter-toggle" id="filter-toggle" type="button" aria-controls="filter-fields" aria-expanded="false" aria-label="Filters">
+            <span>Filters</span>
+            <span class="filter-toggle-meta">
+              <span class="filter-count" id="filter-count" aria-hidden="true" hidden></span>
+              <span class="filter-chevron" aria-hidden="true"></span>
+            </span>
+          </button>
+          <div class="filter-group" id="filter-fields">
+            <div class="field search-field">
+              <label for="search">Search the wall</label>
+              <input class="control search" id="search" type="search" placeholder="Name, GitHub, or contribution">
+            </div>
+            <div class="field">
+              <label for="sort">Sort</label>
+              <span class="select-wrap"><select class="control" id="sort" aria-label="Sort contributors">
+                <option value="Default">Default</option>
+                <option value="Names A-Z">Names A–Z</option>
+                <option value="Names Z-A">Names Z–A</option>
+                <option value="Github names A-Z">GitHub names A–Z</option>
+                <option value="Github names Z-A">GitHub names Z–A</option>
+                <option value="Role">Role</option>
+                <option value="Country">Country</option>
+                <option value="Random">Random</option>
+              </select></span>
+            </div>
+            <div class="field">
+              <label for="role">Role</label>
+              <span class="select-wrap"><select class="control" id="role" aria-label="Filter contributors by role">
+                <option value="all">All roles</option>
+                <option value="first-contribution">First contribution</option>
+                <option value="contributor">Contributor</option>
+                <option value="builder">Builder</option>
+              </select></span>
+            </div>
+            <div class="field">
+              <label for="country">Country</label>
+              <span class="select-wrap"><select class="control" id="country" aria-label="Filter contributors by country">
+                <option value="all">All countries</option>
+              </select></span>
+            </div>
+          </div>
+        </form>
+        <div class="random-action">
+          <button class="random" id="random" type="button">Random Soul</button>
+        </div>
+      </div>
+      <p class="visually-hidden" id="random-status" aria-live="polite"></p>
+      <section class="cemetery" aria-labelledby="contributors-title">
+        <div class="wall-heading">
+          <h2 id="contributors-title">The Graveyard</h2>
+          <p id="status" class="results status status-loading" role="status" aria-live="polite" aria-atomic="true">Loading contributors…</p>
+        </div>
+        <p id="contributor-stats" class="wall-summary visually-hidden" hidden></p>
+        <div class="stones" id="contributors" aria-busy="true"></div>
+        <p class="no-results" id="empty" hidden role="status" aria-live="polite" aria-atomic="true">No contributors match your search or filters. Clear a filter or try another term.</p>
+        <button id="retry-loading" class="retry-loading" type="button" hidden>Retry loading contributors</button>
+      </section>
+    </section>
+    <section class="instructions" aria-labelledby="join-heading">
+      <h2 id="join-heading">Join the Wall</h2>
+      <ol>
+        <li>Fork the <a class="join-link" href="https://github.com/JollyJolli/HacktoberWall" target="_blank" rel="noopener noreferrer">HacktoberWall repository</a>.</li>
+        <li>Copy <code>2026/data/contributors/_template.json</code>.</li>
+        <li>Rename the copy to <code>&lt;github-username&gt;.json</code>.</li>
+        <li>Fill it out and open a PR.</li>
+      </ol>
+      <p class="site-invitation">Want to improve the website itself? <a href="https://hacktoberwall.formen.cc/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Read the website contribution guide</a>.</p>
+    </section>
+    <footer class="footer">HacktoberWall 2026 <span aria-hidden="true">·</span> <a href="https://github.com/JollyJolli/HacktoberWall" target="_blank" rel="noopener noreferrer">Join the Wall</a></footer>
   </main>
+  <dialog id="contributor-dialog" class="contributor-dialog" aria-labelledby="contributor-dialog-title" aria-describedby="contributor-dialog-hint">
+    <div class="dialog-header">
+      <h2 id="contributor-dialog-title" tabindex="-1">Contributor</h2>
+      <button class="close" id="contributor-dialog-close" type="button" aria-label="Close contributor details">Close</button>
+    </div>
+    <p id="contributor-dialog-hint" class="visually-hidden">Contributor profile details. Use Tab to move through links and press Escape to close.</p>
+    <div id="contributor-dialog-content" class="profile-content"></div>
+  </dialog>
 </body>
 </html>
