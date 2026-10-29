@@ -104,7 +104,7 @@ async function checkStatistics() {
     insertAdjacentElement(position, element) { this.inserted = element; }
     scrollIntoView(options) { this.scrollOptions = options; }
   }
-  async function load(data, fail = false) {
+  async function load(data, fail = false, hash = '', prefersReducedMotion = true) {
     const elements = Object.fromEntries(['contributors', 'status', 'contributors-title', 'contributor-stats', 'theme-toggle', 'retry-loading'].map(id => [`#${id}`, new Element()]));
     elements['#contributor-stats'].hidden = true;
     const root = new Element();
@@ -112,12 +112,16 @@ async function checkStatistics() {
     const timers = [];
     const windowListeners = {};
     const window = {
-      location: { hash: '' },
+      location: { hash },
       addEventListener: (name, handler) => { (windowListeners[name] ||= []).push(handler); },
-      matchMedia: () => ({ matches: true })
+      matchMedia: () => ({ matches: prefersReducedMotion })
     };
     vm.runInNewContext(script, {
-      document: { querySelector: selector => elements[selector], createElement: tagName => new Element(tagName), documentElement: root },
+      document: {
+        querySelector: selector => elements[selector],
+        getElementById: id => elements['#contributors'].children.find(child => child.id === id) || null,
+        createElement: tagName => new Element(tagName), documentElement: root
+      },
       localStorage: { setItem() {} },
       console,
       window,
@@ -137,6 +141,12 @@ async function checkStatistics() {
   assert(loaded.statistics.textContent.startsWith(`${data.length} contributor`), `Totals must follow the current contributor index: ${loaded.elements['#status'].textContent}`);
   assert.equal(loaded.statistics.hidden, false);
   assert.equal(loaded.elements['#contributors'].children.length, data.length);
+  const jolly = loaded.elements['#contributors'].children.find(card => card.id === 'contributor-jollyjolli');
+  assert(jolly, 'Contributor cards should have stable IDs derived from usernames');
+  const jollyLinks = jolly.children.find(child => child.className === 'links');
+  const jollyShareLink = jollyLinks.children.find(child => child.textContent === 'Share profile');
+  assert.equal(jollyShareLink.href, '#JollyJolli');
+  assert.equal(jollyShareLink.attributes['aria-label'], "Share JollyJolli's profile");
   assert.equal(loaded.requests.length, data.length + 1, 'Statistics must not make extra requests');
   const summary = loaded.statistics.textContent;
   const search = loaded.elements['#contributors-title'].inserted;
@@ -258,6 +268,18 @@ async function checkStatistics() {
     hashChanged();
     assert.deepEqual([hashSearch.value, hashRole.value, hashCountry.value], previous, `Invalid or absent hash ${invalidHash} must not alter filters`);
   }
+  const initialHash = await load(data, false, '#JollyJolli', false);
+  const initialHashCard = initialHash.elements['#contributors'].children.find(card => card.id === 'contributor-jollyjolli');
+  assert.equal(initialHashCard.scrollOptions.block, 'center');
+  assert.equal(initialHashCard.scrollOptions.behavior, 'smooth');
+  assert(initialHashCard.classList.contains('glowingEffect'));
+  initialHash.timers[0]();
+  assert(!initialHashCard.classList.contains('glowingEffect'));
+
+  const changedHash = await load(data);
+  changedHash.window.location.hash = '#jollyjolli';
+  changedHash.windowListeners.hashchange.forEach(handler => handler());
+  assert(changedHash.elements['#contributors'].children.find(card => card.id === 'contributor-jollyjolli').scrollOptions, 'Hash changes should navigate to the contributor');
   loaded.elements['#theme-toggle'].listeners.click();
   assert.equal(loaded.root.dataset.theme, 'dark');
   loaded.elements['#theme-toggle'].listeners.click();
@@ -306,6 +328,6 @@ async function checkStatistics() {
   normalizedCountry.value = 'brasil';
   normalizedCountry.listeners.change();
   assert.deepEqual(normalized.elements['#contributors'].children.map(card => card.dataset.id), ['split-country']);
-  console.log('PASS: contributor stats, filters, hash recovery, search, sorting, random selection, empty/retry states, and theme handlers.');
+  console.log('PASS: contributor stats, filters, search, sorting, random selection, share URLs, filtered hash recovery, empty/retry states, and theme handlers.');
 }
 checkStatistics().catch(error => { console.error(error); process.exitCode = 1; });
