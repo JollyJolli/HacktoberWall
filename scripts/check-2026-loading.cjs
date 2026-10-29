@@ -17,10 +17,11 @@ class Element {
     this.attributes = {};
     this.hidden = false;
     this.disabled = false;
+    this.value = '';
     this.dataset = {};
     this.className = '';
     this.textContent = '';
-    this.classList = { add: value => { this.className += ` ${value}`; } };
+    this.classList = { add: value => { this.className += ` ${value}`; }, remove() {}, toggle() {}, contains() { return false; } };
   }
   append(...children) { this.children.push(...children); }
   replaceChildren(...children) { this.children = children; }
@@ -32,8 +33,10 @@ class Element {
 }
 
 async function createPage({ names = [], failedProfiles = [], failIndex = false } = {}) {
-  const elements = Object.fromEntries(['contributors', 'status', 'retry-loading', 'contributors-title', 'theme-toggle', 'contributor-stats'].map(id => [`#${id}`, new Element()]));
+  const elements = Object.fromEntries(['contributors', 'status', 'retry-loading', 'search', 'sort', 'role', 'country', 'random', 'random-status', 'empty', 'filters', 'theme-toggle', 'contributor-stats', 'contributor-dialog', 'contributor-dialog-title', 'contributor-dialog-content', 'contributor-dialog-close'].map(id => [`#${id}`, new Element()]));
   elements['#retry-loading'].hidden = true;
+  elements['#empty'].hidden = true;
+  elements['#sort'].value = 'Default'; elements['#role'].value = 'all'; elements['#country'].value = 'all';
   const rootElement = new Element();
   const failed = new Set(failedProfiles);
   let currentNames = names;
@@ -43,8 +46,10 @@ async function createPage({ names = [], failedProfiles = [], failIndex = false }
     alice: { github: 'alice', name: 'Alice', role: 'builder', message: 'Hello', links: { github: 'https://github.com/alice' } },
     bob: { github: 'bob', name: 'Bob', role: 'contributor', message: 'Hi', links: { github: 'https://github.com/bob' } }
   };
+  const window = { location: { hash: '' }, addEventListener() {}, matchMedia: () => ({ matches: true }), setTimeout() {} };
   vm.runInNewContext(script, {
-    document: { querySelector: selector => elements[selector], createElement: () => new Element(), documentElement: rootElement },
+    window, URL,
+    document: { addEventListener() {}, querySelector: selector => elements[selector], createElement: () => new Element(), documentElement: rootElement },
     localStorage: { setItem() {} },
     fetch: async url => {
       if (url.endsWith('/index.json')) {
@@ -77,7 +82,10 @@ async function main() {
   const partial = await createPage({ names: ['alice', 'bob'], failedProfiles: ['bob'] });
   assert.match(partial.elements['#status'].textContent, /Loaded 1 of 2 contributors\. 1 profile could not be loaded\./);
   assert.equal(partial.elements['#contributors'].children.length, 1, 'Successful cards survive a partial failure');
-  assert.equal(partial.elements['#contributors'].children[0].children[1].textContent, 'Alice');
+  const retainedCardText = [];
+  const collectRetainedText = node => { if (node.textContent) retainedCardText.push(node.textContent); for (const child of node.children || []) collectRetainedText(child); };
+  collectRetainedText(partial.elements['#contributors'].children[0]);
+  assert(retainedCardText.includes('Alice'), 'Successful contributor identity survives a partial failure');
   assert.equal(partial.elements['#retry-loading'].hidden, false);
   assert.equal(partial.elements['#retry-loading'].disabled, false);
   assert.equal(partial.elements['#contributors'].attributes['aria-busy'], 'false');
@@ -88,7 +96,7 @@ async function main() {
   assert.equal(partial.profileRequests.alice, 1, 'A retry should not refetch a successful profile');
   assert.equal(partial.profileRequests.bob, 2, 'A retry should request the missing profile again');
   assert.equal(partial.elements['#contributors'].children.length, 2);
-  assert.equal(partial.elements['#status'].textContent, '2 total contributors');
+  assert.equal(partial.elements['#status'].textContent, '2 contributors');
   assert.equal(partial.elements['#retry-loading'].hidden, true);
   assert.match(partial.statistics, /^2 contributors/);
 
