@@ -306,6 +306,28 @@ async function runInteractionChecks() {
   assert(el['#contributors'].children.some(card => card.id === 'contributor-jollyjolli'));
   assert(el['#contributors'].children.find(card => card.id === 'contributor-jollyjolli').scrollOptions);
 
+  for (const [reason, configure] of [
+    ['search', elements => { elements['#search'].value = 'Asif'; elements['#search'].dispatch('input'); }],
+    ['role', elements => { elements['#role'].value = 'first-contribution'; elements['#role'].dispatch('change'); }],
+    ['country', elements => { elements['#country'].value = 'india'; elements['#country'].dispatch('change'); }]
+  ]) {
+    const recoveryPage = await load(data);
+    const recoveryElements = recoveryPage.elements;
+    recoveryElements['#sort'].value = 'Country';
+    recoveryElements['#sort'].dispatch('change');
+    configure(recoveryElements);
+    assert(!recoveryElements['#contributors'].children.some(card => card.id === 'contributor-jollyjolli'),
+      `${reason} should hide the contributor before shared-link navigation`);
+    recoveryPage.window.location.hash = '#JollyJolli';
+    recoveryPage.windowListeners.hashchange.forEach(handler => handler());
+    assert(recoveryElements['#contributors'].children.some(card => card.id === 'contributor-jollyjolli'),
+      `A valid hash should reveal a contributor hidden by ${reason}`);
+    assert.equal(recoveryElements['#search'].value, '', `${reason} recovery should clear search`);
+    assert.equal(recoveryElements['#role'].value, 'all', `${reason} recovery should reset role`);
+    assert.equal(recoveryElements['#country'].value, 'all', `${reason} recovery should reset country`);
+    assert.equal(recoveryElements['#sort'].value, 'Country', `${reason} recovery should preserve sorting`);
+  }
+
   const initialHashPage = await load(data, null, true, '#JollyJolli', false);
   const initialHashCard = initialHashPage.elements['#contributors'].children.find(card => card.id === 'contributor-jollyjolli');
   assert(initialHashCard, 'A direct profile URL should render its contributor');
