@@ -79,6 +79,7 @@ assert.match(styles, /\.avatar-image\.is-loaded\s*\{[^}]*visibility:\s*visible/s
 assert.match(styles, /\.avatar-fallback:not\(\[hidden\]\)\s*\{[^}]*position:\s*absolute/s, 'Initials must fill the avatar while its remote image is pending or failed');
 assert.match(script, /avatar\.addEventListener\('load'/, 'Successful avatar requests must replace the initials fallback');
 assert.match(styles, /\.light \.scene\s*\{[^}]*chambers-mount-auburn\.webp/s);
+assert.match(styles, /@media\(max-width:690px\)\s*\{\.scene,\.light \.scene\{[^}]*background-attachment:scroll;[^}]*background-position:center top;[^}]*background-size:cover/s, 'Mobile dark and light backgrounds should cover the full page scene');
 assert.match(styles, /prefers-reduced-motion\s*:\s*reduce/);
 assert(credits.includes('GreyFrogGames') && credits.includes('Halloween Pumpkin') && credits.includes('CC0') &&
   credits.includes('https://opengameart.org/content/halloween-pumpkin-1'),
