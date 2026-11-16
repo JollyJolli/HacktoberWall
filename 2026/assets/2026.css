@@ -178,6 +178,9 @@ html[data-input-modality="pointer"] select.control:focus { outline: none; outlin
 .stone .inscription { display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:4; overflow:hidden; }
 
 .retry-loading { margin: 0 8px 12px; min-height: 44px; padding: 8px 14px; border: 1px solid #f4c36d; background: #5f321d; color: #fff1d1; font-weight: 700; cursor: pointer; }
+
+/* Let the page-length scene own its background on phones, so it continues behind tall content. */
+@media(max-width:690px){.scene,.light .scene{background-attachment:scroll;background-position:center top;background-size:cover}}
 .light .retry-loading { border-color: #203329; background: var(--forest); color: #fff5de; }
 .status-partial, .status-error { color: #ffd17b; }
 .light .status-partial, .light .status-error { color: #fff3da; }
